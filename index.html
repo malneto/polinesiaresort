@@ -6,6 +6,14 @@
     <title>Polinésia Resort — Muro Alto, Porto de Galinhas</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>">
     <meta name="description" content="Apartamento de temporada em Muro Alto, Porto de Galinhas. 2 quartos, 73m², no melhor trecho das piscinas naturais. Parque aquático, brinquedoteca, quadra esportiva.">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCPY93D2DT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TCPY93D2DT');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1789,6 +1797,7 @@ function setLang(lang) {
 
     // Persist
     localStorage.setItem('polinesia_lang', lang);
+    gtag('event', 'change_language', { event_category: 'engagement', event_label: lang });
 }
 
 // Auto-detect language: saved > geo > pt
@@ -1814,6 +1823,23 @@ function setLang(lang) {
         .catch(function() { /* fallback: mantém pt */ });
 })();
 
+// GA4 Event Tracking
+document.querySelectorAll('.btn-primary').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        gtag('event', 'click_whatsapp', { event_category: 'engagement', event_label: 'whatsapp_cta' });
+    });
+});
+document.querySelectorAll('.btn-booking').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        gtag('event', 'click_booking', { event_category: 'engagement', event_label: 'booking_cta' });
+    });
+});
+document.querySelectorAll('.btn-outline').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        gtag('event', 'click_ver_fotos', { event_category: 'engagement', event_label: 'hero_photos' });
+    });
+});
+
 // Quote Modal
 var quoteConfig = { enabled: true, url: 'https://servicos.polinesiaresort.com.br/search/', whatsapp: '' };
 
@@ -1827,6 +1853,7 @@ fetch('https://servicos.polinesiaresort.com.br/search/config.php')
     .catch(function() {});
 
 function openQuoteModal() {
+    gtag('event', 'click_cotacao', { event_category: 'engagement', event_label: 'quote_button' });
     if (!quoteConfig.enabled) {
         window.open(quoteConfig.whatsapp, '_blank');
         return;
