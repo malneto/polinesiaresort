@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polinésia Resort — Muro Alto, Porto de Galinhas</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>">
-    <meta name="description" content="Apartamento de temporada em Muro Alto, Porto de Galinhas. 2 quartos, 73m², no melhor trecho das piscinas naturais. Parque aquático, brinquedoteca, quadra esportiva.">
+    <meta id="metaDesc" name="description" content="Apartamento de temporada em Muro Alto, Porto de Galinhas. 2 quartos, 73m², no melhor trecho das piscinas naturais. Parque aquático, brinquedoteca, quadra esportiva.">
     <link rel="canonical" href="https://polinesiaresort.com.br">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Polinésia Resort">
@@ -99,6 +99,7 @@
         gtag('js', new Date());
         gtag('config', 'G-TCPY93D2DT');
     </script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1594,7 +1595,8 @@ const translations = {
         // Footer
         footer_address: "Muro Alto — Porto de Galinhas — Ipojuca, PE",
         footer_phone: "WhatsApp: (81) 9.8854-5491",
-        footer_copy: "\u00a9 2026 Polinésia Residence & Resort. Todos los derechos reservados."
+        footer_copy: "\u00a9 2026 Polinésia Residence & Resort. Todos los derechos reservados.",
+        meta_desc: "Apartamento vacacional en Muro Alto, Porto de Galinhas. 2 habitaciones, 73m², en el mejor tramo de las piscinas naturales. Parque acuático, sala de juegos, cancha deportiva."
     },
     en: {
         // Nav
@@ -1843,7 +1845,8 @@ const translations = {
         // Footer
         footer_address: "Muro Alto — Porto de Galinhas — Ipojuca, PE",
         footer_phone: "WhatsApp: +55 81 9.8854-5491",
-        footer_copy: "\u00a9 2026 Polinésia Residence & Resort. All rights reserved."
+        footer_copy: "\u00a9 2026 Polinésia Residence & Resort. All rights reserved.",
+        meta_desc: "Vacation apartment in Muro Alto, Porto de Galinhas. 2 bedrooms, 73m², on the best stretch of natural pools. Water park, playroom, sports court."
     },
     zh: {
         nav_apartment: "公寓",
@@ -3050,6 +3053,16 @@ function setLang(lang) {
     // Update html lang attribute
     const langMap = { pt: 'pt-BR', es: 'es', en: 'en', zh: 'zh-CN', hi: 'hi', fr: 'fr', ar: 'ar', bn: 'bn' };
     document.documentElement.lang = langMap[lang] || 'pt-BR';
+
+    // Update meta description
+    var metaDescEl = document.getElementById('metaDesc');
+    if (metaDescEl) {
+        if (lang === 'pt') {
+            metaDescEl.content = "Apartamento de temporada em Muro Alto, Porto de Galinhas. 2 quartos, 73m², no melhor trecho das piscinas naturais. Parque aquático, brinquedoteca, quadra esportiva.";
+        } else if (translations[lang] && translations[lang].meta_desc) {
+            metaDescEl.content = translations[lang].meta_desc;
+        }
+    }
 
     // Persist
     localStorage.setItem('polinesia_lang', lang);
