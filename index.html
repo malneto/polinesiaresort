@@ -272,6 +272,39 @@
             .amenities-list { grid-template-columns: 1fr; }
         }
 
+        /* ACCOMMODATION AMENITIES */
+        .accom-amenities { background: var(--gray-50); }
+        .accom-categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .accom-category h4 {
+            font-size: 15px; font-weight: 600; color: var(--ocean);
+            margin-bottom: 12px; padding-bottom: 8px;
+            border-bottom: 2px solid var(--ocean-light);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .accom-category ul {
+            list-style: none; display: flex; flex-direction: column; gap: 6px;
+        }
+        .accom-category li {
+            font-size: 13px; color: var(--gray-800); padding: 6px 0;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .accom-category li::before {
+            content: '✓'; color: var(--ocean-light); font-weight: 700; font-size: 12px;
+        }
+        .accom-category li:last-child { border-bottom: none; }
+        .accom-badge {
+            display: inline-block; margin-top: 24px; text-align: center;
+            padding: 12px 24px; background: var(--ocean);
+            color: var(--white); border-radius: 10px;
+            font-size: 15px; font-weight: 600;
+        }
+        .accom-badge-wrap { text-align: center; grid-column: 1 / -1; }
+
+        @media (max-width: 768px) {
+            .accom-categories { grid-template-columns: 1fr; }
+        }
+
         /* GALLERY */
         .gallery { background: var(--gray-50); }
         .gallery-grid {
@@ -734,6 +767,154 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ACCOMMODATION AMENITIES -->
+<section class="accom-amenities" id="amenities-acomodacao">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2>Amenities da acomodação</h2>
+            <p>Tudo que o apartamento oferece para sua estadia</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="accom-categories">
+            <div class="accom-category">
+                <h4>🏖️ Áreas Externas e Acessibilidade</h4>
+                <ul>
+                    <li>Acesso Livre de Degraus em Casa</li>
+                    <li>Vaga de Estacionamento para Deficientes</li>
+                    <li>Acesso à Praia</li>
+                    <li>Acesso ao Resort</li>
+                    <li>Área de Refeições Exterior</li>
+                    <li>Chuveiro Externo</li>
+                    <li>Espreguiçadeiras</li>
+                    <li>Mobília de Exterior</li>
+                    <li>Varanda</li>
+                    <li>Vista para a Piscina</li>
+                    <li>Vista para o Jardim</li>
+                    <li>Vista para o Oceano</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>🚿 Banheiro</h4>
+                <ul>
+                    <li>Água Quente</li>
+                    <li>Ducha</li>
+                    <li>Itens Básicos de Banheiro</li>
+                    <li>Papel Higiênico</li>
+                    <li>Sabonete Líquido</li>
+                    <li>Secador de Cabelo</li>
+                    <li>Toalhas</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>🍳 Cozinha e Refeições</h4>
+                <ul>
+                    <li>Assentos na Sala de Jantar</li>
+                    <li>Churrasqueira</li>
+                    <li>Copos de Vinho</li>
+                    <li>Cozinha Completa</li>
+                    <li>Fogão</li>
+                    <li>Forno</li>
+                    <li>Freezer</li>
+                    <li>Geladeira</li>
+                    <li>Itens Básicos de Cozinha</li>
+                    <li>Liquidificador</li>
+                    <li>Louças e Talheres</li>
+                    <li>Máquina de Café</li>
+                    <li>Mesa de Jantar</li>
+                    <li>Mesas e cadeiras</li>
+                    <li>Microondas</li>
+                    <li>Panela de Arroz</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>🎮 Entretenimento e Lazer</h4>
+                <ul>
+                    <li>Adaptador</li>
+                    <li>Caiaque</li>
+                    <li>Canais a Cabo</li>
+                    <li>Canais Pay-per-view</li>
+                    <li>Equipamento de Exercício</li>
+                    <li>Filmes</li>
+                    <li>Luz de Leitura</li>
+                    <li>Mesa de Ping Pong</li>
+                    <li>Sala de Jogos</li>
+                    <li>TV HD — 40 polegadas</li>
+                    <li>TV de tela larga</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>🏢 Estrutura e Serviços</h4>
+                <ul>
+                    <li>Apartamento Privado</li>
+                    <li>Ar condicionado</li>
+                    <li>Ar condicionado individual por quarto</li>
+                    <li>Elevador</li>
+                    <li>Estacionamento Gratuito</li>
+                    <li>Garagem Gratuita</li>
+                    <li>Interfone</li>
+                    <li>Área de estar com sofá/cadeira</li>
+                    <li>Artigos de Praia</li>
+                    <li>Não permite pets</li>
+                    <li>Quartos para famílias</li>
+                    <li>Recomendações de babá e cozinheira</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>💻 Escritório e Conectividade</h4>
+                <ul>
+                    <li>Cadeira fornecida com a mesa</li>
+                    <li>Espaço pronto para notebook</li>
+                    <li>Internet (fibra ótica)</li>
+                    <li>Quarto à prova de som</li>
+                    <li>Tomada perto da cama</li>
+                    <li>Wi-Fi Portátil</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>🧹 Limpeza e Higiene</h4>
+                <ul>
+                    <li>Livre de Alergênicos</li>
+                    <li>Lixeiras</li>
+                    <li>Produtos de Limpeza</li>
+                    <li>Desinfetante para as Mãos</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>👔 Quarto e Rouparia</h4>
+                <ul>
+                    <li>Arara para Roupas</li>
+                    <li>Armários no quarto</li>
+                    <li>Blackout nas Cortinas</li>
+                    <li>Cabides</li>
+                    <li>Ferro de Passar</li>
+                    <li>Guarda-roupa ou Armário</li>
+                    <li>Lavanderia Próxima</li>
+                    <li>Múltiplos armários</li>
+                    <li>Quarto de Vestir</li>
+                    <li>Roupas de cama</li>
+                    <li>Secadora</li>
+                    <li>Sofá</li>
+                    <li>Sofá-Cama</li>
+                    <li>Travesseiro sem penas</li>
+                    <li>Varal para Secar Roupas</li>
+                </ul>
+            </div>
+            <div class="accom-category">
+                <h4>🔒 Segurança e Privacidade</h4>
+                <ul>
+                    <li>Chaves Eletrônicas</li>
+                    <li>Cortina Privativa</li>
+                    <li>Cortina Blackout</li>
+                    <li>Porteiro</li>
+                </ul>
+            </div>
+            <div class="accom-badge-wrap">
+                <div class="accom-badge">📐 Área total — 73 m²</div>
             </div>
         </div>
     </div>
