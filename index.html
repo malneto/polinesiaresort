@@ -1379,7 +1379,7 @@
 
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
 
-<!-- LEAD CAPTURE MODAL -->
+<!-- LEAD CAPTURE MODAL — DESABILITADO (reativar quando isca digital estiver pronta)
 <div class="lead-modal" id="leadModal" onclick="if(event.target===this)closeLeadModal()">
     <div class="lead-modal-inner">
         <button class="lead-modal-close" onclick="closeLeadModal()">&times;</button>
@@ -1395,6 +1395,7 @@
         </div>
     </div>
 </div>
+-->
 
 <!-- FOOTER -->
 <footer>
@@ -3313,7 +3314,8 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.obser
 
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
 
-// Lead Capture
+// Lead Capture — DESABILITADO (reativar quando isca digital estiver pronta)
+/*
 var leadShown = false;
 var leadTexts = {
     pt: { title: 'Guia gratuito de Porto de Galinhas', desc: '50+ restaurantes, praias, transfers e dicas. Receba grátis no seu email!', btn: 'Quero o guia grátis!', name: 'Seu nome', email: 'Seu melhor email', success: 'Enviado! Confira seu email em breve.' },
@@ -3370,8 +3372,9 @@ resetLeadTimer();
 var origCloseQuote = closeQuoteModal;
 closeQuoteModal = function() {
     origCloseQuote();
-    setTimeout(showLeadModal, 2000);
+    // setTimeout(showLeadModal, 2000);
 };
+*/ // Fim do bloco Lead Capture desabilitado
 </script>
 
 </body>
