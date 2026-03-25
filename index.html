@@ -73,7 +73,8 @@
         /* LANG FLAGS */
         .lang-flags { display: flex; gap: 6px; align-items: center; margin-left: 12px; }
         .lang-flag { cursor: pointer; opacity: 0.6; transition: opacity 0.2s, transform 0.2s; background: none; border: none; padding: 2px; line-height: 1; width: 28px; height: 20px; border-radius: 3px; overflow: hidden; }
-        .lang-flag:hover, .lang-flag.active { opacity: 1; transform: scale(1.15); }
+        .lang-flag:hover { opacity: 1; transform: scale(1.15); }
+        .lang-flag.active { opacity: 1; transform: scale(1.35); }
 
         /* HERO */
         .hero {
@@ -1717,12 +1718,27 @@ function setLang(lang) {
     localStorage.setItem('polinesia_lang', lang);
 }
 
-// Auto-apply saved language on load
+// Auto-detect language: saved > geo > pt
 (function() {
     var saved = localStorage.getItem('polinesia_lang');
     if (saved && saved !== 'pt') {
         setLang(saved);
+        return;
     }
+    if (saved) return; // já escolheu pt explicitamente
+
+    // Detectar país por IP (API gratuita, sem key)
+    fetch('https://ipapi.co/json/')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            var cc = (data.country_code || '').toUpperCase();
+            var esCountries = ['AR','UY','CL','CO','PE','EC','VE','BO','PY','MX','CR','CU','DO','SV','GT','HN','NI','PA','ES','GQ'];
+            var lang = 'en';
+            if (cc === 'BR') lang = 'pt';
+            else if (esCountries.indexOf(cc) !== -1) lang = 'es';
+            if (lang !== 'pt') setLang(lang);
+        })
+        .catch(function() {});
 })();
 
 // Reviews Carousel
