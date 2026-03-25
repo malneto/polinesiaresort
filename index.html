@@ -434,6 +434,60 @@
         }
         .btn-booking:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0,0,0,0.2); }
 
+        /* REVIEWS CAROUSEL */
+        .reviews-section { background: var(--gray-50); overflow: hidden; }
+        .reviews-header-info {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; margin-bottom: 8px;
+        }
+        .reviews-rating { font-size: 42px; font-weight: 700; color: var(--gray-900); line-height: 1; }
+        .reviews-stars { color: #f59e0b; font-size: 22px; letter-spacing: 2px; }
+        .reviews-count { font-size: 14px; color: var(--gray-600); }
+        .reviews-google { display: flex; align-items: center; gap: 6px; justify-content: center; margin-bottom: 32px; }
+        .reviews-google svg { width: 20px; height: 20px; }
+        .reviews-google span { font-size: 13px; color: var(--gray-600); font-weight: 500; }
+
+        .carousel-track {
+            display: flex;
+            animation: scroll-reviews 60s linear infinite;
+            gap: 24px;
+            padding: 8px 0;
+        }
+        .carousel-track:hover { animation-play-state: paused; }
+        .review-card {
+            min-width: 340px; max-width: 340px;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-100);
+            flex-shrink: 0;
+        }
+        .review-top {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+        }
+        .review-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            object-fit: cover; background: var(--gray-100);
+        }
+        .review-author { font-weight: 600; font-size: 14px; color: var(--gray-900); }
+        .review-date { font-size: 12px; color: var(--gray-600); }
+        .review-stars { color: #f59e0b; font-size: 14px; margin-bottom: 10px; }
+        .review-text {
+            font-size: 14px; color: var(--gray-600); line-height: 1.6;
+            display: -webkit-box; -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical; overflow: hidden;
+        }
+
+        @keyframes scroll-reviews {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 768px) {
+            .review-card { min-width: 280px; max-width: 280px; }
+        }
+
         /* FOOTER */
         footer {
             background: var(--gray-900); color: rgba(255,255,255,0.6);
@@ -1072,6 +1126,28 @@
     </div>
 </section>
 
+<!-- REVIEWS -->
+<section class="reviews-section" id="avaliacoes">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2 data-i18n="reviews_title">O que dizem nossos hóspedes</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="reviews-header-info">
+            <span class="reviews-rating" id="reviewsRating">4.8</span>
+            <div>
+                <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="reviews-count" id="reviewsCount">85 avaliações no Google</div>
+            </div>
+        </div>
+        <div class="reviews-google">
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            <span>Avaliações do Google</span>
+        </div>
+    </div>
+    <div class="carousel-track" id="reviewsCarousel"></div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <div class="footer-inner">
@@ -1642,6 +1718,51 @@ function setLang(lang) {
     var saved = localStorage.getItem('polinesia_lang');
     if (saved && saved !== 'pt') {
         setLang(saved);
+    }
+})();
+
+// Reviews Carousel
+(async function loadReviews() {
+    try {
+        const resp = await fetch('https://servicos.polinesiaresort.com.br/search/reviews.php');
+        const data = await resp.json();
+        if (!data.reviews || data.reviews.length === 0) return;
+
+        document.getElementById('reviewsRating').textContent = data.rating || '4.8';
+        document.getElementById('reviewsCount').textContent = (data.total_reviews || 85) + ' avaliações no Google';
+
+        const carousel = document.getElementById('reviewsCarousel');
+        const reviews = data.reviews;
+
+        function buildCards(list) {
+            return list.map(r => {
+                const date = r.date ? new Date(r.date).toLocaleDateString('pt-BR', {month:'short', year:'numeric'}) : '';
+                const text = r.text.length > 200 ? r.text.substring(0, 200) + '...' : r.text;
+                return `<div class="review-card">
+                    <div class="review-top">
+                        <img class="review-avatar" src="${r.photo}" alt="${r.author}" onerror="this.style.display='none'">
+                        <div>
+                            <div class="review-author">${r.author}</div>
+                            <div class="review-date">${date}</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="review-text">${text.replace(/\n/g, ' ')}</div>
+                </div>`;
+            }).join('');
+        }
+
+        // Duplicar cards para scroll infinito
+        carousel.innerHTML = buildCards(reviews) + buildCards(reviews);
+
+        // Ajustar velocidade: ~3s por card
+        const cardWidth = 364; // 340 + 24 gap
+        const totalWidth = cardWidth * reviews.length;
+        const speed = reviews.length * 3; // 3s por review
+        carousel.style.animationDuration = speed + 's';
+
+    } catch (e) {
+        console.log('Reviews não carregadas:', e);
     }
 })();
 </script>
