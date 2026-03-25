@@ -489,6 +489,52 @@
             .review-card { min-width: 280px; max-width: 280px; }
         }
 
+        /* QUOTE BUTTON */
+        .btn-quote {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 18px 44px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: var(--white);
+            font-size: 19px; font-weight: 700;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 6px 30px rgba(245,158,11,0.5);
+            animation: pulse-quote 2s ease-in-out infinite;
+            transition: transform 0.2s;
+            cursor: pointer; border: none; font-family: 'Inter', sans-serif;
+        }
+        .btn-quote:hover { transform: scale(1.05); }
+        @keyframes pulse-quote {
+            0%, 100% { box-shadow: 0 6px 30px rgba(245,158,11,0.4); }
+            50% { box-shadow: 0 8px 45px rgba(245,158,11,0.7); }
+        }
+
+        /* QUOTE MODAL */
+        .quote-modal {
+            display: none; position: fixed; inset: 0; z-index: 300;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .quote-modal.active { display: flex; }
+        .quote-modal-inner {
+            width: 100%; max-width: 680px; max-height: 90vh;
+            background: var(--white); border-radius: 16px;
+            overflow: hidden; position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .quote-modal-close {
+            position: absolute; top: 12px; right: 16px; z-index: 10;
+            background: rgba(0,0,0,0.5); color: white; border: none;
+            width: 36px; height: 36px; border-radius: 50%;
+            font-size: 20px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .quote-modal-close:hover { background: rgba(0,0,0,0.7); }
+        .quote-modal iframe {
+            width: 100%; height: 85vh; border: none;
+        }
+
         /* FOOTER */
         footer {
             background: var(--gray-900); color: rgba(255,255,255,0.6);
@@ -1132,6 +1178,11 @@
                 <span data-i18n="cta_booking">Reservar pelo Booking.com</span>
             </a>
         </div>
+        <div style="margin-top: 28px;">
+            <button class="btn-quote" id="btnQuote" onclick="openQuoteModal()">
+                <span data-i18n="cta_quote">Obter cotação AGORA!</span>
+            </button>
+        </div>
     </div>
 </section>
 
@@ -1156,6 +1207,14 @@
     </div>
     <div class="carousel-track" id="reviewsCarousel"></div>
 </section>
+
+<!-- QUOTE MODAL -->
+<div class="quote-modal" id="quoteModal" onclick="if(event.target===this)closeQuoteModal()">
+    <div class="quote-modal-inner">
+        <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Fechar">&times;</button>
+        <iframe id="quoteIframe" src="" title="Cotação"></iframe>
+    </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1441,6 +1500,7 @@ const translations = {
         cta_desc: "Contactanos por WhatsApp y recibí una cotización personalizada para tus fechas.",
         cta_whatsapp: "Hablar por WhatsApp",
         cta_booking: "Reservar por Booking.com",
+        cta_quote: "¡Obtener cotización AHORA!",
         // Reviews
         reviews_title: "Lo que dicen nuestros huéspedes",
         // Footer
@@ -1689,6 +1749,7 @@ const translations = {
         cta_desc: "Get in touch via WhatsApp and receive a personalized quote for your dates.",
         cta_whatsapp: "Chat on WhatsApp",
         cta_booking: "Book on Booking.com",
+        cta_quote: "Get a quote NOW!",
         // Reviews
         reviews_title: "What our guests say",
         // Footer
@@ -1752,6 +1813,38 @@ function setLang(lang) {
         })
         .catch(function() { /* fallback: mantém pt */ });
 })();
+
+// Quote Modal
+var quoteConfig = { enabled: true, url: 'https://servicos.polinesiaresort.com.br/search/', whatsapp: '' };
+
+fetch('https://servicos.polinesiaresort.com.br/search/config.php')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        quoteConfig.enabled = data.cotacao_habilitada;
+        quoteConfig.url = data.cotacao_url;
+        quoteConfig.whatsapp = data.whatsapp_url;
+    })
+    .catch(function() {});
+
+function openQuoteModal() {
+    if (!quoteConfig.enabled) {
+        window.open(quoteConfig.whatsapp, '_blank');
+        return;
+    }
+    document.getElementById('quoteIframe').src = quoteConfig.url;
+    document.getElementById('quoteModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeQuoteModal() {
+    document.getElementById('quoteModal').classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('quoteIframe').src = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeQuoteModal();
+});
 
 // Reviews Carousel
 (async function loadReviews() {
