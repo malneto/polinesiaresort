@@ -224,6 +224,39 @@
             .rules-grid { grid-template-columns: 1fr; }
         }
 
+        /* SURROUNDINGS */
+        .surroundings { background: var(--white); }
+        .surroundings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+        .amenities-list {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .amenity-tag {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 14px; background: var(--gray-50);
+            border-radius: 8px; font-size: 14px; color: var(--gray-800);
+            border: 1px solid var(--gray-100);
+        }
+        .amenity-tag-icon { font-size: 16px; flex-shrink: 0; }
+        .attractions-table { width: 100%; border-collapse: collapse; }
+        .attractions-table th {
+            text-align: left; font-size: 12px; font-weight: 600;
+            color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 8px 12px; border-bottom: 2px solid var(--gray-100);
+        }
+        .attractions-table td {
+            padding: 12px; font-size: 14px; color: var(--gray-800);
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .attractions-table td:last-child {
+            text-align: right; font-weight: 600; color: var(--ocean); white-space: nowrap;
+        }
+        .attractions-table tr:last-child td { border-bottom: none; }
+
+        @media (max-width: 768px) {
+            .surroundings-grid { grid-template-columns: 1fr; gap: 40px; }
+            .amenities-list { grid-template-columns: 1fr; }
+        }
+
         /* GALLERY */
         .gallery { background: var(--gray-50); }
         .gallery-grid {
@@ -573,6 +606,86 @@
                         <span class="rule-value rule-info">Até 11:30</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SURROUNDINGS -->
+<section class="surroundings" id="arredores">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2>Arredores e atrações</h2>
+            <p>O que você encontra no condomínio e na região</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="surroundings-grid">
+            <div class="info-block">
+                <h3>🏝️ Amenities dos arredores</h3>
+                <div class="amenities-list">
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🏖️</span> Beira-mar</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🌿</span> Jardim</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🛍️</span> Lojas (na propriedade)</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🪑</span> Móveis externos</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🧒</span> Parquinho infantil</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🏊</span> Piscina ao ar livre</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🎾</span> Quadra de tênis</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">📺</span> Salão / área de TV</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">☀️</span> Terraço</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🌅</span> Vista para a praia</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🍽️</span> Restaurante</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🏋️</span> Academia (área comum)</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🍸</span> Bar</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🎮</span> Salão de jogos</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🛗</span> Elevador</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">📶</span> Internet Wi-Fi</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🅿️</span> Estacionamento</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🔑</span> Recepção 24 horas</div>
+                </div>
+            </div>
+            <div class="info-block">
+                <h3>📍 Atrações próximas ao imóvel</h3>
+                <table class="attractions-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Nome</th>
+                            <th>Distância</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Café/Bar</td>
+                            <td>Kai Lounge Bar</td>
+                            <td>0 km</td>
+                        </tr>
+                        <tr>
+                            <td>Feira</td>
+                            <td>Vila de Porto de Galinhas</td>
+                            <td>11 km</td>
+                        </tr>
+                        <tr>
+                            <td>Mar/Oceano</td>
+                            <td>Porto de Galinhas</td>
+                            <td>0 km</td>
+                        </tr>
+                        <tr>
+                            <td>Praia</td>
+                            <td>Muro Alto</td>
+                            <td>0 km</td>
+                        </tr>
+                        <tr>
+                            <td>Restaurante</td>
+                            <td>Restaurante Tuvalu</td>
+                            <td>0 km</td>
+                        </tr>
+                        <tr>
+                            <td>Supermercados</td>
+                            <td>Empório de Muro Alto</td>
+                            <td>3 km</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
