@@ -1815,8 +1815,9 @@ function setLang(lang) {
         .then(function(data) {
             var cc = (data.country_code || '').toUpperCase();
             var esCountries = ['AR','UY','CL','CO','PE','EC','VE','BO','PY','MX','CR','CU','DO','SV','GT','HN','NI','PA','ES','GQ'];
+            var ptCountries = ['BR','PT','AO','MZ','CV','GW','ST','TL'];
             var lang = 'en';
-            if (cc === 'BR') lang = 'pt';
+            if (ptCountries.indexOf(cc) !== -1) lang = 'pt';
             else if (esCountries.indexOf(cc) !== -1) {
                 lang = 'es';
                 // Trocar bandeira ES pela do país do visitante
