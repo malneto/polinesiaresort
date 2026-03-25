@@ -186,6 +186,44 @@
             border-radius: 50%; flex-shrink: 0;
         }
 
+        /* BEDS & RULES */
+        .beds-rules { background: var(--gray-50); }
+        .beds-rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+        .info-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px; color: var(--gray-900); margin-bottom: 24px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .bed-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+        .bed-item {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px 20px; background: var(--white);
+            border-radius: 12px; border: 1px solid var(--gray-100);
+        }
+        .bed-icon { font-size: 28px; flex-shrink: 0; }
+        .bed-info strong { display: block; font-size: 15px; color: var(--gray-900); }
+        .bed-info span { font-size: 13px; color: var(--gray-600); }
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .rule-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px; background: var(--white);
+            border-radius: 10px; border: 1px solid var(--gray-100);
+            font-size: 14px;
+        }
+        .rule-label { color: var(--gray-800); font-weight: 500; }
+        .rule-value {
+            padding: 3px 10px; border-radius: 50px;
+            font-size: 12px; font-weight: 600; white-space: nowrap;
+        }
+        .rule-yes { background: #dcfce7; color: #166534; }
+        .rule-no { background: #fee2e2; color: #991b1b; }
+        .rule-info { background: #e0f2fe; color: #075985; }
+
+        @media (max-width: 768px) {
+            .beds-rules-grid { grid-template-columns: 1fr; gap: 40px; }
+            .rules-grid { grid-template-columns: 1fr; }
+        }
+
         /* GALLERY */
         .gallery { background: var(--gray-50); }
         .gallery-grid {
@@ -454,6 +492,86 @@
                     <div class="highlight-item"><span class="highlight-dot"></span> TV em todos os cômodos</div>
                     <div class="highlight-item"><span class="highlight-dot"></span> Roupa de cama</div>
                     <div class="highlight-item"><span class="highlight-dot"></span> Estacionamento</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BEDS & RULES -->
+<section class="beds-rules" id="acomodacao">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2>Detalhes da acomodação</h2>
+            <p>Tudo sobre camas, regras e horários</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="beds-rules-grid">
+            <div class="info-block">
+                <h3>🛏️ Camas</h3>
+                <ul class="bed-list">
+                    <li class="bed-item">
+                        <span class="bed-icon">🛏️</span>
+                        <div class="bed-info">
+                            <strong>Suíte</strong>
+                            <span>Cama queen + cama de solteiro</span>
+                        </div>
+                    </li>
+                    <li class="bed-item">
+                        <span class="bed-icon">🛏️</span>
+                        <div class="bed-info">
+                            <strong>Quarto social</strong>
+                            <span>Cama queen</span>
+                        </div>
+                    </li>
+                    <li class="bed-item">
+                        <span class="bed-icon">👶</span>
+                        <div class="bed-info">
+                            <strong>Criança</strong>
+                            <span>Berço disponível</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="info-block">
+                <h3>📋 Regras da acomodação</h3>
+                <div class="rules-grid">
+                    <div class="rule-item">
+                        <span class="rule-label">Aceita crianças (2–12 anos)</span>
+                        <span class="rule-value rule-yes">Sim</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Aceita bebês (abaixo de 2 anos)</span>
+                        <span class="rule-value rule-yes">Sim</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Fornece berços</span>
+                        <span class="rule-value rule-yes">Sim</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Permitido fumar nos quartos</span>
+                        <span class="rule-value rule-no">Não</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Aceita animais de estimação</span>
+                        <span class="rule-value rule-info">Sob consulta</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Eventos são permitidos</span>
+                        <span class="rule-value rule-no">Não</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Horário de silêncio</span>
+                        <span class="rule-value rule-info">22:00</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Horário para chegadas</span>
+                        <span class="rule-value rule-info">Qualquer</span>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-label">Horário para checkout</span>
+                        <span class="rule-value rule-info">Até 11:30</span>
+                    </div>
                 </div>
             </div>
         </div>
