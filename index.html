@@ -99,6 +99,9 @@
         gtag('js', new Date());
         gtag('config', 'G-TCPY93D2DT');
     </script>
+    <link rel="dns-prefetch" href="https://flagcdn.com">
+    <link rel="dns-prefetch" href="https://servicos.polinesiaresort.com.br">
+    <link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -685,6 +688,31 @@
             .features-grid { grid-template-columns: 1fr 1fr; }
             .gallery-grid { grid-template-rows: repeat(4, 160px); }
         }
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed; bottom: 24px; right: 24px; z-index: 90;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--ocean); color: white; border: none;
+            font-size: 20px; cursor: pointer; opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(20px); pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .back-to-top:hover { background: #0369a1; }
+
+        /* Blur Placeholder Lazy Loading */
+        .gallery-item img, .condo-item img {
+            filter: blur(0); transition: filter 0.5s ease, transform 0.5s;
+        }
+        .gallery-item img[data-loaded="false"], .condo-item img[data-loaded="false"] {
+            filter: blur(10px);
+        }
     </style>
 </head>
 <body>
@@ -760,10 +788,16 @@
         <div class="about-grid">
             <div class="about-images">
                 <div class="about-img-main">
-                    <img src="img/sala-04.png" alt="Sala de estar ampla e decorada no Polinésia Resort em Muro Alto" loading="lazy">
+                    <picture>
+                        <source srcset="img/sala-04.webp" type="image/webp">
+                        <img src="img/sala-04.png" alt="Sala de estar ampla e decorada no Polinésia Resort em Muro Alto" loading="lazy">
+                    </picture>
                 </div>
                 <div class="about-img-float">
-                    <img src="img/varanda-01.png" alt="Varanda com vista para o mar em Porto de Galinhas" loading="lazy">
+                    <picture>
+                        <source srcset="img/varanda-01.webp" type="image/webp">
+                        <img src="img/varanda-01.png" alt="Varanda com vista para o mar em Porto de Galinhas" loading="lazy">
+                    </picture>
                 </div>
             </div>
             <div class="about-text">
@@ -786,7 +820,7 @@
 <!-- DESCRIPTION -->
 <section class="description" id="descricao">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="desc_title">Melhor Vista do Mar</h2>
             <p data-i18n="desc_subtitle">Varanda Nascente, Privacidade</p>
             <div class="section-divider"></div>
@@ -819,7 +853,7 @@
 <!-- BEDS & RULES -->
 <section class="beds-rules" id="acomodacao">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="beds_title">Detalhes da acomodação</h2>
             <p data-i18n="beds_subtitle">Tudo sobre camas, regras e horários</p>
             <div class="section-divider"></div>
@@ -906,7 +940,7 @@
 <!-- SURROUNDINGS -->
 <section class="surroundings" id="arredores">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="surr_title">Arredores e atrações</h2>
             <p data-i18n="surr_subtitle">O que você encontra no condomínio e na região</p>
             <div class="section-divider"></div>
@@ -986,7 +1020,7 @@
 <!-- ACCOMMODATION AMENITIES -->
 <section class="accom-amenities" id="amenities-acomodacao">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="accom_title">Amenities da acomodação</h2>
             <p data-i18n="accom_subtitle">Tudo que o apartamento oferece para sua estadia</p>
             <div class="section-divider"></div>
@@ -1131,19 +1165,19 @@
 <!-- GALLERY -->
 <section class="gallery" id="galeria">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="gallery_title">Conheça o espaço</h2>
             <p data-i18n="gallery_subtitle">Apartamento e áreas comuns do condomínio</p>
             <div class="section-divider"></div>
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item span-2"><img src="img/web-condo-4.jpg" alt="Sala de estar decorada com sofá e mesa de jantar no Polinésia Resort" loading="lazy"></div>
-            <div class="gallery-item"><img src="img/quarto-01.png" alt="Suíte principal com cama queen no apartamento em Muro Alto" loading="lazy"></div>
-            <div class="gallery-item"><img src="img/quarto-03.png" alt="Segundo quarto com duas camas de solteiro no Polinésia Resort" loading="lazy"></div>
-            <div class="gallery-item"><img src="img/cozinha-01.png" alt="Cozinha completa com eletrodomésticos e bancada de granito" loading="lazy"></div>
-            <div class="gallery-item"><img src="img/web-condo-5.jpg" alt="Quarto aconchegante com cama de casal e ar-condicionado" loading="lazy"></div>
-            <div class="gallery-item"><img src="img/berco.png" alt="Berço Cosco disponível para bebês no apartamento" loading="lazy"></div>
-            <div class="gallery-item span-2"><img src="img/sala-04.png" alt="Sala ampla com varanda integrada no Polinésia Resort Muro Alto" loading="lazy"></div>
+            <div class="gallery-item span-2"><picture><source srcset="img/web-condo-4.webp" type="image/webp"><img src="img/web-condo-4.jpg" alt="Sala de estar decorada com sofá e mesa de jantar no Polinésia Resort" loading="lazy"></picture></div>
+            <div class="gallery-item"><picture><source srcset="img/quarto-01.webp" type="image/webp"><img src="img/quarto-01.png" alt="Suíte principal com cama queen no apartamento em Muro Alto" loading="lazy"></picture></div>
+            <div class="gallery-item"><picture><source srcset="img/quarto-03.webp" type="image/webp"><img src="img/quarto-03.png" alt="Segundo quarto com duas camas de solteiro no Polinésia Resort" loading="lazy"></picture></div>
+            <div class="gallery-item"><picture><source srcset="img/cozinha-01.webp" type="image/webp"><img src="img/cozinha-01.png" alt="Cozinha completa com eletrodomésticos e bancada de granito" loading="lazy"></picture></div>
+            <div class="gallery-item"><picture><source srcset="img/web-condo-5.webp" type="image/webp"><img src="img/web-condo-5.jpg" alt="Quarto aconchegante com cama de casal e ar-condicionado" loading="lazy"></picture></div>
+            <div class="gallery-item"><picture><source srcset="img/berco.webp" type="image/webp"><img src="img/berco.png" alt="Berço Cosco disponível para bebês no apartamento" loading="lazy"></picture></div>
+            <div class="gallery-item span-2"><picture><source srcset="img/sala-04.webp" type="image/webp"><img src="img/sala-04.png" alt="Sala ampla com varanda integrada no Polinésia Resort Muro Alto" loading="lazy"></picture></div>
         </div>
     </div>
 </section>
@@ -1151,24 +1185,24 @@
 <!-- CONDO GALLERY -->
 <section class="condo-gallery" id="condominio">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="condo_title">O condomínio</h2>
             <p data-i18n="condo_subtitle">Estrutura completa de lazer à beira-mar</p>
             <div class="section-divider"></div>
         </div>
         <div class="condo-grid">
-            <div class="condo-item large"><img src="img/estrutura-03.png" alt="Piscina com quiosque e espreguiçadeiras no condomínio Polinésia Resort" loading="lazy"></div>
-            <div class="condo-item"><img src="img/web-condo-2.jpg" alt="Pergolado com rede e vista para o mar em Muro Alto" loading="lazy"></div>
-            <div class="condo-item"><img src="img/web-condo-3.jpg" alt="Caiaques coloridos na praia de Muro Alto, Porto de Galinhas" loading="lazy"></div>
-            <div class="condo-item"><img src="img/estrutura-06.png" alt="Praia de Muro Alto com piscinas naturais e coqueiros" loading="lazy"></div>
-            <div class="condo-item large"><img src="img/web-condo-6.jpg" alt="Piscina do Polinésia Resort iluminada ao anoitecer" loading="lazy"></div>
-            <div class="condo-item"><img src="img/estrutura-05.png" alt="Mesa de café da manhã com frutas tropicais e tapioca" loading="lazy"></div>
-            <div class="condo-item"><img src="img/web-condo-1.jpg" alt="Jardim tropical e quadra esportiva do condomínio" loading="lazy"></div>
-            <div class="condo-item"><img src="img/estrutura-04.png" alt="Área da piscina com iluminação noturna no Polinésia Resort" loading="lazy"></div>
-            <div class="condo-item"><img src="img/web-new-condo-1.jpg" alt="Entrada do La Fleur Polinésia em Muro Alto" loading="lazy"></div>
-            <div class="condo-item large"><img src="img/web-new-condo-2.jpg" alt="Vista da piscina e jardins a partir da varanda do apartamento" loading="lazy"></div>
-            <div class="condo-item large"><img src="img/web-new-condo-3.jpg" alt="Vista aérea dos jardins, piscinas e área de lazer do resort" loading="lazy"></div>
-            <div class="condo-item"><img src="img/web-new-condo-4.jpg" alt="Piscinas do Polinésia Resort ao pôr do sol em Porto de Galinhas" loading="lazy"></div>
+            <div class="condo-item large"><picture><source srcset="img/estrutura-03.webp" type="image/webp"><img src="img/estrutura-03.png" alt="Piscina com quiosque e espreguiçadeiras no condomínio Polinésia Resort" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/web-condo-2.webp" type="image/webp"><img src="img/web-condo-2.jpg" alt="Pergolado com rede e vista para o mar em Muro Alto" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/web-condo-3.webp" type="image/webp"><img src="img/web-condo-3.jpg" alt="Caiaques coloridos na praia de Muro Alto, Porto de Galinhas" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/estrutura-06.webp" type="image/webp"><img src="img/estrutura-06.png" alt="Praia de Muro Alto com piscinas naturais e coqueiros" loading="lazy"></picture></div>
+            <div class="condo-item large"><picture><source srcset="img/web-condo-6.webp" type="image/webp"><img src="img/web-condo-6.jpg" alt="Piscina do Polinésia Resort iluminada ao anoitecer" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/estrutura-05.webp" type="image/webp"><img src="img/estrutura-05.png" alt="Mesa de café da manhã com frutas tropicais e tapioca" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/web-condo-1.webp" type="image/webp"><img src="img/web-condo-1.jpg" alt="Jardim tropical e quadra esportiva do condomínio" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/estrutura-04.webp" type="image/webp"><img src="img/estrutura-04.png" alt="Área da piscina com iluminação noturna no Polinésia Resort" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/web-new-condo-1.webp" type="image/webp"><img src="img/web-new-condo-1.jpg" alt="Entrada do La Fleur Polinésia em Muro Alto" loading="lazy"></picture></div>
+            <div class="condo-item large"><picture><source srcset="img/web-new-condo-2.webp" type="image/webp"><img src="img/web-new-condo-2.jpg" alt="Vista da piscina e jardins a partir da varanda do apartamento" loading="lazy"></picture></div>
+            <div class="condo-item large"><picture><source srcset="img/web-new-condo-3.webp" type="image/webp"><img src="img/web-new-condo-3.jpg" alt="Vista aérea dos jardins, piscinas e área de lazer do resort" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/web-new-condo-4.webp" type="image/webp"><img src="img/web-new-condo-4.jpg" alt="Piscinas do Polinésia Resort ao pôr do sol em Porto de Galinhas" loading="lazy"></picture></div>
         </div>
     </div>
 </section>
@@ -1176,7 +1210,7 @@
 <!-- AMENITIES -->
 <section class="amenities" id="servicos">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="services_title">O que você vai encontrar</h2>
             <p data-i18n="services_subtitle">Estrutura completa de lazer para toda a família</p>
             <div class="section-divider"></div>
@@ -1219,7 +1253,7 @@
 <!-- LOCATION -->
 <section class="location" id="localizacao">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="loc_title">Localização privilegiada</h2>
             <p data-i18n="loc_subtitle">No coração de Muro Alto, o trecho mais exclusivo de Porto de Galinhas</p>
             <div class="section-divider"></div>
@@ -1278,7 +1312,7 @@
 <!-- REVIEWS -->
 <section class="reviews-section" id="avaliacoes">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 data-i18n="reviews_title">O que dizem nossos hóspedes</h2>
             <div class="section-divider"></div>
         </div>
@@ -1304,6 +1338,8 @@
         <iframe id="quoteIframe" src="" title="Cotação"></iframe>
     </div>
 </div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
 
 <!-- FOOTER -->
 <footer>
