@@ -635,6 +635,41 @@
             width: 100%; height: 85vh; border: none;
         }
 
+        /* LEAD CAPTURE MODAL */
+        .lead-modal {
+            display: none; position: fixed; inset: 0; z-index: 250;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; padding: 20px;
+        }
+        .lead-modal.active { display: flex; }
+        .lead-modal-inner {
+            background: var(--white); border-radius: 20px; padding: 40px 32px;
+            max-width: 440px; width: 100%; text-align: center; position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .lead-modal-close {
+            position: absolute; top: 12px; right: 16px; background: none;
+            border: none; font-size: 24px; cursor: pointer; color: var(--gray-600);
+        }
+        .lead-modal-inner h3 {
+            font-family: 'Playfair Display', serif; font-size: 24px;
+            color: var(--gray-900); margin-bottom: 8px;
+        }
+        .lead-modal-inner p { color: var(--gray-600); font-size: 14px; margin-bottom: 24px; }
+        .lead-input {
+            width: 100%; padding: 14px; border: 1.5px solid var(--gray-300);
+            border-radius: 10px; font-size: 15px; margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+        .lead-input:focus { outline: none; border-color: var(--ocean-light); }
+        .lead-btn {
+            width: 100%; padding: 14px; background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white; border: none; border-radius: 10px; font-size: 16px;
+            font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif;
+        }
+        .lead-btn:hover { opacity: 0.9; }
+        .lead-success { color: #059669; font-weight: 600; font-size: 15px; }
+
         /* FOOTER */
         footer {
             background: var(--gray-900); color: rgba(255,255,255,0.6);
@@ -1343,6 +1378,23 @@
 </div>
 
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
+
+<!-- LEAD CAPTURE MODAL -->
+<div class="lead-modal" id="leadModal" onclick="if(event.target===this)closeLeadModal()">
+    <div class="lead-modal-inner">
+        <button class="lead-modal-close" onclick="closeLeadModal()">&times;</button>
+        <h3 id="leadTitle">Guia gratuito de Porto de Galinhas</h3>
+        <p id="leadDesc">50+ restaurantes, praias, transfers e dicas. Receba grátis no seu email!</p>
+        <div id="leadForm">
+            <input type="text" class="lead-input" id="leadNome" placeholder="Seu nome">
+            <input type="email" class="lead-input" id="leadEmail" placeholder="Seu melhor email" required>
+            <button class="lead-btn" onclick="submitLead()" id="leadBtn">Quero o guia grátis!</button>
+        </div>
+        <div id="leadSuccess" style="display:none;" class="lead-success">
+            Enviado! Confira seu email em breve.
+        </div>
+    </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -3260,6 +3312,66 @@ var revealObserver = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
 
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
+
+// Lead Capture
+var leadShown = false;
+var leadTexts = {
+    pt: { title: 'Guia gratuito de Porto de Galinhas', desc: '50+ restaurantes, praias, transfers e dicas. Receba grátis no seu email!', btn: 'Quero o guia grátis!', name: 'Seu nome', email: 'Seu melhor email', success: 'Enviado! Confira seu email em breve.' },
+    es: { title: 'Guía gratuita de Porto de Galinhas', desc: '50+ restaurantes, playas, transfers y consejos. ¡Recíbela gratis en tu email!', btn: '¡Quiero la guía gratis!', name: 'Tu nombre', email: 'Tu mejor email', success: '¡Enviado! Revisa tu email pronto.' },
+    en: { title: 'Free Porto de Galinhas Guide', desc: '50+ restaurants, beaches, transfers & tips. Get it free in your inbox!', btn: 'Get the free guide!', name: 'Your name', email: 'Your best email', success: 'Sent! Check your inbox soon.' }
+};
+
+function showLeadModal() {
+    if (leadShown || localStorage.getItem('polinesia_lead_done')) return;
+    leadShown = true;
+    var lang = localStorage.getItem('polinesia_lang') || 'pt';
+    if (!leadTexts[lang]) lang = 'en';
+    var lt = leadTexts[lang];
+    document.getElementById('leadTitle').textContent = lt.title;
+    document.getElementById('leadDesc').textContent = lt.desc;
+    document.getElementById('leadBtn').textContent = lt.btn;
+    document.getElementById('leadNome').placeholder = lt.name;
+    document.getElementById('leadEmail').placeholder = lt.email;
+    document.getElementById('leadModal').classList.add('active');
+}
+
+function closeLeadModal() { document.getElementById('leadModal').classList.remove('active'); }
+
+function submitLead() {
+    var email = document.getElementById('leadEmail').value.trim();
+    var nome = document.getElementById('leadNome').value.trim();
+    if (!email) return;
+    var lang = localStorage.getItem('polinesia_lang') || 'pt';
+    fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: email, nome: nome, idioma: lang, origem: 'guide_popup' })
+    }).catch(function(){});
+    document.getElementById('leadForm').style.display = 'none';
+    var lt = leadTexts[lang] || leadTexts.en;
+    document.getElementById('leadSuccess').textContent = lt.success;
+    document.getElementById('leadSuccess').style.display = 'block';
+    localStorage.setItem('polinesia_lead_done', '1');
+    gtag('event', 'lead_capture', { event_category: 'conversion', event_label: 'guide_popup' });
+    setTimeout(closeLeadModal, 3000);
+}
+
+// Trigger 1: After 30s of inactivity (mobile idle)
+var leadIdleTimer;
+function resetLeadTimer() {
+    clearTimeout(leadIdleTimer);
+    leadIdleTimer = setTimeout(showLeadModal, 30000);
+}
+['scroll','touchmove','mousemove','click'].forEach(function(evt) {
+    document.addEventListener(evt, resetLeadTimer, { passive: true });
+});
+resetLeadTimer();
+
+// Trigger 2: When quote modal closes (after search)
+var origCloseQuote = closeQuoteModal;
+closeQuoteModal = function() {
+    origCloseQuote();
+    setTimeout(showLeadModal, 2000);
+};
 </script>
 
 </body>
