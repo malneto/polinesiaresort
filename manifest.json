@@ -1,0 +1,13 @@
+{
+    "name": "Polinésia Resort",
+    "short_name": "Polinésia",
+    "description": "Apartamento de temporada em Muro Alto, Porto de Galinhas",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0c4a6e",
+    "theme_color": "#0c4a6e",
+    "icons": [
+        { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+        { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    ]
+}

@@ -102,6 +102,9 @@
     <link rel="dns-prefetch" href="https://flagcdn.com">
     <link rel="dns-prefetch" href="https://servicos.polinesiaresort.com.br">
     <link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -785,7 +788,7 @@
 <!-- ABOUT -->
 <section class="about" id="sobre">
     <div class="section-inner">
-        <div class="about-grid">
+        <div class="about-grid reveal">
             <div class="about-images">
                 <div class="about-img-main">
                     <picture>
@@ -1216,32 +1219,32 @@
             <div class="section-divider"></div>
         </div>
         <div class="amenities-grid">
-            <div class="amenity-card">
+            <div class="amenity-card reveal">
                 <div class="amenity-icon">🏊</div>
                 <h3 data-i18n="svc1_title">Parque Aquático</h3>
                 <p data-i18n="svc1_desc">1.000 m² de piscinas. Parque aquático completo para crianças e adultos, com toboáguas e piscina infantil.</p>
             </div>
-            <div class="amenity-card">
+            <div class="amenity-card reveal">
                 <div class="amenity-icon">🧸</div>
                 <h3 data-i18n="svc2_title">Brinquedoteca</h3>
                 <p data-i18n="svc2_desc">Espaço dedicado para a criançada com televisores, jogos e tapetes. Diversão garantida em dias de chuva.</p>
             </div>
-            <div class="amenity-card">
+            <div class="amenity-card reveal">
                 <div class="amenity-icon">🎉</div>
                 <h3 data-i18n="svc3_title">Recreação e Eventos</h3>
                 <p data-i18n="svc3_desc">Programação de recreação e eventos para adultos e crianças durante toda a temporada.</p>
             </div>
-            <div class="amenity-card">
+            <div class="amenity-card reveal">
                 <div class="amenity-icon">⚽</div>
                 <h3 data-i18n="svc4_title">Quadra Poliesportiva</h3>
                 <p data-i18n="svc4_desc">Quadra para futebol, vôlei e basquete. Aproveite com a família e os amigos.</p>
             </div>
-            <div class="amenity-card">
+            <div class="amenity-card reveal">
                 <div class="amenity-icon">☕</div>
                 <h3 data-i18n="svc5_title">Café da Manhã</h3>
                 <p data-i18n="svc5_desc">Café da manhã opcional no restaurante do condomínio. Comece o dia com tranquilidade.</p>
             </div>
-            <div class="amenity-card">
+            <div class="amenity-card reveal">
                 <div class="amenity-icon">🎾</div>
                 <h3 data-i18n="svc6_title">Quadra de Tênis</h3>
                 <p data-i18n="svc6_desc">Quadra de tênis com piso sintético para você praticar os seus melhores saques.</p>
@@ -1258,7 +1261,7 @@
             <p data-i18n="loc_subtitle">No coração de Muro Alto, o trecho mais exclusivo de Porto de Galinhas</p>
             <div class="section-divider"></div>
         </div>
-        <div class="location-grid">
+        <div class="location-grid reveal">
             <div class="location-map">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.5!2d-35.05!3d-8.43!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab1f0!2sPolinesia+Flat+Residence!5e0!3m2!1spt-BR!2sbr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
@@ -1361,6 +1364,7 @@
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+    document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
 });
 
 // Close mobile menu on link click
@@ -3246,6 +3250,16 @@ document.addEventListener('keydown', function(e) {
         console.log('Reviews não carregadas:', e);
     }
 })();
+
+// Scroll Reveal
+var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
 </script>
 
 </body>
