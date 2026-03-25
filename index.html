@@ -616,9 +616,9 @@
             <li><a href="#contato" class="nav-cta">WhatsApp</a></li>
         </ul>
         <div class="lang-flags">
-            <button class="lang-flag active" onclick="setLang('pt')" title="Português"><svg viewBox="0 0 28 20"><rect width="28" height="20" fill="#009c3b"/><polygon points="14,2 26,10 14,18 2,10" fill="#ffdf00"/><circle cx="14" cy="10" r="4.5" fill="#002776"/><path d="M9.8,10.5 Q14,7.5 18.2,10.5" fill="none" stroke="#fff" stroke-width="0.6"/></svg></button>
-            <button class="lang-flag" onclick="setLang('es')" title="Español"><svg viewBox="0 0 28 20"><rect width="28" height="20" fill="#75AADB"/><rect y="6.67" width="28" height="6.67" fill="#fff"/><circle cx="14" cy="10" r="2" fill="#F6B40E"/></svg></button>
-            <button class="lang-flag" onclick="setLang('en')" title="English"><svg viewBox="0 0 28 20"><rect width="28" height="20" fill="#B22234"/><rect y="1.54" width="28" height="1.54" fill="#fff"/><rect y="4.62" width="28" height="1.54" fill="#fff"/><rect y="7.69" width="28" height="1.54" fill="#fff"/><rect y="10.77" width="28" height="1.54" fill="#fff"/><rect y="13.85" width="28" height="1.54" fill="#fff"/><rect y="16.92" width="28" height="1.54" fill="#fff"/><rect width="11.2" height="10.77" fill="#3C3B6E"/></svg></button>
+            <button class="lang-flag active" id="flagPt" onclick="setLang('pt')" title="Português"><img src="https://flagcdn.com/w40/br.png" width="28" height="20" alt="BR" style="border-radius:3px;object-fit:cover;"></button>
+            <button class="lang-flag" id="flagEs" onclick="setLang('es')" title="Español"><img src="https://flagcdn.com/w40/ar.png" width="28" height="20" alt="ES" style="border-radius:3px;object-fit:cover;"></button>
+            <button class="lang-flag" id="flagEn" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/us.png" width="28" height="20" alt="EN" style="border-radius:3px;object-fit:cover;"></button>
         </div>
         <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
             <span></span><span></span><span></span>
@@ -1817,7 +1817,15 @@ function setLang(lang) {
             var esCountries = ['AR','UY','CL','CO','PE','EC','VE','BO','PY','MX','CR','CU','DO','SV','GT','HN','NI','PA','ES','GQ'];
             var lang = 'en';
             if (cc === 'BR') lang = 'pt';
-            else if (esCountries.indexOf(cc) !== -1) lang = 'es';
+            else if (esCountries.indexOf(cc) !== -1) {
+                lang = 'es';
+                // Trocar bandeira ES pela do país do visitante
+                var flagImg = document.querySelector('#flagEs img');
+                if (flagImg) {
+                    flagImg.src = 'https://flagcdn.com/w40/' + cc.toLowerCase() + '.png';
+                    flagImg.alt = cc;
+                }
+            }
             if (lang !== 'pt') setLang(lang);
         })
         .catch(function() { /* fallback: mantém pt */ });
@@ -1854,11 +1862,8 @@ fetch('https://servicos.polinesiaresort.com.br/search/config.php')
             var btn = document.getElementById('btnBooking');
             if (btn) btn.style.display = 'none';
         }
-        // Ocultar botão cotação se desabilitado
-        if (!data.cotacao_habilitada) {
-            var btnQ = document.getElementById('btnQuote');
-            if (btnQ) btnQ.style.display = 'none';
-        }
+        // Cotação desabilitada: botão continua visível mas redireciona pro WhatsApp
+        // (já tratado em openQuoteModal via quoteConfig.enabled)
     })
     .catch(function() {});
 
