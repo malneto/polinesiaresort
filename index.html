@@ -70,6 +70,11 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: white; margin: 6px 0; transition: 0.3s; }
 
+        /* LANG FLAGS */
+        .lang-flags { display: flex; gap: 6px; align-items: center; margin-left: 12px; }
+        .lang-flag { cursor: pointer; font-size: 22px; opacity: 0.6; transition: opacity 0.2s, transform 0.2s; background: none; border: none; padding: 2px; line-height: 1; }
+        .lang-flag:hover, .lang-flag.active { opacity: 1; transform: scale(1.15); }
+
         /* HERO */
         .hero {
             position: relative; height: 100vh; min-height: 600px;
@@ -494,13 +499,18 @@
     <div class="nav-inner">
         <a href="#" class="nav-logo">Polinésia Resort</a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#sobre">O Apartamento</a></li>
-            <li><a href="#galeria">Fotos</a></li>
-            <li><a href="#condominio">Condomínio</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#localizacao">Localização</a></li>
+            <li><a href="#sobre" data-i18n="nav_apartment">O Apartamento</a></li>
+            <li><a href="#galeria" data-i18n="nav_photos">Fotos</a></li>
+            <li><a href="#condominio" data-i18n="nav_condo">Condomínio</a></li>
+            <li><a href="#servicos" data-i18n="nav_services">Serviços</a></li>
+            <li><a href="#localizacao" data-i18n="nav_location">Localização</a></li>
             <li><a href="#contato" class="nav-cta">WhatsApp</a></li>
         </ul>
+        <div class="lang-flags">
+            <button class="lang-flag active" onclick="setLang('pt')" title="Português">🇧🇷</button>
+            <button class="lang-flag" onclick="setLang('es')" title="Español">🇦🇷</button>
+            <button class="lang-flag" onclick="setLang('en')" title="English">🇺🇸</button>
+        </div>
         <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
@@ -512,14 +522,14 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
         <div class="hero-badge">Muro Alto &bull; Porto de Galinhas</div>
-        <h1>Suas férias no paraíso</h1>
-        <p>Apartamento completo de 2 quartos no melhor trecho das piscinas naturais. 73m² para você e sua família.</p>
+        <h1 data-i18n="hero_title">Suas férias no paraíso</h1>
+        <p data-i18n="hero_subtitle">Apartamento completo de 2 quartos no melhor trecho das piscinas naturais. 73m² para você e sua família.</p>
         <div class="hero-buttons">
             <a href="https://api.whatsapp.com/send?phone=5581988545491&text=Ol%C3%A1%2C%20M%C3%A1rio!%20Gostaria%20de%20obter%20cota%C3%A7%C3%A3o%20para%20reserva%20no%20Polin%C3%A9sia%20Resort." class="btn btn-primary" target="_blank" rel="noopener">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.239 0-4.308-.724-5.993-1.953l-.422-.306-2.645.887.887-2.645-.306-.422A9.935 9.935 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
-                Solicitar Cotação
+                <span data-i18n="hero_cta">Solicitar Cotação</span>
             </a>
-            <a href="#galeria" class="btn btn-outline">Ver Fotos</a>
+            <a href="#galeria" class="btn btn-outline" data-i18n="hero_photos">Ver Fotos</a>
         </div>
     </div>
 </section>
@@ -529,23 +539,23 @@
     <div class="features-grid">
         <div class="feature-item">
             <div class="feature-icon">🛏️</div>
-            <div class="feature-label">Quartos</div>
+            <div class="feature-label" data-i18n="feat_rooms_label">Quartos</div>
             <div class="feature-value">2</div>
         </div>
         <div class="feature-item">
             <div class="feature-icon">📐</div>
-            <div class="feature-label">Área</div>
+            <div class="feature-label" data-i18n="feat_area_label">Área</div>
             <div class="feature-value">73 m²</div>
         </div>
         <div class="feature-item">
             <div class="feature-icon">👨‍👩‍👧‍👦</div>
-            <div class="feature-label">Hóspedes</div>
-            <div class="feature-value">Até 7</div>
+            <div class="feature-label" data-i18n="feat_guests_label">Hóspedes</div>
+            <div class="feature-value" data-i18n="feat_guests_value">Até 7</div>
         </div>
         <div class="feature-item">
             <div class="feature-icon">🏖️</div>
-            <div class="feature-label">Localização</div>
-            <div class="feature-value">Beira-mar</div>
+            <div class="feature-label" data-i18n="feat_location_label">Localização</div>
+            <div class="feature-value" data-i18n="feat_location_value">Beira-mar</div>
         </div>
     </div>
 </div>
@@ -563,16 +573,16 @@
                 </div>
             </div>
             <div class="about-text">
-                <h3>Conforto e espaço para toda a família</h3>
-                <p>Apartamento completo com 2 quartos, sala ampla, cozinha equipada e varanda com vista privilegiada. Tudo o que você precisa para dias inesquecíveis em Porto de Galinhas.</p>
-                <p>Localizado no condomínio Polinésia Residence & Resort, em Muro Alto — o trecho mais exclusivo da região, com acesso direto às famosas piscinas naturais.</p>
+                <h3 data-i18n="about_title">Conforto e espaço para toda a família</h3>
+                <p data-i18n="about_p1">Apartamento completo com 2 quartos, sala ampla, cozinha equipada e varanda com vista privilegiada. Tudo o que você precisa para dias inesquecíveis em Porto de Galinhas.</p>
+                <p data-i18n="about_p2">Localizado no condomínio Polinésia Residence & Resort, em Muro Alto — o trecho mais exclusivo da região, com acesso direto às famosas piscinas naturais.</p>
                 <div class="about-highlights">
-                    <div class="highlight-item"><span class="highlight-dot"></span> Cozinha completa</div>
-                    <div class="highlight-item"><span class="highlight-dot"></span> Wi-Fi gratuito</div>
-                    <div class="highlight-item"><span class="highlight-dot"></span> Ar-condicionado</div>
-                    <div class="highlight-item"><span class="highlight-dot"></span> TV em todos os cômodos</div>
-                    <div class="highlight-item"><span class="highlight-dot"></span> Roupa de cama</div>
-                    <div class="highlight-item"><span class="highlight-dot"></span> Estacionamento</div>
+                    <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h1">Cozinha completa</span></div>
+                    <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h2">Wi-Fi gratuito</span></div>
+                    <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h3">Ar-condicionado</span></div>
+                    <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h4">TV em todos os cômodos</span></div>
+                    <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h5">Roupa de cama</span></div>
+                    <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h6">Estacionamento</span></div>
                 </div>
             </div>
         </div>
@@ -583,31 +593,31 @@
 <section class="description" id="descricao">
     <div class="section-inner">
         <div class="section-header">
-            <h2>Melhor Vista do Mar</h2>
-            <p>Varanda Nascente, Privacidade</p>
+            <h2 data-i18n="desc_title">Melhor Vista do Mar</h2>
+            <p data-i18n="desc_subtitle">Varanda Nascente, Privacidade</p>
             <div class="section-divider"></div>
         </div>
         <div class="description-content">
-            <p>Apartamento 2 quartos no Polinésia Residence & Resort. Completo e confortável, com Wi-Fi, smart TV, ar-condicionado e acesso direto à praia.</p>
+            <p data-i18n="desc_p1">Apartamento 2 quartos no Polinésia Residence & Resort. Completo e confortável, com Wi-Fi, smart TV, ar-condicionado e acesso direto à praia.</p>
 
-            <p>Localizado na paradisíaca Praia de Muro Alto, o condomínio é pé na areia e oferece piscinas, restaurante, conveniência e acesso direto ao mar, além de atividades como stand-up paddle e caiaque gratuitos.</p>
+            <p data-i18n="desc_p2">Localizado na paradisíaca Praia de Muro Alto, o condomínio é pé na areia e oferece piscinas, restaurante, conveniência e acesso direto ao mar, além de atividades como stand-up paddle e caiaque gratuitos.</p>
 
-            <p class="desc-topic">Alimentação</p>
-            <p>Durante sua hospedagem, você pode adquirir opcional à parte café da manhã, almoço e jantar. O resort conta com restaurantes temáticos, serviço buffet e à la carte, com opções regionais e variadas especialidades em frutos do mar.</p>
+            <p class="desc-topic" data-i18n="desc_food_title">Alimentação</p>
+            <p data-i18n="desc_p3">Durante sua hospedagem, você pode adquirir opcional à parte café da manhã, almoço e jantar. O resort conta com restaurantes temáticos, serviço buffet e à la carte, com opções regionais e variadas especialidades em frutos do mar.</p>
 
-            <p>Viva dias inesquecíveis neste apartamento pé na areia, no Polinésia Residence & Resort. Com 2 quartos climatizados, sala climatizada, varanda acolhedora e cozinha completa, é o refúgio ideal para famílias e amigos. Desfrute de toda a estrutura do condomínio, com piscinas, conveniência e acesso direto à praia de Muro Alto.</p>
+            <p data-i18n="desc_p4">Viva dias inesquecíveis neste apartamento pé na areia, no Polinésia Residence & Resort. Com 2 quartos climatizados, sala climatizada, varanda acolhedora e cozinha completa, é o refúgio ideal para famílias e amigos. Desfrute de toda a estrutura do condomínio, com piscinas, conveniência e acesso direto à praia de Muro Alto.</p>
 
-            <p>Os hóspedes terão acesso total ao apartamento e às áreas comuns do condomínio, incluindo piscinas, salão de jogos e acesso direto à praia. O uso de algumas comodidades pode exigir reserva ou seguir regras do condomínio.</p>
+            <p data-i18n="desc_p5">Os hóspedes terão acesso total ao apartamento e às áreas comuns do condomínio, incluindo piscinas, salão de jogos e acesso direto à praia. O uso de algumas comodidades pode exigir reserva ou seguir regras do condomínio.</p>
 
-            <p>Durante a estadia, estaremos disponíveis para qualquer necessidade via telefone. Oferecemos suporte antes, durante e após a hospedagem para garantir uma experiência tranquila e confortável.</p>
+            <p data-i18n="desc_p6">Durante a estadia, estaremos disponíveis para qualquer necessidade via telefone. Oferecemos suporte antes, durante e após a hospedagem para garantir uma experiência tranquila e confortável.</p>
 
-            <p>De frente para o mar em Muro Alto — Porto de Galinhas, possui apartamentos com piscina ao ar livre e estacionamento no local. Entre as comodidades desta propriedade estão um restaurante, uma recepção aberta 24 horas, elevador, além de acesso Wi-Fi gratuito em toda a propriedade. A propriedade está localizada a poucos passos da Praia de Muro Alto.</p>
+            <p data-i18n="desc_p7">De frente para o mar em Muro Alto — Porto de Galinhas, possui apartamentos com piscina ao ar livre e estacionamento no local. Entre as comodidades desta propriedade estão um restaurante, uma recepção aberta 24 horas, elevador, além de acesso Wi-Fi gratuito em toda a propriedade. A propriedade está localizada a poucos passos da Praia de Muro Alto.</p>
 
-            <p>Oferecendo terraço, varanda, com vista para o mar ou para a piscina, as unidades dispõem de ar-condicionado, área de estar, TV de tela plana a cabo e cozinha. O complexo de apartamentos dispõe de unidades que estão equipadas com banheiro privativo e mesa de trabalho. No complexo de apartamentos, todas as unidades incluem roupa de cama e toalhas.</p>
+            <p data-i18n="desc_p8">Oferecendo terraço, varanda, com vista para o mar ou para a piscina, as unidades dispõem de ar-condicionado, área de estar, TV de tela plana a cabo e cozinha. O complexo de apartamentos dispõe de unidades que estão equipadas com banheiro privativo e mesa de trabalho. No complexo de apartamentos, todas as unidades incluem roupa de cama e toalhas.</p>
 
-            <p>Os hóspedes podem relaxar no bar ou salão no local.</p>
+            <p data-i18n="desc_p9">Os hóspedes podem relaxar no bar ou salão no local.</p>
 
-            <p>Um parque infantil também está disponível no apartamento, e os hóspedes também podem relaxar no jardim ou na beira mar.</p>
+            <p data-i18n="desc_p10">Um parque infantil também está disponível no apartamento, e os hóspedes também podem relaxar no jardim ou na beira mar.</p>
         </div>
     </div>
 </section>
@@ -616,75 +626,75 @@
 <section class="beds-rules" id="acomodacao">
     <div class="section-inner">
         <div class="section-header">
-            <h2>Detalhes da acomodação</h2>
-            <p>Tudo sobre camas, regras e horários</p>
+            <h2 data-i18n="beds_title">Detalhes da acomodação</h2>
+            <p data-i18n="beds_subtitle">Tudo sobre camas, regras e horários</p>
             <div class="section-divider"></div>
         </div>
         <div class="beds-rules-grid">
             <div class="info-block">
-                <h3>🛏️ Camas</h3>
+                <h3>🛏️ <span data-i18n="beds_heading">Camas</span></h3>
                 <ul class="bed-list">
                     <li class="bed-item">
                         <span class="bed-icon">🛏️</span>
                         <div class="bed-info">
-                            <strong>Suíte</strong>
-                            <span>Cama queen + cama de solteiro</span>
+                            <strong data-i18n="bed_suite">Suíte</strong>
+                            <span data-i18n="bed_suite_desc">Cama queen + cama de solteiro</span>
                         </div>
                     </li>
                     <li class="bed-item">
                         <span class="bed-icon">🛏️</span>
                         <div class="bed-info">
-                            <strong>Quarto social</strong>
-                            <span>Cama queen</span>
+                            <strong data-i18n="bed_social">Quarto social</strong>
+                            <span data-i18n="bed_social_desc">Cama queen</span>
                         </div>
                     </li>
                     <li class="bed-item">
                         <span class="bed-icon">👶</span>
                         <div class="bed-info">
-                            <strong>Criança</strong>
-                            <span>Berço disponível</span>
+                            <strong data-i18n="bed_child">Criança</strong>
+                            <span data-i18n="bed_child_desc">Berço disponível</span>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="info-block">
-                <h3>📋 Regras da acomodação</h3>
+                <h3>📋 <span data-i18n="rules_heading">Regras da acomodação</span></h3>
                 <div class="rules-grid">
                     <div class="rule-item">
-                        <span class="rule-label">Aceita crianças (2–12 anos)</span>
-                        <span class="rule-value rule-yes">Sim</span>
+                        <span class="rule-label" data-i18n="rule_children">Aceita crianças (2–12 anos)</span>
+                        <span class="rule-value rule-yes" data-i18n="rule_children_v">Sim</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Aceita bebês (abaixo de 2 anos)</span>
-                        <span class="rule-value rule-yes">Sim</span>
+                        <span class="rule-label" data-i18n="rule_babies">Aceita bebês (abaixo de 2 anos)</span>
+                        <span class="rule-value rule-yes" data-i18n="rule_babies_v">Sim</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Fornece berços</span>
-                        <span class="rule-value rule-yes">Sim</span>
+                        <span class="rule-label" data-i18n="rule_cribs">Fornece berços</span>
+                        <span class="rule-value rule-yes" data-i18n="rule_cribs_v">Sim</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Permitido fumar nos quartos</span>
-                        <span class="rule-value rule-no">Não</span>
+                        <span class="rule-label" data-i18n="rule_smoking">Permitido fumar nos quartos</span>
+                        <span class="rule-value rule-no" data-i18n="rule_smoking_v">Não</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Aceita animais de estimação</span>
-                        <span class="rule-value rule-info">Sob consulta</span>
+                        <span class="rule-label" data-i18n="rule_pets">Aceita animais de estimação</span>
+                        <span class="rule-value rule-info" data-i18n="rule_pets_v">Sob consulta</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Eventos são permitidos</span>
-                        <span class="rule-value rule-no">Não</span>
+                        <span class="rule-label" data-i18n="rule_events">Eventos são permitidos</span>
+                        <span class="rule-value rule-no" data-i18n="rule_events_v">Não</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Horário de silêncio</span>
-                        <span class="rule-value rule-info">22:00</span>
+                        <span class="rule-label" data-i18n="rule_silence">Horário de silêncio</span>
+                        <span class="rule-value rule-info" data-i18n="rule_silence_v">22:00</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Horário para chegadas</span>
-                        <span class="rule-value rule-info">Qualquer</span>
+                        <span class="rule-label" data-i18n="rule_checkin">Horário para chegadas</span>
+                        <span class="rule-value rule-info" data-i18n="rule_checkin_v">Qualquer</span>
                     </div>
                     <div class="rule-item">
-                        <span class="rule-label">Horário para checkout</span>
-                        <span class="rule-value rule-info">Até 11:30</span>
+                        <span class="rule-label" data-i18n="rule_checkout">Horário para checkout</span>
+                        <span class="rule-value rule-info" data-i18n="rule_checkout_v">Até 11:30</span>
                     </div>
                 </div>
             </div>
@@ -696,72 +706,72 @@
 <section class="surroundings" id="arredores">
     <div class="section-inner">
         <div class="section-header">
-            <h2>Arredores e atrações</h2>
-            <p>O que você encontra no condomínio e na região</p>
+            <h2 data-i18n="surr_title">Arredores e atrações</h2>
+            <p data-i18n="surr_subtitle">O que você encontra no condomínio e na região</p>
             <div class="section-divider"></div>
         </div>
         <div class="surroundings-grid">
             <div class="info-block">
-                <h3>🏝️ Amenities dos arredores</h3>
+                <h3>🏝️ <span data-i18n="surr_amenities_heading">Amenities dos arredores</span></h3>
                 <div class="amenities-list">
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🏖️</span> Beira-mar</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🌿</span> Jardim</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🛍️</span> Lojas (na propriedade)</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🪑</span> Móveis externos</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🧒</span> Parquinho infantil</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🏊</span> Piscina ao ar livre</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🎾</span> Quadra de tênis</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">📺</span> Salão / área de TV</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">☀️</span> Terraço</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🌅</span> Vista para a praia</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🍽️</span> Restaurante</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🏋️</span> Academia (área comum)</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🍸</span> Bar</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🎮</span> Salão de jogos</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🛗</span> Elevador</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">📶</span> Internet Wi-Fi</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🅿️</span> Estacionamento</div>
-                    <div class="amenity-tag"><span class="amenity-tag-icon">🔑</span> Recepção 24 horas</div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🏖️</span> <span data-i18n="surr_a1">Beira-mar</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🌿</span> <span data-i18n="surr_a2">Jardim</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🛍️</span> <span data-i18n="surr_a3">Lojas (na propriedade)</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🪑</span> <span data-i18n="surr_a4">Móveis externos</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🧒</span> <span data-i18n="surr_a5">Parquinho infantil</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🏊</span> <span data-i18n="surr_a6">Piscina ao ar livre</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🎾</span> <span data-i18n="surr_a7">Quadra de tênis</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">📺</span> <span data-i18n="surr_a8">Salão / área de TV</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">☀️</span> <span data-i18n="surr_a9">Terraço</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🌅</span> <span data-i18n="surr_a10">Vista para a praia</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🍽️</span> <span data-i18n="surr_a11">Restaurante</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🏋️</span> <span data-i18n="surr_a12">Academia (área comum)</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🍸</span> <span data-i18n="surr_a13">Bar</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🎮</span> <span data-i18n="surr_a14">Salão de jogos</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🛗</span> <span data-i18n="surr_a15">Elevador</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">📶</span> <span data-i18n="surr_a16">Internet Wi-Fi</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🅿️</span> <span data-i18n="surr_a17">Estacionamento</span></div>
+                    <div class="amenity-tag"><span class="amenity-tag-icon">🔑</span> <span data-i18n="surr_a18">Recepção 24 horas</span></div>
                 </div>
             </div>
             <div class="info-block">
-                <h3>📍 Atrações próximas ao imóvel</h3>
+                <h3>📍 <span data-i18n="surr_attr_heading">Atrações próximas ao imóvel</span></h3>
                 <table class="attractions-table">
                     <thead>
                         <tr>
-                            <th>Tipo</th>
-                            <th>Nome</th>
-                            <th>Distância</th>
+                            <th data-i18n="surr_th_type">Tipo</th>
+                            <th data-i18n="surr_th_name">Nome</th>
+                            <th data-i18n="surr_th_distance">Distância</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Café/Bar</td>
+                            <td data-i18n="surr_type1">Café/Bar</td>
                             <td>Kai Lounge Bar</td>
                             <td>0 km</td>
                         </tr>
                         <tr>
-                            <td>Feira</td>
+                            <td data-i18n="surr_type2">Feira</td>
                             <td>Vila de Porto de Galinhas</td>
                             <td>11 km</td>
                         </tr>
                         <tr>
-                            <td>Mar/Oceano</td>
+                            <td data-i18n="surr_type3">Mar/Oceano</td>
                             <td>Porto de Galinhas</td>
                             <td>0 km</td>
                         </tr>
                         <tr>
-                            <td>Praia</td>
+                            <td data-i18n="surr_type4">Praia</td>
                             <td>Muro Alto</td>
                             <td>0 km</td>
                         </tr>
                         <tr>
-                            <td>Restaurante</td>
+                            <td data-i18n="surr_type5">Restaurante</td>
                             <td>Restaurante Tuvalu</td>
                             <td>0 km</td>
                         </tr>
                         <tr>
-                            <td>Supermercados</td>
+                            <td data-i18n="surr_type6">Supermercados</td>
                             <td>Empório de Muro Alto</td>
                             <td>3 km</td>
                         </tr>
@@ -776,141 +786,141 @@
 <section class="accom-amenities" id="amenities-acomodacao">
     <div class="section-inner">
         <div class="section-header">
-            <h2>Amenities da acomodação</h2>
-            <p>Tudo que o apartamento oferece para sua estadia</p>
+            <h2 data-i18n="accom_title">Amenities da acomodação</h2>
+            <p data-i18n="accom_subtitle">Tudo que o apartamento oferece para sua estadia</p>
             <div class="section-divider"></div>
         </div>
         <div class="accom-categories">
             <div class="accom-category">
-                <h4>🏖️ Áreas Externas e Acessibilidade</h4>
+                <h4 data-i18n="accom_cat1">🏖️ Áreas Externas e Acessibilidade</h4>
                 <ul>
-                    <li>Acesso Livre de Degraus em Casa</li>
-                    <li>Vaga de Estacionamento para Deficientes</li>
-                    <li>Acesso à Praia</li>
-                    <li>Acesso ao Resort</li>
-                    <li>Área de Refeições Exterior</li>
-                    <li>Chuveiro Externo</li>
-                    <li>Espreguiçadeiras</li>
-                    <li>Mobília de Exterior</li>
-                    <li>Varanda</li>
-                    <li>Vista para a Piscina</li>
-                    <li>Vista para o Jardim</li>
-                    <li>Vista para o Oceano</li>
+                    <li data-i18n="accom_c1_1">Acesso Livre de Degraus em Casa</li>
+                    <li data-i18n="accom_c1_2">Vaga de Estacionamento para Deficientes</li>
+                    <li data-i18n="accom_c1_3">Acesso à Praia</li>
+                    <li data-i18n="accom_c1_4">Acesso ao Resort</li>
+                    <li data-i18n="accom_c1_5">Área de Refeições Exterior</li>
+                    <li data-i18n="accom_c1_6">Chuveiro Externo</li>
+                    <li data-i18n="accom_c1_7">Espreguiçadeiras</li>
+                    <li data-i18n="accom_c1_8">Mobília de Exterior</li>
+                    <li data-i18n="accom_c1_9">Varanda</li>
+                    <li data-i18n="accom_c1_10">Vista para a Piscina</li>
+                    <li data-i18n="accom_c1_11">Vista para o Jardim</li>
+                    <li data-i18n="accom_c1_12">Vista para o Oceano</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>🚿 Banheiro</h4>
+                <h4 data-i18n="accom_cat2">🚿 Banheiro</h4>
                 <ul>
-                    <li>Água Quente</li>
-                    <li>Ducha</li>
-                    <li>Itens Básicos de Banheiro</li>
-                    <li>Papel Higiênico</li>
-                    <li>Sabonete Líquido</li>
-                    <li>Secador de Cabelo</li>
-                    <li>Toalhas</li>
+                    <li data-i18n="accom_c2_1">Água Quente</li>
+                    <li data-i18n="accom_c2_2">Ducha</li>
+                    <li data-i18n="accom_c2_3">Itens Básicos de Banheiro</li>
+                    <li data-i18n="accom_c2_4">Papel Higiênico</li>
+                    <li data-i18n="accom_c2_5">Sabonete Líquido</li>
+                    <li data-i18n="accom_c2_6">Secador de Cabelo</li>
+                    <li data-i18n="accom_c2_7">Toalhas</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>🍳 Cozinha e Refeições</h4>
+                <h4 data-i18n="accom_cat3">🍳 Cozinha e Refeições</h4>
                 <ul>
-                    <li>Assentos na Sala de Jantar</li>
-                    <li>Churrasqueira</li>
-                    <li>Copos de Vinho</li>
-                    <li>Cozinha Completa</li>
-                    <li>Fogão</li>
-                    <li>Forno</li>
-                    <li>Freezer</li>
-                    <li>Geladeira</li>
-                    <li>Itens Básicos de Cozinha</li>
-                    <li>Liquidificador</li>
-                    <li>Louças e Talheres</li>
-                    <li>Máquina de Café</li>
-                    <li>Mesa de Jantar</li>
-                    <li>Mesas e cadeiras</li>
-                    <li>Microondas</li>
-                    <li>Panela de Arroz</li>
+                    <li data-i18n="accom_c3_1">Assentos na Sala de Jantar</li>
+                    <li data-i18n="accom_c3_2">Churrasqueira</li>
+                    <li data-i18n="accom_c3_3">Copos de Vinho</li>
+                    <li data-i18n="accom_c3_4">Cozinha Completa</li>
+                    <li data-i18n="accom_c3_5">Fogão</li>
+                    <li data-i18n="accom_c3_6">Forno</li>
+                    <li data-i18n="accom_c3_7">Freezer</li>
+                    <li data-i18n="accom_c3_8">Geladeira</li>
+                    <li data-i18n="accom_c3_9">Itens Básicos de Cozinha</li>
+                    <li data-i18n="accom_c3_10">Liquidificador</li>
+                    <li data-i18n="accom_c3_11">Louças e Talheres</li>
+                    <li data-i18n="accom_c3_12">Máquina de Café</li>
+                    <li data-i18n="accom_c3_13">Mesa de Jantar</li>
+                    <li data-i18n="accom_c3_14">Mesas e cadeiras</li>
+                    <li data-i18n="accom_c3_15">Microondas</li>
+                    <li data-i18n="accom_c3_16">Panela de Arroz</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>🎮 Entretenimento e Lazer</h4>
+                <h4 data-i18n="accom_cat4">🎮 Entretenimento e Lazer</h4>
                 <ul>
-                    <li>Adaptador</li>
-                    <li>Caiaque</li>
-                    <li>Canais a Cabo</li>
-                    <li>Canais Pay-per-view</li>
-                    <li>Equipamento de Exercício</li>
-                    <li>Filmes</li>
-                    <li>Luz de Leitura</li>
-                    <li>Mesa de Ping Pong</li>
-                    <li>Sala de Jogos</li>
-                    <li>TV HD — 40 polegadas</li>
-                    <li>TV de tela larga</li>
+                    <li data-i18n="accom_c4_1">Adaptador</li>
+                    <li data-i18n="accom_c4_2">Caiaque</li>
+                    <li data-i18n="accom_c4_3">Canais a Cabo</li>
+                    <li data-i18n="accom_c4_4">Canais Pay-per-view</li>
+                    <li data-i18n="accom_c4_5">Equipamento de Exercício</li>
+                    <li data-i18n="accom_c4_6">Filmes</li>
+                    <li data-i18n="accom_c4_7">Luz de Leitura</li>
+                    <li data-i18n="accom_c4_8">Mesa de Ping Pong</li>
+                    <li data-i18n="accom_c4_9">Sala de Jogos</li>
+                    <li data-i18n="accom_c4_10">TV HD — 40 polegadas</li>
+                    <li data-i18n="accom_c4_11">TV de tela larga</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>🏢 Estrutura e Serviços</h4>
+                <h4 data-i18n="accom_cat5">🏢 Estrutura e Serviços</h4>
                 <ul>
-                    <li>Apartamento Privado</li>
-                    <li>Ar condicionado</li>
-                    <li>Ar condicionado individual por quarto</li>
-                    <li>Elevador</li>
-                    <li>Estacionamento Gratuito</li>
-                    <li>Garagem Gratuita</li>
-                    <li>Interfone</li>
-                    <li>Área de estar com sofá/cadeira</li>
-                    <li>Artigos de Praia</li>
-                    <li>Não permite pets</li>
-                    <li>Quartos para famílias</li>
-                    <li>Recomendações de babá e cozinheira</li>
+                    <li data-i18n="accom_c5_1">Apartamento Privado</li>
+                    <li data-i18n="accom_c5_2">Ar condicionado</li>
+                    <li data-i18n="accom_c5_3">Ar condicionado individual por quarto</li>
+                    <li data-i18n="accom_c5_4">Elevador</li>
+                    <li data-i18n="accom_c5_5">Estacionamento Gratuito</li>
+                    <li data-i18n="accom_c5_6">Garagem Gratuita</li>
+                    <li data-i18n="accom_c5_7">Interfone</li>
+                    <li data-i18n="accom_c5_8">Área de estar com sofá/cadeira</li>
+                    <li data-i18n="accom_c5_9">Artigos de Praia</li>
+                    <li data-i18n="accom_c5_10">Não permite pets</li>
+                    <li data-i18n="accom_c5_11">Quartos para famílias</li>
+                    <li data-i18n="accom_c5_12">Recomendações de babá e cozinheira</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>💻 Escritório e Conectividade</h4>
+                <h4 data-i18n="accom_cat6">💻 Escritório e Conectividade</h4>
                 <ul>
-                    <li>Cadeira fornecida com a mesa</li>
-                    <li>Espaço pronto para notebook</li>
-                    <li>Internet (fibra ótica)</li>
-                    <li>Quarto à prova de som</li>
-                    <li>Tomada perto da cama</li>
-                    <li>Wi-Fi Portátil</li>
+                    <li data-i18n="accom_c6_1">Cadeira fornecida com a mesa</li>
+                    <li data-i18n="accom_c6_2">Espaço pronto para notebook</li>
+                    <li data-i18n="accom_c6_3">Internet (fibra ótica)</li>
+                    <li data-i18n="accom_c6_4">Quarto à prova de som</li>
+                    <li data-i18n="accom_c6_5">Tomada perto da cama</li>
+                    <li data-i18n="accom_c6_6">Wi-Fi Portátil</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>🧹 Limpeza e Higiene</h4>
+                <h4 data-i18n="accom_cat7">🧹 Limpeza e Higiene</h4>
                 <ul>
-                    <li>Livre de Alergênicos</li>
-                    <li>Lixeiras</li>
-                    <li>Produtos de Limpeza</li>
-                    <li>Desinfetante para as Mãos</li>
+                    <li data-i18n="accom_c7_1">Livre de Alergênicos</li>
+                    <li data-i18n="accom_c7_2">Lixeiras</li>
+                    <li data-i18n="accom_c7_3">Produtos de Limpeza</li>
+                    <li data-i18n="accom_c7_4">Desinfetante para as Mãos</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>👔 Quarto e Rouparia</h4>
+                <h4 data-i18n="accom_cat8">👔 Quarto e Rouparia</h4>
                 <ul>
-                    <li>Arara para Roupas</li>
-                    <li>Armários no quarto</li>
-                    <li>Blackout nas Cortinas</li>
-                    <li>Cabides</li>
-                    <li>Ferro de Passar</li>
-                    <li>Guarda-roupa ou Armário</li>
-                    <li>Lavanderia Próxima</li>
-                    <li>Múltiplos armários</li>
-                    <li>Quarto de Vestir</li>
-                    <li>Roupas de cama</li>
-                    <li>Secadora</li>
-                    <li>Sofá</li>
-                    <li>Sofá-Cama</li>
-                    <li>Travesseiro sem penas</li>
-                    <li>Varal para Secar Roupas</li>
+                    <li data-i18n="accom_c8_1">Arara para Roupas</li>
+                    <li data-i18n="accom_c8_2">Armários no quarto</li>
+                    <li data-i18n="accom_c8_3">Blackout nas Cortinas</li>
+                    <li data-i18n="accom_c8_4">Cabides</li>
+                    <li data-i18n="accom_c8_5">Ferro de Passar</li>
+                    <li data-i18n="accom_c8_6">Guarda-roupa ou Armário</li>
+                    <li data-i18n="accom_c8_7">Lavanderia Próxima</li>
+                    <li data-i18n="accom_c8_8">Múltiplos armários</li>
+                    <li data-i18n="accom_c8_9">Quarto de Vestir</li>
+                    <li data-i18n="accom_c8_10">Roupas de cama</li>
+                    <li data-i18n="accom_c8_11">Secadora</li>
+                    <li data-i18n="accom_c8_12">Sofá</li>
+                    <li data-i18n="accom_c8_13">Sofá-Cama</li>
+                    <li data-i18n="accom_c8_14">Travesseiro sem penas</li>
+                    <li data-i18n="accom_c8_15">Varal para Secar Roupas</li>
                 </ul>
             </div>
             <div class="accom-category">
-                <h4>🔒 Segurança e Privacidade</h4>
+                <h4 data-i18n="accom_cat9">🔒 Segurança e Privacidade</h4>
                 <ul>
-                    <li>Chaves Eletrônicas</li>
-                    <li>Cortina Privativa</li>
-                    <li>Cortina Blackout</li>
-                    <li>Porteiro</li>
+                    <li data-i18n="accom_c9_1">Chaves Eletrônicas</li>
+                    <li data-i18n="accom_c9_2">Cortina Privativa</li>
+                    <li data-i18n="accom_c9_3">Cortina Blackout</li>
+                    <li data-i18n="accom_c9_4">Porteiro</li>
                 </ul>
             </div>
         </div>
@@ -921,8 +931,8 @@
 <section class="gallery" id="galeria">
     <div class="section-inner">
         <div class="section-header">
-            <h2>Conheça o espaço</h2>
-            <p>Apartamento e áreas comuns do condomínio</p>
+            <h2 data-i18n="gallery_title">Conheça o espaço</h2>
+            <p data-i18n="gallery_subtitle">Apartamento e áreas comuns do condomínio</p>
             <div class="section-divider"></div>
         </div>
         <div class="gallery-grid">
@@ -940,8 +950,8 @@
 <section class="condo-gallery" id="condominio">
     <div class="section-inner">
         <div class="section-header">
-            <h2>O condomínio</h2>
-            <p>Estrutura completa de lazer à beira-mar</p>
+            <h2 data-i18n="condo_title">O condomínio</h2>
+            <p data-i18n="condo_subtitle">Estrutura completa de lazer à beira-mar</p>
             <div class="section-divider"></div>
         </div>
         <div class="condo-grid">
@@ -965,40 +975,40 @@
 <section class="amenities" id="servicos">
     <div class="section-inner">
         <div class="section-header">
-            <h2>O que você vai encontrar</h2>
-            <p>Estrutura completa de lazer para toda a família</p>
+            <h2 data-i18n="services_title">O que você vai encontrar</h2>
+            <p data-i18n="services_subtitle">Estrutura completa de lazer para toda a família</p>
             <div class="section-divider"></div>
         </div>
         <div class="amenities-grid">
             <div class="amenity-card">
                 <div class="amenity-icon">🏊</div>
-                <h3>Parque Aquático</h3>
-                <p>1.000 m² de piscinas. Parque aquático completo para crianças e adultos, com toboáguas e piscina infantil.</p>
+                <h3 data-i18n="svc1_title">Parque Aquático</h3>
+                <p data-i18n="svc1_desc">1.000 m² de piscinas. Parque aquático completo para crianças e adultos, com toboáguas e piscina infantil.</p>
             </div>
             <div class="amenity-card">
                 <div class="amenity-icon">🧸</div>
-                <h3>Brinquedoteca</h3>
-                <p>Espaço dedicado para a criançada com televisores, jogos e tapetes. Diversão garantida em dias de chuva.</p>
+                <h3 data-i18n="svc2_title">Brinquedoteca</h3>
+                <p data-i18n="svc2_desc">Espaço dedicado para a criançada com televisores, jogos e tapetes. Diversão garantida em dias de chuva.</p>
             </div>
             <div class="amenity-card">
                 <div class="amenity-icon">🎉</div>
-                <h3>Recreação e Eventos</h3>
-                <p>Programação de recreação e eventos para adultos e crianças durante toda a temporada.</p>
+                <h3 data-i18n="svc3_title">Recreação e Eventos</h3>
+                <p data-i18n="svc3_desc">Programação de recreação e eventos para adultos e crianças durante toda a temporada.</p>
             </div>
             <div class="amenity-card">
                 <div class="amenity-icon">⚽</div>
-                <h3>Quadra Poliesportiva</h3>
-                <p>Quadra para futebol, vôlei e basquete. Aproveite com a família e os amigos.</p>
+                <h3 data-i18n="svc4_title">Quadra Poliesportiva</h3>
+                <p data-i18n="svc4_desc">Quadra para futebol, vôlei e basquete. Aproveite com a família e os amigos.</p>
             </div>
             <div class="amenity-card">
                 <div class="amenity-icon">☕</div>
-                <h3>Café da Manhã</h3>
-                <p>Café da manhã opcional no restaurante do condomínio. Comece o dia com tranquilidade.</p>
+                <h3 data-i18n="svc5_title">Café da Manhã</h3>
+                <p data-i18n="svc5_desc">Café da manhã opcional no restaurante do condomínio. Comece o dia com tranquilidade.</p>
             </div>
             <div class="amenity-card">
                 <div class="amenity-icon">🎾</div>
-                <h3>Quadra de Tênis</h3>
-                <p>Quadra de tênis com piso sintético para você praticar os seus melhores saques.</p>
+                <h3 data-i18n="svc6_title">Quadra de Tênis</h3>
+                <p data-i18n="svc6_desc">Quadra de tênis com piso sintético para você praticar os seus melhores saques.</p>
             </div>
         </div>
     </div>
@@ -1008,8 +1018,8 @@
 <section class="location" id="localizacao">
     <div class="section-inner">
         <div class="section-header">
-            <h2>Localização privilegiada</h2>
-            <p>No coração de Muro Alto, o trecho mais exclusivo de Porto de Galinhas</p>
+            <h2 data-i18n="loc_title">Localização privilegiada</h2>
+            <p data-i18n="loc_subtitle">No coração de Muro Alto, o trecho mais exclusivo de Porto de Galinhas</p>
             <div class="section-divider"></div>
         </div>
         <div class="location-grid">
@@ -1017,27 +1027,27 @@
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.5!2d-35.05!3d-8.43!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab1f0!2sPolinesia+Flat+Residence!5e0!3m2!1spt-BR!2sbr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="location-info">
-                <h3>Como chegar</h3>
-                <p>O Polinésia Residence & Resort fica na praia de Muro Alto, a apenas 60 km do aeroporto do Recife.</p>
+                <h3 data-i18n="loc_how">Como chegar</h3>
+                <p data-i18n="loc_desc">O Polinésia Residence & Resort fica na praia de Muro Alto, a apenas 60 km do aeroporto do Recife.</p>
                 <div class="location-detail">
                     <span class="location-detail-icon">📍</span>
                     <div>
-                        <strong>Endereço</strong><br>
-                        Muro Alto, Ipojuca — Porto de Galinhas, PE
+                        <strong data-i18n="loc_address_title">Endereço</strong><br>
+                        <span data-i18n="loc_address">Muro Alto, Ipojuca — Porto de Galinhas, PE</span>
                     </div>
                 </div>
                 <div class="location-detail">
                     <span class="location-detail-icon">✈️</span>
                     <div>
-                        <strong>Aeroporto do Recife</strong><br>
-                        ~60 km (aproximadamente 1h de carro)
+                        <strong data-i18n="loc_airport_title">Aeroporto do Recife</strong><br>
+                        <span data-i18n="loc_airport">~60 km (aproximadamente 1h de carro)</span>
                     </div>
                 </div>
                 <div class="location-detail">
                     <span class="location-detail-icon">🌊</span>
                     <div>
-                        <strong>Piscinas Naturais</strong><br>
-                        Acesso direto — melhor trecho de Muro Alto
+                        <strong data-i18n="loc_pools_title">Piscinas Naturais</strong><br>
+                        <span data-i18n="loc_pools">Acesso direto — melhor trecho de Muro Alto</span>
                     </div>
                 </div>
             </div>
@@ -1048,15 +1058,15 @@
 <!-- CTA -->
 <section class="cta" id="contato">
     <div class="section-inner">
-        <h2>Reserve suas férias</h2>
-        <p>Entre em contato pelo WhatsApp e receba uma cotação personalizada para as suas datas.</p>
+        <h2 data-i18n="cta_title">Reserve suas férias</h2>
+        <p data-i18n="cta_desc">Entre em contato pelo WhatsApp e receba uma cotação personalizada para as suas datas.</p>
         <div class="cta-buttons">
             <a href="https://api.whatsapp.com/send?phone=5581988545491&text=Ol%C3%A1%2C%20M%C3%A1rio!%20Gostaria%20de%20obter%20cota%C3%A7%C3%A3o%20para%20reserva%20no%20Polin%C3%A9sia%20Resort." class="btn btn-primary" target="_blank" rel="noopener">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.239 0-4.308-.724-5.993-1.953l-.422-.306-2.645.887.887-2.645-.306-.422A9.935 9.935 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
-                Falar no WhatsApp
+                <span data-i18n="cta_whatsapp">Falar no WhatsApp</span>
             </a>
             <a href="https://www.booking.com/Share-IzeD1HR" class="btn btn-booking" target="_blank" rel="noopener">
-                Reservar pelo Booking.com
+                <span data-i18n="cta_booking">Reservar pelo Booking.com</span>
             </a>
         </div>
     </div>
@@ -1066,9 +1076,9 @@
 <footer>
     <div class="footer-inner">
         <div class="footer-logo">Polinésia Resort</div>
-        <p>Muro Alto — Porto de Galinhas — Ipojuca, PE</p>
-        <p>WhatsApp: (81) 9.8854-5491</p>
-        <div class="footer-links">&copy; 2026 Polinésia Residence & Resort. Todos os direitos reservados.</div>
+        <p data-i18n="footer_address">Muro Alto — Porto de Galinhas — Ipojuca, PE</p>
+        <p data-i18n="footer_phone">WhatsApp: (81) 9.8854-5491</p>
+        <div class="footer-links" data-i18n="footer_copy">&copy; 2026 Polinésia Residence & Resort. Todos os direitos reservados.</div>
     </div>
 </footer>
 
@@ -1099,6 +1109,541 @@ document.querySelectorAll('.gallery-item img, .condo-item img').forEach(img => {
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
 });
+
+// ── i18n Translation System ──
+const i18nOriginals = {};
+let i18nInitialized = false;
+
+const translations = {
+    es: {
+        // Nav
+        nav_apartment: "El Apartamento",
+        nav_photos: "Fotos",
+        nav_condo: "Condominio",
+        nav_services: "Servicios",
+        nav_location: "Ubicación",
+        // Hero
+        hero_title: "Tus vacaciones en el paraíso",
+        hero_subtitle: "Apartamento completo de 2 habitaciones en el mejor tramo de las piscinas naturales. 73m² para ti y tu familia.",
+        hero_cta: "Solicitar Cotización",
+        hero_photos: "Ver Fotos",
+        // Features
+        feat_rooms_label: "Habitaciones",
+        feat_area_label: "Área",
+        feat_guests_label: "Huéspedes",
+        feat_guests_value: "Hasta 7",
+        feat_location_label: "Ubicación",
+        feat_location_value: "Frente al mar",
+        // About
+        about_title: "Comodidad y espacio para toda la familia",
+        about_p1: "Apartamento completo con 2 habitaciones, amplio living, cocina equipada y balcón con vista privilegiada. Todo lo que necesitás para días inolvidables en Porto de Galinhas.",
+        about_p2: "Ubicado en el condominio Polinésia Residence & Resort, en Muro Alto — el tramo más exclusivo de la región, con acceso directo a las famosas piscinas naturales.",
+        about_h1: "Cocina completa",
+        about_h2: "Wi-Fi gratuito",
+        about_h3: "Aire acondicionado",
+        about_h4: "TV en todos los ambientes",
+        about_h5: "Ropa de cama",
+        about_h6: "Estacionamiento",
+        // Description
+        desc_title: "La Mejor Vista al Mar",
+        desc_subtitle: "Balcón al Naciente, Privacidad",
+        desc_p1: "Apartamento de 2 habitaciones en Polinésia Residence & Resort. Completo y confortable, con Wi-Fi, smart TV, aire acondicionado y acceso directo a la playa.",
+        desc_p2: "Ubicado en la paradisíaca Playa de Muro Alto, el condominio está a pie de arena y ofrece piscinas, restaurante, tienda de conveniencia y acceso directo al mar, además de actividades como stand-up paddle y kayak gratuitos.",
+        desc_food_title: "Alimentación",
+        desc_p3: "Durante tu estadía, podés contratar opcionalmente desayuno, almuerzo y cena. El resort cuenta con restaurantes temáticos, servicio buffet y a la carta, con opciones regionales y variadas especialidades en mariscos.",
+        desc_p4: "Viví días inolvidables en este apartamento a pie de arena, en Polinésia Residence & Resort. Con 2 habitaciones climatizadas, living climatizado, balcón acogedor y cocina completa, es el refugio ideal para familias y amigos. Disfrutá de toda la estructura del condominio, con piscinas, tienda y acceso directo a la playa de Muro Alto.",
+        desc_p5: "Los huéspedes tendrán acceso total al apartamento y a las áreas comunes del condominio, incluyendo piscinas, salón de juegos y acceso directo a la playa. El uso de algunas comodidades puede requerir reserva o seguir reglas del condominio.",
+        desc_p6: "Durante la estadía, estaremos disponibles para cualquier necesidad vía teléfono. Ofrecemos soporte antes, durante y después del hospedaje para garantizar una experiencia tranquila y confortable.",
+        desc_p7: "Frente al mar en Muro Alto — Porto de Galinhas, cuenta con apartamentos con piscina al aire libre y estacionamiento en el lugar. Entre las comodidades de esta propiedad se encuentran un restaurante, recepción abierta las 24 horas, ascensor, además de acceso Wi-Fi gratuito en toda la propiedad. La propiedad está ubicada a pocos pasos de la Playa de Muro Alto.",
+        desc_p8: "Ofreciendo terraza, balcón, con vista al mar o a la piscina, las unidades disponen de aire acondicionado, área de estar, TV de pantalla plana por cable y cocina. El complejo de apartamentos dispone de unidades equipadas con baño privado y escritorio. En el complejo, todas las unidades incluyen ropa de cama y toallas.",
+        desc_p9: "Los huéspedes pueden relajarse en el bar o salón del lugar.",
+        desc_p10: "Un parque infantil también está disponible en el apartamento, y los huéspedes también pueden relajarse en el jardín o a la orilla del mar.",
+        // Beds & Rules
+        beds_title: "Detalles del alojamiento",
+        beds_subtitle: "Todo sobre camas, reglas y horarios",
+        beds_heading: "Camas",
+        bed_suite: "Suite",
+        bed_suite_desc: "Cama queen + cama individual",
+        bed_social: "Habitación social",
+        bed_social_desc: "Cama queen",
+        bed_child: "Niño",
+        bed_child_desc: "Cuna disponible",
+        rules_heading: "Reglas del alojamiento",
+        rule_children: "Acepta niños (2–12 años)",
+        rule_children_v: "Sí",
+        rule_babies: "Acepta bebés (menores de 2 años)",
+        rule_babies_v: "Sí",
+        rule_cribs: "Provee cunas",
+        rule_cribs_v: "Sí",
+        rule_smoking: "Permitido fumar en las habitaciones",
+        rule_smoking_v: "No",
+        rule_pets: "Acepta mascotas",
+        rule_pets_v: "A consultar",
+        rule_events: "Se permiten eventos",
+        rule_events_v: "No",
+        rule_silence: "Horario de silencio",
+        rule_silence_v: "22:00",
+        rule_checkin: "Horario de llegada",
+        rule_checkin_v: "Cualquier",
+        rule_checkout: "Horario de checkout",
+        rule_checkout_v: "Hasta 11:30",
+        // Surroundings
+        surr_title: "Alrededores y atracciones",
+        surr_subtitle: "Lo que encontrás en el condominio y en la región",
+        surr_amenities_heading: "Amenidades de los alrededores",
+        surr_a1: "Frente al mar",
+        surr_a2: "Jardín",
+        surr_a3: "Tiendas (en la propiedad)",
+        surr_a4: "Muebles de exterior",
+        surr_a5: "Parque infantil",
+        surr_a6: "Piscina al aire libre",
+        surr_a7: "Cancha de tenis",
+        surr_a8: "Salón / área de TV",
+        surr_a9: "Terraza",
+        surr_a10: "Vista a la playa",
+        surr_a11: "Restaurante",
+        surr_a12: "Gimnasio (área común)",
+        surr_a13: "Bar",
+        surr_a14: "Salón de juegos",
+        surr_a15: "Ascensor",
+        surr_a16: "Internet Wi-Fi",
+        surr_a17: "Estacionamiento",
+        surr_a18: "Recepción 24 horas",
+        surr_attr_heading: "Atracciones cercanas",
+        surr_th_type: "Tipo",
+        surr_th_name: "Nombre",
+        surr_th_distance: "Distancia",
+        surr_type1: "Café/Bar",
+        surr_type2: "Feria",
+        surr_type3: "Mar/Océano",
+        surr_type4: "Playa",
+        surr_type5: "Restaurante",
+        surr_type6: "Supermercados",
+        // Accommodation Amenities
+        accom_title: "Amenidades del alojamiento",
+        accom_subtitle: "Todo lo que el apartamento ofrece para tu estadía",
+        accom_cat1: "🏖️ Áreas Externas y Accesibilidad",
+        accom_cat2: "🚿 Baño",
+        accom_cat3: "🍳 Cocina y Comedor",
+        accom_cat4: "🎮 Entretenimiento y Ocio",
+        accom_cat5: "🏢 Estructura y Servicios",
+        accom_cat6: "💻 Oficina y Conectividad",
+        accom_cat7: "🧹 Limpieza e Higiene",
+        accom_cat8: "👔 Dormitorio y Ropa",
+        accom_cat9: "🔒 Seguridad y Privacidad",
+        accom_c1_1: "Acceso sin escalones en casa",
+        accom_c1_2: "Estacionamiento para discapacitados",
+        accom_c1_3: "Acceso a la playa",
+        accom_c1_4: "Acceso al resort",
+        accom_c1_5: "Comedor exterior",
+        accom_c1_6: "Ducha exterior",
+        accom_c1_7: "Reposeras",
+        accom_c1_8: "Muebles de exterior",
+        accom_c1_9: "Balcón",
+        accom_c1_10: "Vista a la piscina",
+        accom_c1_11: "Vista al jardín",
+        accom_c1_12: "Vista al océano",
+        accom_c2_1: "Agua caliente",
+        accom_c2_2: "Ducha",
+        accom_c2_3: "Artículos básicos de baño",
+        accom_c2_4: "Papel higiénico",
+        accom_c2_5: "Jabón líquido",
+        accom_c2_6: "Secador de pelo",
+        accom_c2_7: "Toallas",
+        accom_c3_1: "Asientos en el comedor",
+        accom_c3_2: "Parrilla",
+        accom_c3_3: "Copas de vino",
+        accom_c3_4: "Cocina completa",
+        accom_c3_5: "Cocina (hornallas)",
+        accom_c3_6: "Horno",
+        accom_c3_7: "Freezer",
+        accom_c3_8: "Heladera",
+        accom_c3_9: "Artículos básicos de cocina",
+        accom_c3_10: "Licuadora",
+        accom_c3_11: "Vajilla y cubiertos",
+        accom_c3_12: "Cafetera",
+        accom_c3_13: "Mesa de comedor",
+        accom_c3_14: "Mesas y sillas",
+        accom_c3_15: "Microondas",
+        accom_c3_16: "Olla arrocera",
+        accom_c4_1: "Adaptador",
+        accom_c4_2: "Kayak",
+        accom_c4_3: "TV por cable",
+        accom_c4_4: "Canales pay-per-view",
+        accom_c4_5: "Equipamiento de ejercicio",
+        accom_c4_6: "Películas",
+        accom_c4_7: "Luz de lectura",
+        accom_c4_8: "Mesa de ping pong",
+        accom_c4_9: "Sala de juegos",
+        accom_c4_10: "TV HD — 40 pulgadas",
+        accom_c4_11: "TV de pantalla ancha",
+        accom_c5_1: "Apartamento privado",
+        accom_c5_2: "Aire acondicionado",
+        accom_c5_3: "Aire acondicionado individual por habitación",
+        accom_c5_4: "Ascensor",
+        accom_c5_5: "Estacionamiento gratuito",
+        accom_c5_6: "Garaje gratuito",
+        accom_c5_7: "Intercomunicador",
+        accom_c5_8: "Área de estar con sofá/sillón",
+        accom_c5_9: "Artículos de playa",
+        accom_c5_10: "No se permiten mascotas",
+        accom_c5_11: "Habitaciones familiares",
+        accom_c5_12: "Recomendaciones de niñera y cocinera",
+        accom_c6_1: "Silla proporcionada con el escritorio",
+        accom_c6_2: "Espacio listo para notebook",
+        accom_c6_3: "Internet (fibra óptica)",
+        accom_c6_4: "Habitación insonorizada",
+        accom_c6_5: "Enchufe cerca de la cama",
+        accom_c6_6: "Wi-Fi portátil",
+        accom_c7_1: "Libre de alérgenos",
+        accom_c7_2: "Cestos de basura",
+        accom_c7_3: "Productos de limpieza",
+        accom_c7_4: "Desinfectante para manos",
+        accom_c8_1: "Perchero para ropa",
+        accom_c8_2: "Armarios en la habitación",
+        accom_c8_3: "Cortinas blackout",
+        accom_c8_4: "Perchas",
+        accom_c8_5: "Plancha",
+        accom_c8_6: "Guardarropa o armario",
+        accom_c8_7: "Lavandería cercana",
+        accom_c8_8: "Múltiples armarios",
+        accom_c8_9: "Vestidor",
+        accom_c8_10: "Ropa de cama",
+        accom_c8_11: "Secadora",
+        accom_c8_12: "Sofá",
+        accom_c8_13: "Sofá cama",
+        accom_c8_14: "Almohada hipoalergénica",
+        accom_c8_15: "Tendedero para secar ropa",
+        accom_c9_1: "Llaves electrónicas",
+        accom_c9_2: "Cortina de privacidad",
+        accom_c9_3: "Cortina blackout",
+        accom_c9_4: "Portero",
+        // Gallery
+        gallery_title: "Conocé el espacio",
+        gallery_subtitle: "Apartamento y áreas comunes del condominio",
+        condo_title: "El condominio",
+        condo_subtitle: "Estructura completa de ocio frente al mar",
+        // Services
+        services_title: "Lo que vas a encontrar",
+        services_subtitle: "Estructura completa de ocio para toda la familia",
+        svc1_title: "Parque Acuático",
+        svc1_desc: "1.000 m² de piscinas. Parque acuático completo para niños y adultos, con toboganes y piscina infantil.",
+        svc2_title: "Sala de Juegos Infantil",
+        svc2_desc: "Espacio dedicado para los más chicos con televisores, juegos y alfombras. Diversión garantizada en días de lluvia.",
+        svc3_title: "Recreación y Eventos",
+        svc3_desc: "Programación de recreación y eventos para adultos y niños durante toda la temporada.",
+        svc4_title: "Cancha Polideportiva",
+        svc4_desc: "Cancha para fútbol, vóley y básquet. Disfrutá con la familia y los amigos.",
+        svc5_title: "Desayuno",
+        svc5_desc: "Desayuno opcional en el restaurante del condominio. Empezá el día con tranquilidad.",
+        svc6_title: "Cancha de Tenis",
+        svc6_desc: "Cancha de tenis con piso sintético para practicar tus mejores saques.",
+        // Location
+        loc_title: "Ubicación privilegiada",
+        loc_subtitle: "En el corazón de Muro Alto, el tramo más exclusivo de Porto de Galinhas",
+        loc_how: "Cómo llegar",
+        loc_desc: "Polinésia Residence & Resort está en la playa de Muro Alto, a solo 60 km del aeropuerto de Recife.",
+        loc_address_title: "Dirección",
+        loc_address: "Muro Alto, Ipojuca — Porto de Galinhas, PE",
+        loc_airport_title: "Aeropuerto de Recife",
+        loc_airport: "~60 km (aproximadamente 1h en auto)",
+        loc_pools_title: "Piscinas Naturales",
+        loc_pools: "Acceso directo — mejor tramo de Muro Alto",
+        // CTA
+        cta_title: "Reservá tus vacaciones",
+        cta_desc: "Contactanos por WhatsApp y recibí una cotización personalizada para tus fechas.",
+        cta_whatsapp: "Hablar por WhatsApp",
+        cta_booking: "Reservar por Booking.com",
+        // Footer
+        footer_address: "Muro Alto — Porto de Galinhas — Ipojuca, PE",
+        footer_phone: "WhatsApp: (81) 9.8854-5491",
+        footer_copy: "\u00a9 2026 Polinésia Residence & Resort. Todos los derechos reservados."
+    },
+    en: {
+        // Nav
+        nav_apartment: "The Apartment",
+        nav_photos: "Photos",
+        nav_condo: "Resort",
+        nav_services: "Services",
+        nav_location: "Location",
+        // Hero
+        hero_title: "Your vacation in paradise",
+        hero_subtitle: "Fully equipped 2-bedroom apartment in the best stretch of the natural pools. 73m\u00b2 for you and your family.",
+        hero_cta: "Request a Quote",
+        hero_photos: "View Photos",
+        // Features
+        feat_rooms_label: "Bedrooms",
+        feat_area_label: "Area",
+        feat_guests_label: "Guests",
+        feat_guests_value: "Up to 7",
+        feat_location_label: "Location",
+        feat_location_value: "Beachfront",
+        // About
+        about_title: "Comfort and space for the whole family",
+        about_p1: "Fully equipped apartment with 2 bedrooms, spacious living room, equipped kitchen and balcony with a privileged view. Everything you need for unforgettable days in Porto de Galinhas.",
+        about_p2: "Located at Polinésia Residence & Resort in Muro Alto — the most exclusive stretch of the region, with direct access to the famous natural pools.",
+        about_h1: "Full kitchen",
+        about_h2: "Free Wi-Fi",
+        about_h3: "Air conditioning",
+        about_h4: "TV in every room",
+        about_h5: "Bed linen",
+        about_h6: "Parking",
+        // Description
+        desc_title: "The Best Ocean View",
+        desc_subtitle: "East-Facing Balcony, Privacy",
+        desc_p1: "2-bedroom apartment at Polinésia Residence & Resort. Complete and comfortable, with Wi-Fi, smart TV, air conditioning and direct beach access.",
+        desc_p2: "Located on the paradisiacal Muro Alto Beach, the resort is right on the sand and offers pools, a restaurant, a convenience store and direct access to the sea, as well as activities such as free stand-up paddle and kayaking.",
+        desc_food_title: "Dining",
+        desc_p3: "During your stay, you can optionally purchase breakfast, lunch and dinner. The resort features themed restaurants, buffet and à la carte service, with regional options and a variety of seafood specialties.",
+        desc_p4: "Experience unforgettable days in this beachfront apartment at Polinésia Residence & Resort. With 2 air-conditioned bedrooms, air-conditioned living room, cozy balcony and full kitchen, it is the ideal retreat for families and friends. Enjoy the full resort infrastructure, with pools, convenience store and direct access to Muro Alto Beach.",
+        desc_p5: "Guests will have full access to the apartment and all common areas of the resort, including pools, game room and direct beach access. Some amenities may require reservation or must follow resort rules.",
+        desc_p6: "During your stay, we are available for any need by phone. We offer support before, during and after your stay to ensure a smooth and comfortable experience.",
+        desc_p7: "Facing the sea in Muro Alto — Porto de Galinhas, it features apartments with an outdoor pool and on-site parking. Amenities include a restaurant, a 24-hour front desk, an elevator, and free Wi-Fi throughout the property. The property is located just steps from Muro Alto Beach.",
+        desc_p8: "Offering a terrace, balcony with sea or pool views, the units feature air conditioning, a seating area, flat-screen cable TV and a kitchen. The apartment complex features units equipped with a private bathroom and a desk. All units include bed linen and towels.",
+        desc_p9: "Guests can relax at the on-site bar or lounge.",
+        desc_p10: "A children's playground is also available at the property, and guests can also relax in the garden or by the sea.",
+        // Beds & Rules
+        beds_title: "Accommodation details",
+        beds_subtitle: "All about beds, rules and schedules",
+        beds_heading: "Beds",
+        bed_suite: "Master Suite",
+        bed_suite_desc: "Queen bed + single bed",
+        bed_social: "Second Bedroom",
+        bed_social_desc: "Queen bed",
+        bed_child: "Child",
+        bed_child_desc: "Crib available",
+        rules_heading: "Accommodation rules",
+        rule_children: "Children welcome (ages 2–12)",
+        rule_children_v: "Yes",
+        rule_babies: "Infants welcome (under 2)",
+        rule_babies_v: "Yes",
+        rule_cribs: "Cribs provided",
+        rule_cribs_v: "Yes",
+        rule_smoking: "Smoking in rooms",
+        rule_smoking_v: "No",
+        rule_pets: "Pets allowed",
+        rule_pets_v: "On request",
+        rule_events: "Events allowed",
+        rule_events_v: "No",
+        rule_silence: "Quiet hours",
+        rule_silence_v: "10 PM",
+        rule_checkin: "Check-in time",
+        rule_checkin_v: "Flexible",
+        rule_checkout: "Checkout time",
+        rule_checkout_v: "By 11:30 AM",
+        // Surroundings
+        surr_title: "Surroundings and attractions",
+        surr_subtitle: "What you'll find at the resort and in the area",
+        surr_amenities_heading: "Nearby amenities",
+        surr_a1: "Beachfront",
+        surr_a2: "Garden",
+        surr_a3: "Shops (on property)",
+        surr_a4: "Outdoor furniture",
+        surr_a5: "Playground",
+        surr_a6: "Outdoor pool",
+        surr_a7: "Tennis court",
+        surr_a8: "Lounge / TV area",
+        surr_a9: "Terrace",
+        surr_a10: "Beach view",
+        surr_a11: "Restaurant",
+        surr_a12: "Gym (common area)",
+        surr_a13: "Bar",
+        surr_a14: "Game room",
+        surr_a15: "Elevator",
+        surr_a16: "Wi-Fi internet",
+        surr_a17: "Parking",
+        surr_a18: "24-hour front desk",
+        surr_attr_heading: "Nearby attractions",
+        surr_th_type: "Type",
+        surr_th_name: "Name",
+        surr_th_distance: "Distance",
+        surr_type1: "Café/Bar",
+        surr_type2: "Market",
+        surr_type3: "Sea/Ocean",
+        surr_type4: "Beach",
+        surr_type5: "Restaurant",
+        surr_type6: "Supermarkets",
+        // Accommodation Amenities
+        accom_title: "Accommodation amenities",
+        accom_subtitle: "Everything the apartment offers for your stay",
+        accom_cat1: "🏖️ Outdoor Areas & Accessibility",
+        accom_cat2: "🚿 Bathroom",
+        accom_cat3: "🍳 Kitchen & Dining",
+        accom_cat4: "🎮 Entertainment & Leisure",
+        accom_cat5: "🏢 Facilities & Services",
+        accom_cat6: "💻 Office & Connectivity",
+        accom_cat7: "🧹 Cleaning & Hygiene",
+        accom_cat8: "👔 Bedroom & Laundry",
+        accom_cat9: "🔒 Security & Privacy",
+        accom_c1_1: "Step-free access",
+        accom_c1_2: "Accessible parking space",
+        accom_c1_3: "Beach access",
+        accom_c1_4: "Resort access",
+        accom_c1_5: "Outdoor dining area",
+        accom_c1_6: "Outdoor shower",
+        accom_c1_7: "Sun loungers",
+        accom_c1_8: "Outdoor furniture",
+        accom_c1_9: "Balcony",
+        accom_c1_10: "Pool view",
+        accom_c1_11: "Garden view",
+        accom_c1_12: "Ocean view",
+        accom_c2_1: "Hot water",
+        accom_c2_2: "Shower",
+        accom_c2_3: "Basic bathroom amenities",
+        accom_c2_4: "Toilet paper",
+        accom_c2_5: "Liquid soap",
+        accom_c2_6: "Hair dryer",
+        accom_c2_7: "Towels",
+        accom_c3_1: "Dining room seating",
+        accom_c3_2: "BBQ grill",
+        accom_c3_3: "Wine glasses",
+        accom_c3_4: "Full kitchen",
+        accom_c3_5: "Stove",
+        accom_c3_6: "Oven",
+        accom_c3_7: "Freezer",
+        accom_c3_8: "Refrigerator",
+        accom_c3_9: "Basic kitchen items",
+        accom_c3_10: "Blender",
+        accom_c3_11: "Dishes and cutlery",
+        accom_c3_12: "Coffee maker",
+        accom_c3_13: "Dining table",
+        accom_c3_14: "Tables and chairs",
+        accom_c3_15: "Microwave",
+        accom_c3_16: "Rice cooker",
+        accom_c4_1: "Adapter",
+        accom_c4_2: "Kayak",
+        accom_c4_3: "Cable channels",
+        accom_c4_4: "Pay-per-view channels",
+        accom_c4_5: "Exercise equipment",
+        accom_c4_6: "Movies",
+        accom_c4_7: "Reading light",
+        accom_c4_8: "Ping pong table",
+        accom_c4_9: "Game room",
+        accom_c4_10: "HD TV — 40 inches",
+        accom_c4_11: "Widescreen TV",
+        accom_c5_1: "Private apartment",
+        accom_c5_2: "Air conditioning",
+        accom_c5_3: "Individual AC per room",
+        accom_c5_4: "Elevator",
+        accom_c5_5: "Free parking",
+        accom_c5_6: "Free garage",
+        accom_c5_7: "Intercom",
+        accom_c5_8: "Sitting area with sofa/chair",
+        accom_c5_9: "Beach items",
+        accom_c5_10: "No pets allowed",
+        accom_c5_11: "Family rooms",
+        accom_c5_12: "Babysitter and cook recommendations",
+        accom_c6_1: "Chair provided with desk",
+        accom_c6_2: "Laptop-ready workspace",
+        accom_c6_3: "Internet (fiber optic)",
+        accom_c6_4: "Soundproof room",
+        accom_c6_5: "Outlet near bed",
+        accom_c6_6: "Portable Wi-Fi",
+        accom_c7_1: "Allergen-free",
+        accom_c7_2: "Trash cans",
+        accom_c7_3: "Cleaning products",
+        accom_c7_4: "Hand sanitizer",
+        accom_c8_1: "Clothes rack",
+        accom_c8_2: "Bedroom closets",
+        accom_c8_3: "Blackout curtains",
+        accom_c8_4: "Hangers",
+        accom_c8_5: "Iron",
+        accom_c8_6: "Wardrobe or closet",
+        accom_c8_7: "Nearby laundry",
+        accom_c8_8: "Multiple closets",
+        accom_c8_9: "Dressing room",
+        accom_c8_10: "Bed linen",
+        accom_c8_11: "Dryer",
+        accom_c8_12: "Sofa",
+        accom_c8_13: "Sofa bed",
+        accom_c8_14: "Hypoallergenic pillow",
+        accom_c8_15: "Clothesline",
+        accom_c9_1: "Electronic keys",
+        accom_c9_2: "Privacy curtain",
+        accom_c9_3: "Blackout curtain",
+        accom_c9_4: "Doorman",
+        // Gallery
+        gallery_title: "Explore the space",
+        gallery_subtitle: "Apartment and common areas of the resort",
+        condo_title: "The resort",
+        condo_subtitle: "Complete leisure facilities by the sea",
+        // Services
+        services_title: "What you'll find",
+        services_subtitle: "Complete leisure facilities for the whole family",
+        svc1_title: "Water Park",
+        svc1_desc: "1,000 m\u00b2 of pools. Complete water park for children and adults, with slides and a kiddie pool.",
+        svc2_title: "Kids' Playroom",
+        svc2_desc: "Dedicated space for kids with TVs, games and play mats. Guaranteed fun on rainy days.",
+        svc3_title: "Recreation & Events",
+        svc3_desc: "Recreation and event programming for adults and children throughout the season.",
+        svc4_title: "Sports Court",
+        svc4_desc: "Court for soccer, volleyball and basketball. Enjoy with family and friends.",
+        svc5_title: "Breakfast",
+        svc5_desc: "Optional breakfast at the resort restaurant. Start your day with peace of mind.",
+        svc6_title: "Tennis Court",
+        svc6_desc: "Tennis court with synthetic surface for you to practice your best serves.",
+        // Location
+        loc_title: "Prime location",
+        loc_subtitle: "In the heart of Muro Alto, the most exclusive stretch of Porto de Galinhas",
+        loc_how: "How to get here",
+        loc_desc: "Polinésia Residence & Resort is located on Muro Alto Beach, just 60 km from Recife airport.",
+        loc_address_title: "Address",
+        loc_address: "Muro Alto, Ipojuca — Porto de Galinhas, PE",
+        loc_airport_title: "Recife Airport",
+        loc_airport: "~60 km (approximately 1 hour by car)",
+        loc_pools_title: "Natural Pools",
+        loc_pools: "Direct access — best stretch of Muro Alto",
+        // CTA
+        cta_title: "Book your vacation",
+        cta_desc: "Get in touch via WhatsApp and receive a personalized quote for your dates.",
+        cta_whatsapp: "Chat on WhatsApp",
+        cta_booking: "Book on Booking.com",
+        // Footer
+        footer_address: "Muro Alto — Porto de Galinhas — Ipojuca, PE",
+        footer_phone: "WhatsApp: +55 81 9.8854-5491",
+        footer_copy: "\u00a9 2026 Polinésia Residence & Resort. All rights reserved."
+    }
+};
+
+function setLang(lang) {
+    // Store originals on first run
+    if (!i18nInitialized) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            i18nOriginals[el.getAttribute('data-i18n')] = el.textContent;
+        });
+        i18nInitialized = true;
+    }
+
+    // Apply translations
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (lang === 'pt') {
+            if (i18nOriginals[key]) el.textContent = i18nOriginals[key];
+        } else if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+
+    // Update active flag
+    document.querySelectorAll('.lang-flag').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.querySelector('.lang-flag[onclick="setLang(\'' + lang + '\')"]');
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Update html lang attribute
+    const langMap = { pt: 'pt-BR', es: 'es', en: 'en' };
+    document.documentElement.lang = langMap[lang] || 'pt-BR';
+
+    // Persist
+    localStorage.setItem('polinesia_lang', lang);
+}
+
+// Auto-apply saved language on load
+(function() {
+    var saved = localStorage.getItem('polinesia_lang');
+    if (saved && saved !== 'pt') {
+        setLang(saved);
+    }
+})();
 </script>
 
 </body>
