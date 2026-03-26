@@ -35,6 +35,8 @@
     {
       "@context": "https://schema.org",
       "@type": "VacationRental",
+      "additionalType": "https://schema.org/Accommodation",
+      "identifier": "polinesia-resort-muro-alto-7106",
       "name": "Polinésia Resort — Apartamento em Muro Alto",
       "description": "Apartamento de temporada com 2 quartos no Polinésia Residence & Resort. 73m², Wi-Fi, smart TV, ar-condicionado e acesso direto à praia de Muro Alto, Porto de Galinhas.",
       "url": "https://polinesiaresort.com.br",
@@ -42,7 +44,11 @@
         "https://polinesiaresort.com.br/img/estrutura-03.png",
         "https://polinesiaresort.com.br/img/sala-04.png",
         "https://polinesiaresort.com.br/img/quarto-01.png",
-        "https://polinesiaresort.com.br/img/cozinha-01.png"
+        "https://polinesiaresort.com.br/img/cozinha-01.png",
+        "https://polinesiaresort.com.br/img/varanda-01.png",
+        "https://polinesiaresort.com.br/img/estrutura-06.png",
+        "https://polinesiaresort.com.br/img/web-condo-2.jpg",
+        "https://polinesiaresort.com.br/img/estrutura-01.png"
       ],
       "numberOfRooms": 2,
       "floorSize": {
@@ -56,10 +62,14 @@
       },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Muro Alto",
+        "streetAddress": "Praia de Muro Alto, s/n",
         "addressLocality": "Ipojuca",
         "addressRegion": "PE",
-        "addressCountry": "BR"
+        "postalCode": "55590-000",
+        "addressCountry": {
+          "@type": "Country",
+          "name": "BR"
+        }
       },
       "geo": {
         "@type": "GeoCoordinates",
@@ -72,24 +82,60 @@
         "reviewCount": "85",
         "bestRating": "5"
       },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Rafael S."},
+          "datePublished": "2026-01-15",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Apartamento maravilhoso, de frente pro mar. Piscinas naturais incríveis e estrutura completa do resort. Voltaremos com certeza!"
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "María G."},
+          "datePublished": "2025-12-28",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Increíble ubicación en Muro Alto. El departamento tiene todo lo necesario, muy limpio y cómodo. Las piscinas naturales son un sueño."
+        }
+      ],
       "amenityFeature": [
         {"@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Ar-condicionado", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Piscina", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Estacionamento", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Cozinha completa", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Acesso à praia", "value": true}
+        {"@type": "LocationFeatureSpecification", "name": "Acesso à praia", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Smart TV", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Parque aquático", "value": true}
       ],
       "containedInPlace": {
         "@type": "Resort",
         "name": "Polinésia Residence & Resort",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Praia de Muro Alto",
+          "streetAddress": "Praia de Muro Alto, s/n",
           "addressLocality": "Ipojuca",
           "addressRegion": "PE",
-          "addressCountry": "BR"
+          "postalCode": "55590-000",
+          "addressCountry": {
+            "@type": "Country",
+            "name": "BR"
+          }
         }
+      },
+      "containsPlace": {
+        "@type": "Accommodation",
+        "name": "Apartamento 2 Quartos — Bloco Puka Puka",
+        "numberOfRooms": 2,
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 73,
+          "unitCode": "MTK"
+        },
+        "bed": [
+          {"@type": "BedDetails", "typeOfBed": "Cama de casal", "numberOfBeds": 1},
+          {"@type": "BedDetails", "typeOfBed": "Cama de solteiro", "numberOfBeds": 2}
+        ]
       }
     }
     </script>
