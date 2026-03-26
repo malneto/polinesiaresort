@@ -765,7 +765,7 @@
             <li><a href="#condominio" data-i18n="nav_condo">Condomínio</a></li>
             <li><a href="#servicos" data-i18n="nav_services">Serviços</a></li>
             <li><a href="#localizacao" data-i18n="nav_location">Localização</a></li>
-            <li><a href="#contato" class="nav-cta">WhatsApp</a></li>
+            <li><a href="#" onclick="openWhatsApp();return false;" class="nav-cta">WhatsApp</a></li>
         </ul>
         <div class="lang-flags">
             <button class="lang-flag active" id="flagPt" onclick="setLang('pt')" title="Português"><img src="https://flagcdn.com/w40/br.png" width="28" height="20" alt="Bandeira do Brasil - Português" style="border-radius:3px;object-fit:cover;"></button>
@@ -3418,6 +3418,18 @@ closeQuoteModal = function() {
     // setTimeout(showLeadModal, 2000);
 };
 */ // Fim do bloco Lead Capture desabilitado
+
+// ---- WhatsApp direto com mensagem de cotação ----
+function openWhatsApp() {
+    var lang = localStorage.getItem('polinesia_lang') || 'pt';
+    var msgs = {
+        pt: 'Olá, Polinésia Resort! Gostaria de uma cotação para hospedagem em Muro Alto.\n\nDatas: \nNúmero de hóspedes: \nAlguma preferência?',
+        es: '¡Hola, Polinésia Resort! Me gustaría una cotización para hospedaje en Muro Alto.\n\nFechas: \nNúmero de huéspedes: \n¿Alguna preferencia?',
+        en: 'Hello, Polinésia Resort! I would like a quote for accommodation in Muro Alto.\n\nDates: \nNumber of guests: \nAny preferences?'
+    };
+    var msg = msgs[lang] || msgs.pt;
+    window.open('https://api.whatsapp.com/send?phone=5581988545491&text=' + encodeURIComponent(msg), '_blank');
+}
 
 // ---- Guide CTA (footer + exit intent) ----
 function sendGuideEmail(email, origem, callback) {
