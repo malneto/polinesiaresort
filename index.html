@@ -1397,6 +1397,33 @@
 </div>
 -->
 
+<!-- GUIDE CTA (before footer) -->
+<section style="background:linear-gradient(135deg,#0c4a6e,#0369a1);padding:48px 20px;text-align:center;color:white;">
+    <div style="max-width:500px;margin:0 auto;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,30px);margin-bottom:8px;" data-i18n="guide_cta_title">Guia Grátis de Porto de Galinhas</h2>
+        <p style="opacity:0.85;font-size:15px;margin-bottom:24px;" data-i18n="guide_cta_desc">50+ restaurantes, praias, transfers e dicas de pagamento. Receba no seu email!</p>
+        <div style="display:flex;gap:8px;max-width:400px;margin:0 auto;" id="footerGuideForm">
+            <input type="email" id="footerGuideEmail" placeholder="Seu email" style="flex:1;padding:14px 16px;border:none;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;">
+            <button onclick="submitFooterGuide()" id="footerGuideBtn" style="padding:14px 24px;background:linear-gradient(135deg,#f59e0b,#f97316);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;" data-i18n="guide_cta_btn">Quero!</button>
+        </div>
+        <p id="footerGuideOk" style="display:none;color:#a7f3d0;font-weight:600;margin-top:12px;" data-i18n="guide_cta_ok">Pronto! Confira seu email.</p>
+        <p style="font-size:11px;opacity:0.5;margin-top:10px;">🔒 Não enviamos spam.</p>
+    </div>
+</section>
+
+<!-- EXIT INTENT MODAL -->
+<div id="exitModal" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this){this.style.display='none'}">
+    <div style="background:white;border-radius:20px;max-width:420px;width:100%;padding:36px 28px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+        <button onclick="document.getElementById('exitModal').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:24px;color:#94a3b8;cursor:pointer;">&times;</button>
+        <div style="font-size:40px;margin-bottom:12px;">🌴</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#0c4a6e;margin-bottom:8px;" data-i18n="exit_title">Ei, não vai embora!</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:20px;" data-i18n="exit_desc">Leve nosso guia grátis de Porto de Galinhas — 50+ restaurantes, praias e dicas!</p>
+        <input type="email" id="exitEmail" placeholder="Seu melhor email" style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;margin-bottom:10px;">
+        <button onclick="submitExitGuide()" id="exitBtn" style="width:100%;padding:14px;background:linear-gradient(135deg,#f59e0b,#f97316);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="exit_btn">Quero o guia grátis!</button>
+        <p id="exitOk" style="display:none;color:#059669;font-weight:600;margin-top:12px;" data-i18n="exit_ok">Pronto! Redirecionando...</p>
+    </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
     <div class="footer-inner">
@@ -1689,6 +1716,14 @@ const translations = {
         footer_address: "Muro Alto — Porto de Galinhas — Ipojuca, PE",
         footer_phone: "WhatsApp: (81) 9.8854-5491",
         footer_copy: "\u00a9 2026 Polinésia Residence & Resort. Todos los derechos reservados.",
+        guide_cta_title: "Guía Gratis de Porto de Galinhas",
+        guide_cta_desc: "50+ restaurantes, playas, transfers y tips de pago. ¡Recibilo en tu email!",
+        guide_cta_btn: "¡Quiero!",
+        guide_cta_ok: "¡Listo! Revisá tu email.",
+        exit_title: "¡Ey, no te vayas!",
+        exit_desc: "Llevate nuestra guía gratis de Porto de Galinhas — 50+ restaurantes, playas y tips!",
+        exit_btn: "¡Quiero la guía gratis!",
+        exit_ok: "¡Listo! Redirigiendo...",
         meta_desc: "Apartamento vacacional en Muro Alto, Porto de Galinhas. 2 habitaciones, 73m², en el mejor tramo de las piscinas naturales. Parque acuático, sala de juegos, cancha deportiva."
     },
     en: {
@@ -1939,6 +1974,14 @@ const translations = {
         footer_address: "Muro Alto — Porto de Galinhas — Ipojuca, PE",
         footer_phone: "WhatsApp: +55 81 9.8854-5491",
         footer_copy: "\u00a9 2026 Polinésia Residence & Resort. All rights reserved.",
+        guide_cta_title: "Free Porto de Galinhas Guide",
+        guide_cta_desc: "50+ restaurants, beaches, transfers & payment tips. Get it in your inbox!",
+        guide_cta_btn: "I want it!",
+        guide_cta_ok: "Done! Check your email.",
+        exit_title: "Hey, don't leave!",
+        exit_desc: "Take our free Porto de Galinhas guide — 50+ restaurants, beaches & tips!",
+        exit_btn: "Get the free guide!",
+        exit_ok: "Done! Redirecting...",
         meta_desc: "Vacation apartment in Muro Alto, Porto de Galinhas. 2 bedrooms, 73m², on the best stretch of natural pools. Water park, playroom, sports court."
     },
     zh: {
@@ -3375,6 +3418,74 @@ closeQuoteModal = function() {
     // setTimeout(showLeadModal, 2000);
 };
 */ // Fim do bloco Lead Capture desabilitado
+
+// ---- Guide CTA (footer + exit intent) ----
+function sendGuideEmail(email, origem, callback) {
+    var lang = localStorage.getItem('polinesia_lang') || 'pt';
+    fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: email, nome: '', idioma: lang, origem: origem })
+    }).then(function(r){ return r.json(); }).then(function(d){
+        if (d.ok && callback) callback();
+    }).catch(function(){ if (callback) callback(); });
+    if (typeof gtag === 'function') gtag('event', 'lead_capture', { event_category: 'conversion', event_label: origem });
+}
+
+function submitFooterGuide() {
+    var email = document.getElementById('footerGuideEmail').value.trim();
+    if (!email || email.indexOf('@') === -1) return;
+    document.getElementById('footerGuideBtn').disabled = true;
+    sendGuideEmail(email, 'footer_cta', function() {
+        document.getElementById('footerGuideForm').style.display = 'none';
+        document.getElementById('footerGuideOk').style.display = 'block';
+        localStorage.setItem('polinesia_lead_done', '1');
+        var lang = localStorage.getItem('polinesia_lang') || 'pt';
+        setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank'); }, 1500);
+    });
+}
+
+function submitExitGuide() {
+    var email = document.getElementById('exitEmail').value.trim();
+    if (!email || email.indexOf('@') === -1) return;
+    document.getElementById('exitBtn').disabled = true;
+    sendGuideEmail(email, 'exit_intent', function() {
+        document.getElementById('exitOk').style.display = 'block';
+        localStorage.setItem('polinesia_lead_done', '1');
+        var lang = localStorage.getItem('polinesia_lang') || 'pt';
+        setTimeout(function(){
+            document.getElementById('exitModal').style.display = 'none';
+            window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank');
+        }, 1500);
+    });
+}
+
+// Exit intent: mouse leaves viewport (desktop) or back button (mobile)
+var exitShown = false;
+document.addEventListener('mouseout', function(e) {
+    if (exitShown || localStorage.getItem('polinesia_lead_done')) return;
+    if (e.clientY < 5) {
+        exitShown = true;
+        document.getElementById('exitModal').style.display = 'flex';
+    }
+});
+// Mobile: show after 45s idle
+var exitIdleTimer = setTimeout(function() {
+    if (!exitShown && !localStorage.getItem('polinesia_lead_done')) {
+        exitShown = true;
+        document.getElementById('exitModal').style.display = 'flex';
+    }
+}, 45000);
+['scroll','touchmove','click'].forEach(function(evt) {
+    document.addEventListener(evt, function() {
+        clearTimeout(exitIdleTimer);
+        exitIdleTimer = setTimeout(function() {
+            if (!exitShown && !localStorage.getItem('polinesia_lead_done')) {
+                exitShown = true;
+                document.getElementById('exitModal').style.display = 'flex';
+            }
+        }, 45000);
+    }, { passive: true });
+});
 </script>
 
 </body>
