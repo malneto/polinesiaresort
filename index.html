@@ -1450,11 +1450,23 @@
     <div style="max-width:500px;margin:0 auto;">
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,30px);margin-bottom:8px;" data-i18n="guide_cta_title">Guia Grátis de Porto de Galinhas</h2>
         <p style="opacity:0.85;font-size:15px;margin-bottom:24px;" data-i18n="guide_cta_desc">50+ restaurantes, praias, transfers e dicas de pagamento. Receba no seu email!</p>
-        <div style="display:flex;gap:8px;max-width:400px;margin:0 auto;" id="footerGuideForm">
+        <!-- Etapa 1: Email -->
+        <div id="footerStep1" style="display:flex;gap:8px;max-width:400px;margin:0 auto;">
             <input type="email" id="footerGuideEmail" placeholder="Seu email" style="flex:1;padding:14px 16px;border:none;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;">
-            <button onclick="submitFooterGuide()" id="footerGuideBtn" style="padding:14px 24px;background:linear-gradient(135deg,#f59e0b,#f97316);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;" data-i18n="guide_cta_btn">Quero!</button>
+            <button onclick="footerStep1()" id="footerGuideBtn" style="padding:14px 24px;background:linear-gradient(135deg,#f59e0b,#f97316);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;" data-i18n="guide_cta_btn">Quero!</button>
         </div>
-        <p id="footerGuideOk" style="display:none;color:#a7f3d0;font-weight:600;margin-top:12px;" data-i18n="guide_cta_ok">Pronto! Confira seu email.</p>
+        <!-- Etapa 2: Como chegou -->
+        <div id="footerStep2" style="display:none;max-width:400px;margin:0 auto;">
+            <p style="font-size:14px;opacity:0.9;margin-bottom:12px;">Como chegou até o Polinésia Resort?</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <button onclick="footerStep2('Google')" style="padding:12px;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Google / Anúncio Google</button>
+                <button onclick="footerStep2('Instagram')" style="padding:12px;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Instagram / Anúncio Instagram</button>
+                <button onclick="footerStep2('Indicação')" style="padding:12px;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Indicação</button>
+                <button onclick="footerStep2('Booking')" style="padding:12px;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Booking</button>
+                <button onclick="footerStep2('Outro')" style="padding:12px;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Outro</button>
+            </div>
+        </div>
+        <p id="footerGuideOk" style="display:none;color:#a7f3d0;font-weight:600;margin-top:12px;">Pronto! Abrindo o guia...</p>
         <p style="font-size:11px;opacity:0.5;margin-top:10px;">🔒 Não enviamos spam.</p>
     </div>
 </section>
@@ -1466,9 +1478,23 @@
         <div style="font-size:40px;margin-bottom:12px;">🌴</div>
         <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#0c4a6e;margin-bottom:8px;" data-i18n="exit_title">Ei, não vai embora!</h2>
         <p style="color:#64748b;font-size:14px;margin-bottom:20px;" data-i18n="exit_desc">Leve nosso guia grátis de Porto de Galinhas — 50+ restaurantes, praias e dicas!</p>
-        <input type="email" id="exitEmail" placeholder="Seu melhor email" style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;margin-bottom:10px;">
-        <button onclick="submitExitGuide()" id="exitBtn" style="width:100%;padding:14px;background:linear-gradient(135deg,#f59e0b,#f97316);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="exit_btn">Quero o guia grátis!</button>
-        <p id="exitOk" style="display:none;color:#059669;font-weight:600;margin-top:12px;" data-i18n="exit_ok">Pronto! Redirecionando...</p>
+        <!-- Etapa 1: Email -->
+        <div id="exitStep1">
+            <input type="email" id="exitEmail" placeholder="Seu melhor email" style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;margin-bottom:10px;">
+            <button onclick="exitStep1()" id="exitBtn" style="width:100%;padding:14px;background:linear-gradient(135deg,#f59e0b,#f97316);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="exit_btn">Quero o guia grátis!</button>
+        </div>
+        <!-- Etapa 2: Como chegou -->
+        <div id="exitStep2" style="display:none;">
+            <p style="color:#475569;font-size:14px;margin-bottom:12px;font-weight:600;">Como chegou até o Polinésia Resort?</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <button onclick="exitStep2('Google')" style="padding:12px;background:#f8fafc;color:#1e293b;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Google / Anúncio Google</button>
+                <button onclick="exitStep2('Instagram')" style="padding:12px;background:#f8fafc;color:#1e293b;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Instagram / Anúncio Instagram</button>
+                <button onclick="exitStep2('Indicação')" style="padding:12px;background:#f8fafc;color:#1e293b;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Indicação</button>
+                <button onclick="exitStep2('Booking')" style="padding:12px;background:#f8fafc;color:#1e293b;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Booking</button>
+                <button onclick="exitStep2('Outro')" style="padding:12px;background:#f8fafc;color:#1e293b;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Outro</button>
+            </div>
+        </div>
+        <p id="exitOk" style="display:none;color:#059669;font-weight:600;margin-top:12px;">Pronto! Abrindo o guia...</p>
     </div>
 </div>
 
@@ -3491,32 +3517,60 @@ function sendGuideEmail(email, origem, callback) {
     if (typeof gtag === 'function') gtag('event', 'lead_capture', { event_category: 'conversion', event_label: origem });
 }
 
-function submitFooterGuide() {
+// Footer CTA — 2 etapas
+var footerEmail = '';
+function footerStep1() {
     var email = document.getElementById('footerGuideEmail').value.trim();
     if (!email || email.indexOf('@') === -1) return;
+    footerEmail = email;
     document.getElementById('footerGuideBtn').disabled = true;
+    // Salva email imediatamente
     sendGuideEmail(email, 'footer_cta', function() {
-        document.getElementById('footerGuideForm').style.display = 'none';
-        document.getElementById('footerGuideOk').style.display = 'block';
         localStorage.setItem('polinesia_lead_done', '1');
-        var lang = localStorage.getItem('polinesia_lang') || 'pt';
-        setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank'); }, 1500);
     });
+    // Mostra etapa 2
+    document.getElementById('footerStep1').style.display = 'none';
+    document.getElementById('footerStep2').style.display = 'block';
+}
+function footerStep2(como) {
+    // Atualiza com como_chegou
+    var lang = localStorage.getItem('polinesia_lang') || 'pt';
+    fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: footerEmail, nome: '', idioma: lang, origem: 'footer_cta', como_chegou: como })
+    }).catch(function(){});
+    document.getElementById('footerStep2').style.display = 'none';
+    document.getElementById('footerGuideOk').style.display = 'block';
+    setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank'); }, 1000);
 }
 
-function submitExitGuide() {
+// Exit Intent — 2 etapas
+var exitEmailVal = '';
+function exitStep1() {
     var email = document.getElementById('exitEmail').value.trim();
     if (!email || email.indexOf('@') === -1) return;
+    exitEmailVal = email;
     document.getElementById('exitBtn').disabled = true;
+    // Salva email imediatamente
     sendGuideEmail(email, 'exit_intent', function() {
-        document.getElementById('exitOk').style.display = 'block';
         localStorage.setItem('polinesia_lead_done', '1');
-        var lang = localStorage.getItem('polinesia_lang') || 'pt';
-        setTimeout(function(){
-            document.getElementById('exitModal').style.display = 'none';
-            window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank');
-        }, 1500);
     });
+    // Mostra etapa 2
+    document.getElementById('exitStep1').style.display = 'none';
+    document.getElementById('exitStep2').style.display = 'block';
+}
+function exitStep2(como) {
+    var lang = localStorage.getItem('polinesia_lang') || 'pt';
+    fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: exitEmailVal, nome: '', idioma: lang, origem: 'exit_intent', como_chegou: como })
+    }).catch(function(){});
+    document.getElementById('exitStep2').style.display = 'none';
+    document.getElementById('exitOk').style.display = 'block';
+    setTimeout(function(){
+        document.getElementById('exitModal').style.display = 'none';
+        window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank');
+    }, 1000);
 }
 
 // Exit intent: mouse leaves viewport (desktop) or back button (mobile)
