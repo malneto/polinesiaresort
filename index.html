@@ -3544,13 +3544,11 @@ function footerStep2(como) {
     fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ email: footerEmail, nome: '', idioma: lang, origem: 'footer_cta', como_chegou: como })
-    }).then(function(r){return r.json();}).then(function(d){
-        token = d.token || token;
-        // Envia email com link do guia
-        fetch('https://servicos.polinesiaresort.com.br/search/send_guide_email.php', {
-            method: 'POST', headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ email: footerEmail, lang: lang, token: token })
-        }).catch(function(){});
+    }).catch(function(){});
+    // Envia email (independente)
+    fetch('https://servicos.polinesiaresort.com.br/search/send_guide_email.php', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: footerEmail, lang: lang, token: token })
     }).catch(function(){});
     document.getElementById('footerStep2').style.display = 'none';
     document.getElementById('footerGuideOk').style.display = 'block';
@@ -3580,12 +3578,10 @@ function exitStep2(como) {
     fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ email: exitEmailVal, nome: '', idioma: lang, origem: 'exit_intent', como_chegou: como })
-    }).then(function(r){return r.json();}).then(function(d){
-        token = d.token || token;
-        fetch('https://servicos.polinesiaresort.com.br/search/send_guide_email.php', {
-            method: 'POST', headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ email: exitEmailVal, lang: lang, token: token })
-        }).catch(function(){});
+    }).catch(function(){});
+    fetch('https://servicos.polinesiaresort.com.br/search/send_guide_email.php', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: exitEmailVal, lang: lang, token: token })
     }).catch(function(){});
     document.getElementById('exitStep2').style.display = 'none';
     document.getElementById('exitOk').style.display = 'block';
