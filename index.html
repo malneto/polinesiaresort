@@ -3512,7 +3512,10 @@ function sendGuideEmail(email, origem, callback) {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ email: email, nome: '', idioma: lang, origem: origem })
     }).then(function(r){ return r.json(); }).then(function(d){
-        if (d.ok && callback) callback();
+        if (d.ok) {
+            if (d.token) localStorage.setItem('polinesia_lead_token', d.token);
+            if (callback) callback();
+        }
     }).catch(function(){ if (callback) callback(); });
     if (typeof gtag === 'function') gtag('event', 'lead_capture', { event_category: 'conversion', event_label: origem });
 }
@@ -3537,14 +3540,17 @@ function footerStep2(como) {
     fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ email: footerEmail, nome: '', idioma: lang, origem: 'footer_cta', como_chegou: como })
-    }).catch(function(){});
+    }).then(function(r){return r.json();}).then(function(d){
+        var token = d.token || localStorage.getItem('polinesia_lead_token') || '';
+        setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/search/verify_lead.php?t=' + token + '&lang=' + lang, '_blank'); }, 1000);
+    }).catch(function(){
+        setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank'); }, 1000);
+    });
     document.getElementById('footerStep2').style.display = 'none';
     document.getElementById('footerGuideOk').style.display = 'block';
-    // Mostra email novamente para correção
     document.getElementById('footerStep1').style.display = 'flex';
     document.getElementById('footerGuideBtn').disabled = false;
     document.getElementById('footerGuideBtn').textContent = 'Reenviar';
-    setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank'); }, 1000);
 }
 
 // Exit Intent — 2 etapas
@@ -3567,16 +3573,17 @@ function exitStep2(como) {
     fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ email: exitEmailVal, nome: '', idioma: lang, origem: 'exit_intent', como_chegou: como })
-    }).catch(function(){});
+    }).then(function(r){return r.json();}).then(function(d){
+        var token = d.token || localStorage.getItem('polinesia_lead_token') || '';
+        setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/search/verify_lead.php?t=' + token + '&lang=' + lang, '_blank'); }, 1000);
+    }).catch(function(){
+        setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank'); }, 1000);
+    });
     document.getElementById('exitStep2').style.display = 'none';
     document.getElementById('exitOk').style.display = 'block';
-    // Mostra email novamente para correção
     document.getElementById('exitStep1').style.display = 'block';
     document.getElementById('exitBtn').disabled = false;
     document.getElementById('exitBtn').textContent = 'Reenviar';
-    setTimeout(function(){
-        window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank');
-    }, 1000);
 }
 
 // Exit intent: mouse leaves viewport (desktop) or back button (mobile)
