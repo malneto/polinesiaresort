@@ -1466,7 +1466,7 @@
                 <button onclick="footerStep2('Outro')" style="padding:12px;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Outro</button>
             </div>
         </div>
-        <p id="footerGuideOk" style="display:none;color:#a7f3d0;font-weight:600;margin-top:12px;">Pronto! Abrindo o guia...</p>
+        <p id="footerGuideOk" style="display:none;color:#a7f3d0;font-weight:600;margin-top:12px;">Pronto! Confira seu email.</p>
         <p style="font-size:11px;opacity:0.5;margin-top:10px;">🔒 Não enviamos spam.</p>
     </div>
 </section>
@@ -1494,7 +1494,7 @@
                 <button onclick="exitStep2('Outro')" style="padding:12px;background:#f8fafc;color:#1e293b;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Outro</button>
             </div>
         </div>
-        <p id="exitOk" style="display:none;color:#059669;font-weight:600;margin-top:12px;">Pronto! Abrindo o guia...</p>
+        <p id="exitOk" style="display:none;color:#059669;font-weight:600;margin-top:12px;">Pronto! Confira seu email.</p>
     </div>
 </div>
 
@@ -3533,7 +3533,6 @@ function footerStep1() {
     document.getElementById('footerStep2').style.display = 'block';
 }
 function footerStep2(como) {
-    // Atualiza com como_chegou
     var lang = localStorage.getItem('polinesia_lang') || 'pt';
     fetch('https://servicos.polinesiaresort.com.br/search/save_lead.php', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
@@ -3541,6 +3540,10 @@ function footerStep2(como) {
     }).catch(function(){});
     document.getElementById('footerStep2').style.display = 'none';
     document.getElementById('footerGuideOk').style.display = 'block';
+    // Mostra email novamente para correção
+    document.getElementById('footerStep1').style.display = 'flex';
+    document.getElementById('footerGuideBtn').disabled = false;
+    document.getElementById('footerGuideBtn').textContent = 'Reenviar';
     setTimeout(function(){ window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank'); }, 1000);
 }
 
@@ -3567,8 +3570,11 @@ function exitStep2(como) {
     }).catch(function(){});
     document.getElementById('exitStep2').style.display = 'none';
     document.getElementById('exitOk').style.display = 'block';
+    // Mostra email novamente para correção
+    document.getElementById('exitStep1').style.display = 'block';
+    document.getElementById('exitBtn').disabled = false;
+    document.getElementById('exitBtn').textContent = 'Reenviar';
     setTimeout(function(){
-        document.getElementById('exitModal').style.display = 'none';
         window.open('https://servicos.polinesiaresort.com.br/guia/page/?lang=' + lang, '_blank');
     }, 1000);
 }
