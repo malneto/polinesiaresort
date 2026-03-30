@@ -546,6 +546,7 @@
         }
         .amenity-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; line-height: 40px; }
         .amenity-card p { color: var(--gray-600); font-size: 12px; line-height: 1.5; clear: both; }
+        .amenities-list-mobile { display: none; }
 
         /* LOCATION */
         .location { background: var(--gray-50); }
@@ -767,11 +768,8 @@
                 grid-template-rows: repeat(4, 180px);
             }
             .gallery-item.span-2 { grid-column: span 1; }
-            .amenities-grid { grid-template-columns: 1fr 1fr; }
-            .amenity-card { padding: 14px 12px; }
-            .amenity-card p { display: none; }
-            .amenity-icon { width: 32px; height: 32px; font-size: 15px; margin-right: 8px; }
-            .amenity-card h3 { font-size: 12px; line-height: 32px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .amenities-grid { display: none; }
+            .amenities-list-mobile { display: block; }
             .location-grid { grid-template-columns: 1fr; }
             .location-map { height: 300px; }
             section { padding: 60px 20px; }
@@ -1347,6 +1345,14 @@ fbq('track', 'PageView');
                 <h3 data-i18n="svc6_title">Quadra de Tênis</h3>
                 <p data-i18n="svc6_desc">Quadra de tênis com piso sintético para você praticar os seus melhores saques.</p>
             </div>
+        </div>
+        <div class="amenities-list-mobile" style="padding:0 4px;">
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100);"><span style="font-size:18px;">🏊</span><span style="font-size:14px;font-weight:500;" data-i18n="svc1_title">Parque Aquático</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100);"><span style="font-size:18px;">🧸</span><span style="font-size:14px;font-weight:500;" data-i18n="svc2_title">Brinquedoteca</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100);"><span style="font-size:18px;">🎉</span><span style="font-size:14px;font-weight:500;" data-i18n="svc3_title">Recreação e Eventos</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100);"><span style="font-size:18px;">🏋️</span><span style="font-size:14px;font-weight:500;" data-i18n="svc4_title">Musculação</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100);"><span style="font-size:18px;">☕</span><span style="font-size:14px;font-weight:500;" data-i18n="svc5_title">Café da Manhã</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;"><span style="font-size:18px;">🎾</span><span style="font-size:14px;font-weight:500;" data-i18n="svc6_title">Quadra de Tênis</span></div>
         </div>
     </div>
 </section>
