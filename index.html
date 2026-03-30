@@ -286,13 +286,13 @@
             display: grid; grid-template-columns: repeat(4, 1fr);
         }
         .feature-item {
-            padding: 28px 24px; text-align: center; color: var(--white);
+            padding: 16px 12px; text-align: center; color: var(--white);
             border-right: 1px solid rgba(255,255,255,0.1);
         }
         .feature-item:last-child { border-right: none; }
-        .feature-icon { font-size: 28px; margin-bottom: 8px; }
-        .feature-label { font-size: 13px; font-weight: 500; opacity: 0.9; }
-        .feature-value { font-size: 20px; font-weight: 700; margin-top: 2px; }
+        .feature-icon { font-size: 20px; margin-bottom: 4px; }
+        .feature-label { font-size: 11px; font-weight: 500; opacity: 0.9; }
+        .feature-value { font-size: 16px; font-weight: 700; margin-top: 1px; }
 
         /* SECTIONS */
         section { padding: 80px 20px; }
@@ -755,8 +755,11 @@
                 background: var(--ocean); padding: 20px;
                 gap: 16px; align-items: center;
             }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .feature-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .features-grid { grid-template-columns: repeat(4, 1fr); }
+            .feature-item { padding: 10px 4px; border-bottom: none; }
+            .feature-icon { font-size: 16px; margin-bottom: 2px; }
+            .feature-label { font-size: 9px; }
+            .feature-value { font-size: 13px; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .about-img-float { right: 10px; bottom: -20px; width: 140px; }
             .gallery-grid {
@@ -776,7 +779,7 @@
             #comparativo [style*="grid-template-columns: 1fr 1fr 1fr"] > div { padding: 8px 10px !important; }
         }
         @media (max-width: 480px) {
-            .features-grid { grid-template-columns: 1fr 1fr; }
+            .features-grid { grid-template-columns: repeat(4, 1fr); }
             .gallery-grid { grid-template-rows: repeat(4, 160px); }
         }
         /* Scroll Reveal */
