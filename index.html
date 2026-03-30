@@ -770,6 +770,11 @@
             section { padding: 60px 20px; }
         }
 
+        @media (max-width: 600px) {
+            #comparativo [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+            #comparativo [style*="grid-template-columns: 1fr 1fr 1fr"] { grid-template-columns: 1fr !important; font-size: 12px !important; }
+            #comparativo [style*="grid-template-columns: 1fr 1fr 1fr"] > div { padding: 8px 10px !important; }
+        }
         @media (max-width: 480px) {
             .features-grid { grid-template-columns: 1fr 1fr; }
             .gallery-grid { grid-template-rows: repeat(4, 160px); }
@@ -824,9 +829,9 @@ fbq('track', 'PageView');
         <a href="#" class="nav-logo">Polinésia Resort</a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#sobre" data-i18n="nav_apartment">O Apartamento</a></li>
+            <li><a href="#comparativo" data-i18n="nav_compare">Por que aqui?</a></li>
             <li><a href="#galeria" data-i18n="nav_photos">Fotos</a></li>
             <li><a href="#condominio" data-i18n="nav_condo">Condomínio</a></li>
-            <li><a href="#servicos" data-i18n="nav_services">Serviços</a></li>
             <li><a href="#localizacao" data-i18n="nav_location">Localização</a></li>
             <li><a href="#" onclick="openWhatsApp();return false;" class="nav-cta">WhatsApp</a></li>
         </ul>
@@ -918,7 +923,67 @@ fbq('track', 'PageView');
     </div>
 </section>
 
-<!-- DESCRIPTION -->
+<!-- COMPARATIVO — Apartamento vs Hotel -->
+<section id="comparativo" style="background:linear-gradient(135deg,#0c4a6e,#0369a1);color:white;padding:64px 20px;">
+    <div style="max-width:900px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:40px;">
+            <div style="display:inline-block;padding:6px 18px;background:rgba(255,255,255,0.15);border-radius:50px;font-size:13px;font-weight:600;margin-bottom:16px;backdrop-filter:blur(5px);" data-i18n="cmp_badge">O que quase ninguém sabe</div>
+            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);margin:0 0 12px;" data-i18n="cmp_title">Apartamento de 75m² com <span style="color:#fbbf24;">infraestrutura de resort</span></h2>
+            <p style="font-size:16px;opacity:0.9;max-width:640px;margin:0 auto;line-height:1.6;" data-i18n="cmp_subtitle">O Polinésia e o Samôa Resort são empreendimentos geminados. Você tem acesso a toda a infraestrutura — piscinas, restaurante, spa, praia — morando num apartamento espaçoso por uma fração do preço.</p>
+        </div>
+
+        <!-- Mini tabela comparativa -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin-bottom:32px;font-size:14px;">
+            <div style="padding:12px 16px;background:rgba(255,255,255,0.05);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;opacity:0.7;"></div>
+            <div style="padding:12px 16px;background:rgba(255,255,255,0.15);font-weight:700;text-align:center;">Polinésia</div>
+            <div style="padding:12px 16px;background:rgba(255,255,255,0.05);font-weight:700;text-align:center;opacity:0.7;" data-i18n="cmp_hotel">Hotel típico</div>
+
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.03);" data-i18n="cmp_r_size">Tamanho</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.1);text-align:center;font-weight:700;color:#34d399;">75 m²</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.03);text-align:center;opacity:0.7;">26 m²</div>
+
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.05);" data-i18n="cmp_r_rooms">Quartos</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.12);text-align:center;font-weight:700;color:#34d399;">2–3</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.05);text-align:center;opacity:0.7;">1</div>
+
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.03);" data-i18n="cmp_r_guests">Hóspedes</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.1);text-align:center;font-weight:700;color:#34d399;" data-i18n="cmp_r_guests_p">Até 6</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.03);text-align:center;opacity:0.7;" data-i18n="cmp_r_guests_h">Máx 4</div>
+
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.05);" data-i18n="cmp_r_kitchen">Cozinha</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.12);text-align:center;font-weight:700;color:#34d399;" data-i18n="cmp_r_kitchen_p">Completa</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.05);text-align:center;opacity:0.7;" data-i18n="cmp_r_kitchen_h">Frigobar</div>
+
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.03);" data-i18n="cmp_r_cost">Custo p/ 5 pessoas</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.1);text-align:center;font-weight:700;color:#34d399;">~R$ 80/pessoa</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.03);text-align:center;opacity:0.7;">~R$ 250/pessoa</div>
+
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.05);" data-i18n="cmp_r_infra">Infraestrutura</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.12);text-align:center;font-weight:600;" data-i18n="cmp_r_infra_v">Mesma do resort</div>
+            <div style="padding:10px 16px;background:rgba(255,255,255,0.05);text-align:center;font-weight:600;" data-i18n="cmp_r_infra_v">Mesma do resort</div>
+        </div>
+
+        <!-- Infra compartilhada -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px;">
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">🏊</span><span data-i18n="cmp_i1">Piscinas</span></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">🍽️</span><span data-i18n="cmp_i2">Restaurante Tuvalu</span></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">🏖️</span><span data-i18n="cmp_i3">Praia de Muro Alto</span></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">💆</span><span data-i18n="cmp_i4">Spa</span></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">🏋️</span><span data-i18n="cmp_i5">Academia</span></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">🍹</span><span data-i18n="cmp_i6">Bar Puka Puka</span></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">🎮</span><span data-i18n="cmp_i7">Sala de jogos</span></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;font-size:13px;"><span style="font-size:24px;display:block;margin-bottom:6px;">🛶</span><span data-i18n="cmp_i8">Esportes aquáticos</span></div>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align:center;">
+            <a href="https://servicos.polinesiaresort.com.br/comparativo/" style="display:inline-block;padding:14px 32px;background:white;color:#0c4a6e;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;margin-right:12px;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" data-i18n="cmp_cta_detail">Ver comparativo completo</a>
+            <a href="#" onclick="openQuoteModal();return false;" style="display:inline-block;padding:14px 32px;background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4);border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" data-i18n="cmp_cta_quote">Consultar valores</a>
+        </div>
+    </div>
+</section>
+
+<!-- DESCRIPTION (colapsável) -->
 <section class="description" id="descricao">
     <div class="section-inner">
         <div class="section-header reveal">
@@ -928,37 +993,30 @@ fbq('track', 'PageView');
         </div>
         <div class="description-content">
             <p data-i18n="desc_p1">Apartamento 2 quartos no Polinésia Residence & Resort. Completo e confortável, com Wi-Fi, smart TV, ar-condicionado e acesso direto à praia.</p>
-
             <p data-i18n="desc_p2">Localizado na paradisíaca Praia de Muro Alto, o condomínio é pé na areia e oferece piscinas, restaurante, conveniência e acesso direto ao mar, além de atividades como stand-up paddle e caiaque gratuitos.</p>
-
-            <p class="desc-topic" data-i18n="desc_food_title">Alimentação</p>
-            <p data-i18n="desc_p3">Durante sua hospedagem, você pode adquirir opcional à parte café da manhã, almoço e jantar. O resort conta com restaurantes temáticos, serviço buffet e à la carte, com opções regionais e variadas especialidades em frutos do mar.</p>
-
-            <p data-i18n="desc_p4">Viva dias inesquecíveis neste apartamento pé na areia, no Polinésia Residence & Resort. Com 2 quartos climatizados, sala climatizada, varanda acolhedora e cozinha completa, é o refúgio ideal para famílias e amigos. Desfrute de toda a estrutura do condomínio, com piscinas, conveniência e acesso direto à praia de Muro Alto.</p>
-
-            <p data-i18n="desc_p5">Os hóspedes terão acesso total ao apartamento e às áreas comuns do condomínio, incluindo piscinas, salão de jogos e acesso direto à praia. O uso de algumas comodidades pode exigir reserva ou seguir regras do condomínio.</p>
-
-            <p data-i18n="desc_p6">Durante a estadia, estaremos disponíveis para qualquer necessidade via telefone. Oferecemos suporte antes, durante e após a hospedagem para garantir uma experiência tranquila e confortável.</p>
-
-            <p data-i18n="desc_p7">De frente para o mar em Muro Alto — Porto de Galinhas, possui apartamentos com piscina ao ar livre e estacionamento no local. Entre as comodidades desta propriedade estão um restaurante, uma recepção aberta 24 horas, elevador, além de acesso Wi-Fi gratuito em toda a propriedade. A propriedade está localizada a poucos passos da Praia de Muro Alto.</p>
-
-            <p data-i18n="desc_p8">Oferecendo terraço, varanda, com vista para o mar ou para a piscina, as unidades dispõem de ar-condicionado, área de estar, TV de tela plana a cabo e cozinha. O complexo de apartamentos dispõe de unidades que estão equipadas com banheiro privativo e mesa de trabalho. No complexo de apartamentos, todas as unidades incluem roupa de cama e toalhas.</p>
-
-            <p data-i18n="desc_p9">Os hóspedes podem relaxar no bar ou salão no local.</p>
-
-            <p data-i18n="desc_p10">Um parque infantil também está disponível no apartamento, e os hóspedes também podem relaxar no jardim ou na beira mar.</p>
+            <div id="descMore" style="display:none;">
+                <p class="desc-topic" data-i18n="desc_food_title">Alimentação</p>
+                <p data-i18n="desc_p3">Durante sua hospedagem, você pode adquirir opcional à parte café da manhã, almoço e jantar. O resort conta com restaurantes temáticos, serviço buffet e à la carte, com opções regionais e variadas especialidades em frutos do mar.</p>
+                <p data-i18n="desc_p4">Viva dias inesquecíveis neste apartamento pé na areia, no Polinésia Residence & Resort. Com 2 quartos climatizados, sala climatizada, varanda acolhedora e cozinha completa, é o refúgio ideal para famílias e amigos. Desfrute de toda a estrutura do condomínio, com piscinas, conveniência e acesso direto à praia de Muro Alto.</p>
+                <p data-i18n="desc_p5">Os hóspedes terão acesso total ao apartamento e às áreas comuns do condomínio, incluindo piscinas, salão de jogos e acesso direto à praia. O uso de algumas comodidades pode exigir reserva ou seguir regras do condomínio.</p>
+                <p data-i18n="desc_p6">Durante a estadia, estaremos disponíveis para qualquer necessidade via telefone. Oferecemos suporte antes, durante e após a hospedagem para garantir uma experiência tranquila e confortável.</p>
+            </div>
+            <button onclick="var el=document.getElementById('descMore');var show=el.style.display==='none';el.style.display=show?'block':'none';this.textContent=show?'Ver menos ▲':'Ver mais detalhes ▼';" style="background:none;border:none;color:var(--ocean-light);font-weight:600;font-size:14px;cursor:pointer;margin-top:8px;padding:0;" data-i18n-toggle="desc_toggle">Ver mais detalhes ▼</button>
         </div>
     </div>
 </section>
 
-<!-- BEDS & RULES -->
+<!-- BEDS & RULES (accordion) -->
 <section class="beds-rules" id="acomodacao">
     <div class="section-inner">
-        <div class="section-header reveal">
-            <h2 data-i18n="beds_title">Detalhes da acomodação</h2>
-            <p data-i18n="beds_subtitle">Tudo sobre camas, regras e horários</p>
-            <div class="section-divider"></div>
+        <div class="accordion-header" onclick="var c=this.nextElementSibling;var open=c.style.display!=='none';c.style.display=open?'none':'block';this.querySelector('.acc-arrow').textContent=open?'▼':'▲';" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:16px 0;">
+            <div>
+                <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--ocean);margin:0;" data-i18n="beds_title">Detalhes da acomodação</h2>
+                <p style="color:var(--gray);font-size:14px;margin:4px 0 0;" data-i18n="beds_subtitle">Tudo sobre camas, regras e horários</p>
+            </div>
+            <span class="acc-arrow" style="font-size:18px;color:var(--ocean);font-weight:700;">▼</span>
         </div>
+        <div style="display:none;">
         <div class="beds-rules-grid">
             <div class="info-block">
                 <h3>🛏️ <span data-i18n="beds_heading">Camas</span></h3>
@@ -1035,17 +1093,21 @@ fbq('track', 'PageView');
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </section>
 
-<!-- SURROUNDINGS -->
+<!-- SURROUNDINGS + AMENITIES (accordion) -->
 <section class="surroundings" id="arredores">
     <div class="section-inner">
-        <div class="section-header reveal">
-            <h2 data-i18n="surr_title">Arredores e atrações</h2>
-            <p data-i18n="surr_subtitle">O que você encontra no condomínio e na região</p>
-            <div class="section-divider"></div>
+        <div class="accordion-header" onclick="var c=this.nextElementSibling;var open=c.style.display!=='none';c.style.display=open?'none':'block';this.querySelector('.acc-arrow').textContent=open?'▼':'▲';" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:16px 0;">
+            <div>
+                <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--ocean);margin:0;" data-i18n="surr_title">Arredores e atrações</h2>
+                <p style="color:var(--gray);font-size:14px;margin:4px 0 0;" data-i18n="surr_subtitle">Amenities, atrações próximas e detalhes da acomodação</p>
+            </div>
+            <span class="acc-arrow" style="font-size:18px;color:var(--ocean);font-weight:700;">▼</span>
         </div>
+        <div style="display:none;">
         <div class="surroundings-grid">
             <div class="info-block">
                 <h3>🏝️ <span data-i18n="surr_amenities_heading">Amenities dos arredores</span></h3>
@@ -1115,17 +1177,7 @@ fbq('track', 'PageView');
                 </table>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- ACCOMMODATION AMENITIES -->
-<section class="accom-amenities" id="amenities-acomodacao">
-    <div class="section-inner">
-        <div class="section-header reveal">
-            <h2 data-i18n="accom_title">Amenities da acomodação</h2>
-            <p data-i18n="accom_subtitle">Tudo que o apartamento oferece para sua estadia</p>
-            <div class="section-divider"></div>
-        </div>
+        <h3 style="margin:32px 0 16px;font-family:'Playfair Display',serif;font-size:20px;color:var(--ocean);" data-i18n="accom_title">Amenities da acomodação</h3>
         <div class="accom-categories">
             <div class="accom-category">
                 <h4 data-i18n="accom_cat1">🏖️ Áreas Externas e Acessibilidade</h4>
@@ -1259,6 +1311,7 @@ fbq('track', 'PageView');
                     <li data-i18n="accom_c9_4">Porteiro</li>
                 </ul>
             </div>
+        </div>
         </div>
     </div>
 </section>
@@ -1562,10 +1615,21 @@ const translations = {
     es: {
         // Nav
         nav_apartment: "El Apartamento",
+        nav_compare: "¿Por qué aquí?",
         nav_photos: "Fotos",
         nav_condo: "Condominio",
-        nav_services: "Servicios",
         nav_location: "Ubicación",
+        // Comparativo
+        cmp_badge: "Lo que casi nadie sabe",
+        cmp_title: 'Apartamento de 75m² con <span style="color:#fbbf24;">infraestructura de resort</span>',
+        cmp_subtitle: "Polinésia y Samôa Resort son emprendimientos gemelos. Tenés acceso a toda la infraestructura — piscinas, restaurante, spa, playa — viviendo en un apartamento espacioso por una fracción del precio.",
+        cmp_hotel: "Hotel típico",
+        cmp_r_size: "Tamaño", cmp_r_rooms: "Habitaciones", cmp_r_guests: "Huéspedes", cmp_r_guests_p: "Hasta 6", cmp_r_guests_h: "Máx 4",
+        cmp_r_kitchen: "Cocina", cmp_r_kitchen_p: "Completa", cmp_r_kitchen_h: "Frigobar",
+        cmp_r_cost: "Costo p/ 5 personas", cmp_r_infra: "Infraestructura", cmp_r_infra_v: "Misma del resort",
+        cmp_i1: "Piscinas", cmp_i2: "Restaurante Tuvalu", cmp_i3: "Playa Muro Alto", cmp_i4: "Spa",
+        cmp_i5: "Gimnasio", cmp_i6: "Bar Puka Puka", cmp_i7: "Sala de juegos", cmp_i8: "Deportes acuáticos",
+        cmp_cta_detail: "Ver comparativo completo", cmp_cta_quote: "Consultar valores",
         // Hero
         hero_title: "Tus vacaciones en el paraíso",
         hero_subtitle: "Apartamento completo de 2 habitaciones en el mejor tramo de las piscinas naturales. 73m² para ti y tu familia.",
@@ -1820,10 +1884,21 @@ const translations = {
     en: {
         // Nav
         nav_apartment: "The Apartment",
+        nav_compare: "Why here?",
         nav_photos: "Photos",
         nav_condo: "Resort",
-        nav_services: "Services",
         nav_location: "Location",
+        // Comparison
+        cmp_badge: "What almost nobody knows",
+        cmp_title: '75m² apartment with <span style="color:#fbbf24;">resort infrastructure</span>',
+        cmp_subtitle: "Polinésia and Samôa Resort are twin properties. You get access to the entire infrastructure — pools, restaurant, spa, beach — living in a spacious apartment for a fraction of the price.",
+        cmp_hotel: "Typical hotel",
+        cmp_r_size: "Size", cmp_r_rooms: "Bedrooms", cmp_r_guests: "Guests", cmp_r_guests_p: "Up to 6", cmp_r_guests_h: "Max 4",
+        cmp_r_kitchen: "Kitchen", cmp_r_kitchen_p: "Full kitchen", cmp_r_kitchen_h: "Minibar",
+        cmp_r_cost: "Cost for 5 guests", cmp_r_infra: "Infrastructure", cmp_r_infra_v: "Same as resort",
+        cmp_i1: "Pools", cmp_i2: "Tuvalu Restaurant", cmp_i3: "Muro Alto Beach", cmp_i4: "Spa",
+        cmp_i5: "Gym", cmp_i6: "Puka Puka Bar", cmp_i7: "Game room", cmp_i8: "Water sports",
+        cmp_cta_detail: "See full comparison", cmp_cta_quote: "Check rates",
         // Hero
         hero_title: "Your vacation in paradise",
         hero_subtitle: "Fully equipped 2-bedroom apartment in the best stretch of the natural pools. 73m\u00b2 for you and your family.",
