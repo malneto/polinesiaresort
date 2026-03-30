@@ -771,7 +771,7 @@
             .amenity-card { padding: 14px 12px; }
             .amenity-card p { display: none; }
             .amenity-icon { width: 32px; height: 32px; font-size: 15px; margin-right: 8px; }
-            .amenity-card h3 { font-size: 13px; line-height: 32px; }
+            .amenity-card h3 { font-size: 12px; line-height: 32px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .location-grid { grid-template-columns: 1fr; }
             .location-map { height: 300px; }
             section { padding: 60px 20px; }
@@ -1333,9 +1333,9 @@ fbq('track', 'PageView');
                 <p data-i18n="svc3_desc">Programação de recreação e eventos para adultos e crianças durante toda a temporada.</p>
             </div>
             <div class="amenity-card reveal">
-                <div class="amenity-icon">⚽</div>
-                <h3 data-i18n="svc4_title">Quadra Poliesportiva</h3>
-                <p data-i18n="svc4_desc">Quadra para futebol, vôlei e basquete. Aproveite com a família e os amigos.</p>
+                <div class="amenity-icon">🏋️</div>
+                <h3 data-i18n="svc4_title">Musculação</h3>
+                <p data-i18n="svc4_desc">Sala de musculação completa para manter sua rotina de exercícios durante a estadia.</p>
             </div>
             <div class="amenity-card reveal">
                 <div class="amenity-icon">☕</div>
@@ -1789,8 +1789,8 @@ const translations = {
         svc2_desc: "Espacio dedicado para los más chicos con televisores, juegos y alfombras. Diversión garantizada en días de lluvia.",
         svc3_title: "Recreación y Eventos",
         svc3_desc: "Programación de recreación y eventos para adultos y niños durante toda la temporada.",
-        svc4_title: "Cancha Polideportiva",
-        svc4_desc: "Cancha para fútbol, vóley y básquet. Disfrutá con la familia y los amigos.",
+        svc4_title: "Musculación",
+        svc4_desc: "Sala de musculación completa para mantener tu rutina de ejercicios durante la estadía.",
         svc5_title: "Desayuno",
         svc5_desc: "Desayuno opcional en el restaurante del condominio. Empezá el día con tranquilidad.",
         svc6_title: "Cancha de Tenis",
@@ -2058,8 +2058,8 @@ const translations = {
         svc2_desc: "Dedicated space for kids with TVs, games and play mats. Guaranteed fun on rainy days.",
         svc3_title: "Recreation & Events",
         svc3_desc: "Recreation and event programming for adults and children throughout the season.",
-        svc4_title: "Sports Court",
-        svc4_desc: "Court for soccer, volleyball and basketball. Enjoy with family and friends.",
+        svc4_title: "Gym",
+        svc4_desc: "Full gym to keep up with your workout routine during your stay.",
         svc5_title: "Breakfast",
         svc5_desc: "Optional breakfast at the resort restaurant. Start your day with peace of mind.",
         svc6_title: "Tennis Court",
