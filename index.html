@@ -3548,7 +3548,7 @@ function openWhatsApp() {
         en: 'Hello, Polinésia Resort! I would like a quote for accommodation in Muro Alto.\n\nDates: \nNumber of guests: \nAny preferences?'
     };
     var msg = msgs[lang] || msgs.pt;
-    window.open('https://wa.me/558138776403?text=' + encodeURIComponent(msg), '_blank');
+    window.open('https://wa.me/558138776403?text=' + encodeURIComponent('[src:site]\n\n' + msg), '_blank');
 }
 
 // ---- Guide CTA (footer + exit intent) ----
