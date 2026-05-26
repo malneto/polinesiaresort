@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade — Polinésia Resort</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+    <meta name="description" content="Política de Privacidade do Polinésia Resort — como tratamos seus dados pessoais conforme a LGPD.">
+    <link rel="canonical" href="https://polinesiaresort.com.br/politica-privacidade.html">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0c4a6e">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ocean: #0c4a6e;
+            --ocean-light: #0ea5e9;
+            --sand: #fef3c7;
+            --sand-dark: #f59e0b;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            line-height: 1.65;
+        }
+
+        header.top {
+            background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-light) 100%);
+            color: white;
+            padding: 32px 20px 40px;
+            text-align: center;
+        }
+        header.top .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 4vw, 30px);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        header.top .brand a {
+            color: white;
+            text-decoration: none;
+        }
+        header.top h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 5vw, 38px);
+            margin-top: 14px;
+            font-weight: 700;
+        }
+        header.top .subtitle {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 820px;
+            margin: -16px auto 60px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            padding: 36px clamp(20px, 5vw, 48px);
+        }
+
+        nav.toc {
+            background: var(--gray-50);
+            border-left: 3px solid var(--ocean-light);
+            padding: 18px 22px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+        nav.toc h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: var(--ocean);
+            margin-bottom: 10px;
+        }
+        nav.toc ol {
+            padding-left: 22px;
+            font-size: 14px;
+            color: var(--gray-700);
+        }
+        nav.toc ol li { margin-bottom: 4px; }
+        nav.toc a {
+            color: var(--ocean);
+            text-decoration: none;
+        }
+        nav.toc a:hover { text-decoration: underline; }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--ocean);
+            font-size: clamp(20px, 3.5vw, 24px);
+            margin-top: 36px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 8px;
+            scroll-margin-top: 20px;
+        }
+        h3 {
+            font-family: 'Inter', sans-serif;
+            color: var(--ocean);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        p { margin-bottom: 12px; font-size: 15px; }
+        ul, ol { padding-left: 24px; margin-bottom: 14px; font-size: 15px; }
+        li { margin-bottom: 6px; }
+        strong { color: var(--gray-900); }
+        a { color: var(--ocean-light); }
+
+        .last-update {
+            background: var(--sand);
+            border-left: 3px solid var(--sand-dark);
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #78350f;
+            margin-bottom: 28px;
+        }
+
+        .contato-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 12px;
+        }
+        .contato-box p { margin-bottom: 6px; font-size: 14px; }
+
+        table.dados {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+        table.dados th, table.dados td {
+            border: 1px solid var(--gray-200);
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        table.dados th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--ocean);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        footer.bottom {
+            text-align: center;
+            padding: 24px 20px;
+            color: var(--gray-600);
+            font-size: 13px;
+        }
+        footer.bottom a {
+            color: var(--ocean);
+            text-decoration: none;
+        }
+        footer.bottom a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            header.top { padding: 24px 16px 32px; }
+            main { padding: 24px 18px; margin: -10px 12px 30px; border-radius: 10px; }
+            table.dados { font-size: 12.5px; }
+            table.dados th, table.dados td { padding: 6px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top">
+    <div class="brand"><a href="/">🏝️ Polinésia Resort</a></div>
+    <h1>Política de Privacidade</h1>
+    <div class="subtitle">Tratamento de dados pessoais conforme LGPD (Lei 13.709/2018)</div>
+</header>
+
+<main>
+    <div class="last-update">
+        <strong>Última atualização:</strong> 26 de maio de 2026 — versão 1.0
+    </div>
+
+    <p>
+        Esta Política descreve como o <strong>Polinésia Residence &amp; Resort</strong>
+        (referido aqui como "Polinésia", "nós") coleta, usa, compartilha e protege
+        seus dados pessoais quando você nos contata, visita nosso site ou se hospeda
+        em nossas acomodações. Nosso compromisso é seguir integralmente a
+        <strong>Lei Geral de Proteção de Dados (Lei 13.709/2018)</strong>.
+    </p>
+
+    <nav class="toc">
+        <h3>O que você vai encontrar aqui</h3>
+        <ol>
+            <li><a href="#dados">Quais dados coletamos</a></li>
+            <li><a href="#como-coletamos">Como coletamos</a></li>
+            <li><a href="#finalidades">Para que usamos seus dados</a></li>
+            <li><a href="#base-legal">Em que base legal nos apoiamos</a></li>
+            <li><a href="#terceiros">Com quem compartilhamos</a></li>
+            <li><a href="#retencao">Por quanto tempo guardamos</a></li>
+            <li><a href="#seguranca">Como protegemos</a></li>
+            <li><a href="#direitos">Seus direitos como titular</a></li>
+            <li><a href="#cookies">Cookies e rastreadores</a></li>
+            <li><a href="#criancas">Crianças e adolescentes</a></li>
+            <li><a href="#alteracoes">Alterações nesta Política</a></li>
+            <li><a href="#contato">Como falar com a gente</a></li>
+        </ol>
+    </nav>
+
+    <h2 id="dados">1. Quais dados coletamos</h2>
+    <p>
+        Os dados coletados dependem da forma como você interage conosco.
+        Abaixo, o resumo por tipo de interação:
+    </p>
+
+    <table class="dados">
+        <thead>
+            <tr><th>Quando você…</th><th>Coletamos</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Visita o site</strong> (mesmo sem clicar em nada)</td>
+                <td>
+                    Endereço IP, localização aproximada por IP (cidade/estado/país),
+                    tipo de navegador (user-agent), página visitada, página de origem (referrer),
+                    parâmetros de campanha (UTMs) e horário de acesso.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Clica em um botão WhatsApp</strong></td>
+                <td>
+                    Os dados acima associados à sua sessão são vinculados ao seu número
+                    de telefone após o envio da primeira mensagem, para que possamos
+                    responder com contexto e atender melhor.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Conversa por WhatsApp</strong> (com atendente humano ou IA)</td>
+                <td>
+                    Nome de exibição do perfil (fornecido pelo WhatsApp), número de telefone,
+                    idioma de preferência, todas as mensagens trocadas, eventuais
+                    fotos, áudios ou arquivos enviados.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Solicita orçamento ou cotação</strong></td>
+                <td>
+                    Datas de interesse (check-in / check-out), número de hóspedes,
+                    cidade de origem (quando informada) e perfil de interesse.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Realiza uma reserva</strong></td>
+                <td>
+                    Nome completo, CPF, RG (quando exigido), data de nascimento,
+                    email, telefone, endereço, nomes dos demais hóspedes, valor pago,
+                    forma de pagamento, comprovantes financeiros.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Solicita o guia gratuito</strong> (formulário do site)</td>
+                <td>Email e canal de origem (Google, Instagram, indicação, Booking, etc.).</td>
+            </tr>
+            <tr>
+                <td><strong>Avalia a hospedagem</strong></td>
+                <td>Nome (público), nota e comentário (quando autorizado).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="como-coletamos">2. Como coletamos</h2>
+    <ul>
+        <li><strong>Diretamente de você</strong> — em formulários do site, mensagens de WhatsApp, ligações telefônicas, emails, ficha de check-in presencial.</li>
+        <li><strong>Automaticamente</strong> — através de tecnologias que capturam seu IP, geo aproximado, user-agent e navegação enquanto você está no site.</li>
+        <li><strong>Por terceiros</strong> — quando uma reserva é feita via Booking.com, Hotmart ou outras plataformas, recebemos os dados que você forneceu lá.</li>
+    </ul>
+
+    <h2 id="finalidades">3. Para que usamos seus dados</h2>
+    <ul>
+        <li><strong>Atendimento e cotações</strong> — responder suas dúvidas, calcular valores, enviar pacotes personalizados.</li>
+        <li><strong>Execução da hospedagem</strong> — confirmar a reserva, emitir voucher, registrar check-in/check-out, atender necessidades especiais.</li>
+        <li><strong>Pagamento e nota fiscal</strong> — processar pagamentos via Pix, cartão ou boleto; emitir documentos fiscais quando aplicável.</li>
+        <li><strong>Comunicação operacional</strong> — enviar informações sobre acesso, senha do Wi-Fi, instruções de check-in, lembretes.</li>
+        <li><strong>Melhoria do serviço</strong> — analisar canais que mais convertem, calibrar nossas mensagens, treinar o atendimento (sem expor dados pessoais individualmente).</li>
+        <li><strong>Marketing direto</strong> — enviar ofertas, novidades, pacotes promocionais, <em>apenas quando você consentiu</em> ou já é nosso cliente em relação contratual ativa.</li>
+        <li><strong>Segurança e prevenção a fraude</strong> — identificar tentativas de golpe, números falsos, atividades suspeitas em conversas.</li>
+        <li><strong>Cumprimento legal</strong> — atender obrigações fiscais, civis e regulatórias (incluindo registro de hóspedes exigido pela Polícia Civil).</li>
+    </ul>
+
+    <h2 id="base-legal">4. Em que base legal nos apoiamos</h2>
+    <p>Conforme o Art. 7º da LGPD:</p>
+    <ul>
+        <li><strong>Execução de contrato</strong> (Art. 7º, V) — quando há reserva: o CPF, endereço e dados pessoais são necessários para a hospedagem.</li>
+        <li><strong>Legítimo interesse</strong> (Art. 7º, IX) — para captura silenciosa de IP/geo no site, prevenção a fraude, segurança das conversas, atendimento de leads que iniciaram conversa.</li>
+        <li><strong>Consentimento</strong> (Art. 7º, I) — para marketing direto (newsletter, ofertas), uso de avaliações públicas com seu nome, fotos suas em material de divulgação.</li>
+        <li><strong>Cumprimento de obrigação legal</strong> (Art. 7º, II) — para registros fiscais, dados exigidos para emissão de nota fiscal, ficha do hóspede para a Polícia Civil (Sistema Nacional de Hospedagem).</li>
+        <li><strong>Proteção de crédito</strong> (Art. 7º, X) — em casos de inadimplência, podemos consultar bureaus.</li>
+    </ul>
+
+    <h2 id="terceiros">5. Com quem compartilhamos seus dados</h2>
+    <p>Compartilhamos apenas o estritamente necessário, com os seguintes parceiros:</p>
+    <ul>
+        <li><strong>Meta Platforms (WhatsApp Business / Cloud API)</strong> — recebe e entrega suas mensagens. Política deles: <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">whatsapp.com/legal/privacy-policy</a>.</li>
+        <li><strong>Anthropic (Claude AI)</strong> — quando você conversa com nossa inteligência artificial, o texto da sua mensagem é enviado para gerar a resposta. A Anthropic não usa esse dado para treinar modelos (uso comercial via API). Política: <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">anthropic.com/legal/privacy</a>.</li>
+        <li><strong>ip-api.com</strong> — recebe apenas seu IP para retornar cidade/estado aproximado.</li>
+        <li><strong>Booking.com, Hotmart, Airbnb e similares</strong> — quando a reserva é via essas plataformas, há intercâmbio de dados conforme as políticas delas.</li>
+        <li><strong>Mercado Pago, Asaas, TMB e outros gateways</strong> — para processar pagamentos. Apenas o nome, CPF, email e valor da transação.</li>
+        <li><strong>Hostgator/Integrator</strong> — provedor de hospedagem dos sistemas onde os dados ficam armazenados.</li>
+        <li><strong>Cloudflare</strong> — atua como proxy de segurança para o site e endpoints técnicos.</li>
+        <li><strong>Polícia Civil de Pernambuco</strong> — registro obrigatório de hóspedes (Sistema Nacional de Hospedagem).</li>
+        <li><strong>Contador e advogado</strong> — quando estritamente necessário para fins fiscais ou jurídicos.</li>
+        <li><strong>Autoridades</strong> — em caso de ordem judicial ou requisição legal formal.</li>
+    </ul>
+    <p><strong>Nunca vendemos seus dados.</strong> Não os compartilhamos para fins de marketing de terceiros.</p>
+
+    <h2 id="retencao">6. Por quanto tempo guardamos</h2>
+    <table class="dados">
+        <thead>
+            <tr><th>Tipo de dado</th><th>Tempo de retenção</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Dados de visita ao site sem conversa (IP, geo, UTMs)</td><td>7 dias</td></tr>
+            <tr><td>Conversa por WhatsApp / lead sem reserva</td><td>24 meses</td></tr>
+            <tr><td>Histórico de chat com inteligência artificial</td><td>12 meses</td></tr>
+            <tr><td>Dados de hóspede e reserva concluída</td><td>5 anos após o checkout (obrigação fiscal/civil)</td></tr>
+            <tr><td>Notas fiscais e documentos contábeis</td><td>5 anos (Receita Federal)</td></tr>
+            <tr><td>Avaliações públicas</td><td>Enquanto estiver hospedada no site (você pode pedir remoção a qualquer momento)</td></tr>
+            <tr><td>Inscrições em newsletter / marketing</td><td>Até você descadastrar</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="seguranca">7. Como protegemos seus dados</h2>
+    <ul>
+        <li>Servidores com HTTPS/TLS em todas as comunicações.</li>
+        <li>Acesso ao banco de dados restrito por credenciais únicas e auditadas.</li>
+        <li>Painéis administrativos protegidos por autenticação obrigatória.</li>
+        <li>Backups automáticos diários armazenados de forma segura.</li>
+        <li>Logs de acesso e auditoria para detectar comportamento anômalo.</li>
+        <li>Senhas e tokens armazenados em variáveis de ambiente, fora do controle de código fonte público.</li>
+    </ul>
+    <p>
+        Apesar do nosso esforço, nenhum sistema é 100% seguro. Em caso de incidente
+        que afete seus dados, vamos te comunicar dentro do prazo legal e tomar as
+        ações exigidas pela LGPD (Art. 48).
+    </p>
+
+    <h2 id="direitos">8. Seus direitos como titular (Art. 18 LGPD)</h2>
+    <p>A qualquer momento, gratuitamente, você pode pedir:</p>
+    <ul>
+        <li><strong>Confirmação</strong> de que tratamos algum dado seu.</li>
+        <li><strong>Acesso</strong> ao conteúdo dos dados que temos sobre você.</li>
+        <li><strong>Correção</strong> de dados incompletos, incorretos ou desatualizados.</li>
+        <li><strong>Anonimização, bloqueio ou eliminação</strong> de dados desnecessários ou tratados em desconformidade.</li>
+        <li><strong>Portabilidade</strong> dos seus dados para outro fornecedor.</li>
+        <li><strong>Eliminação</strong> dos dados tratados com base no seu consentimento.</li>
+        <li><strong>Informações sobre compartilhamentos</strong> que fizemos com terceiros.</li>
+        <li><strong>Informação sobre a possibilidade de não fornecer o consentimento</strong> e suas consequências.</li>
+        <li><strong>Revogação do consentimento</strong>, quando aplicável.</li>
+        <li><strong>Oposição</strong> a tratamento que considere inadequado.</li>
+    </ul>
+    <p>
+        Para exercer qualquer direito, fale com a gente pelo canal de contato no
+        item 12 desta Política. Responderemos em até <strong>15 dias úteis</strong>.
+    </p>
+
+    <h2 id="cookies">9. Cookies e rastreadores</h2>
+    <p>O site usa as seguintes tecnologias de armazenamento:</p>
+    <ul>
+        <li><strong>sessionStorage do navegador</strong> — guarda um identificador temporário (SID) durante sua visita, para que os botões WhatsApp passem seu contexto. É apagado quando você fecha a aba.</li>
+        <li><strong>LocalStorage</strong> — guarda preferências como idioma escolhido.</li>
+        <li><strong>Cookies de terceiros</strong> — caso utilizemos no futuro Google Analytics, Facebook Pixel ou similares, atualizaremos esta Política e exibiremos banner de consentimento.</li>
+    </ul>
+    <p>
+        Você pode limpar esses dados a qualquer momento nas configurações do seu navegador.
+    </p>
+
+    <h2 id="criancas">10. Crianças e adolescentes</h2>
+    <p>
+        Nossas acomodações recebem famílias com crianças. Quando uma reserva inclui
+        menores de idade, coletamos os nomes e idades apenas com a finalidade de
+        registro de hóspede (exigência legal). Não coletamos dados de crianças por
+        meios autônomos ou para fins de marketing.
+    </p>
+
+    <h2 id="alteracoes">11. Alterações nesta Política</h2>
+    <p>
+        Podemos atualizar esta Política periodicamente para refletir mudanças nos
+        nossos serviços ou na legislação. A data da última atualização sempre
+        aparecerá no topo do documento. Quando houver mudança material no tratamento
+        dos seus dados, vamos comunicar de forma destacada.
+    </p>
+
+    <h2 id="contato">12. Como falar com a gente</h2>
+    <div class="contato-box">
+        <p><strong>Encarregado pelo Tratamento de Dados Pessoais (DPO)</strong></p>
+        <p>Mário Lima Neto</p>
+        <p>📧 Email: <a href="mailto:contato@polinesiaresort.com.br">contato@polinesiaresort.com.br</a></p>
+        <p>📱 WhatsApp: <a href="https://wa.me/5581988545491" target="_blank" rel="noopener">(81) 9.8854-5491</a></p>
+        <p>📍 Endereço: Praia de Muro Alto, s/n, Ipojuca, PE, CEP 55590-000</p>
+    </div>
+
+    <p style="margin-top: 16px; font-size: 14px; color: var(--gray-600);">
+        Você também pode contatar a <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong>
+        pelo site <a href="https://www.gov.br/anpd/" target="_blank" rel="noopener">gov.br/anpd</a>
+        se entender que seus direitos foram violados.
+    </p>
+</main>
+
+<footer class="bottom">
+    <p>&copy; 2026 Polinésia Residence &amp; Resort. Todos os direitos reservados.</p>
+    <p style="margin-top: 6px;"><a href="/">← Voltar para o site</a></p>
+</footer>
+
+</body>
+</html>
