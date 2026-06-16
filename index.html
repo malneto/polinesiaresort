@@ -1835,21 +1835,6 @@ const translations = {
         exit_ok: "¡Listo! Redirigiendo...",
         meta_desc: "Apartamento vacacional en Muro Alto, Porto de Galinhas. 2 habitaciones, 73m², en el mejor tramo de las piscinas naturales. Parque acuático, sala de juegos, cancha deportiva."
     },
-    // Español NEUTRO (tuteo): override del 'es' rioplatense (voseo) — solo las frases con 2ª persona.
-    // Se aplica para hispanohablantes que NO son de AR/UY (ver auto-detect). El resto cae al 'es'.
-    es_neutro: {
-        cmp_subtitle: "Polinésia y Samôa Resort son emprendimientos gemelos. Tienes acceso a toda la infraestructura — piscinas, restaurante, spa, playa — viviendo en un apartamento espacioso por una fracción del precio.",
-        about_p1: "Apartamento completo con 2 habitaciones, amplio living, cocina equipada y balcón con vista privilegiada. Todo lo que necesitas para días inolvidables en Porto de Galinhas.",
-        desc_p3: "Durante tu estadía, puedes contratar opcionalmente desayuno, almuerzo y cena. El resort cuenta con restaurantes temáticos, servicio buffet y a la carta, con opciones regionales y variadas especialidades en mariscos.",
-        desc_p4: "Vive días inolvidables en este apartamento a pie de arena, en Polinésia Residence & Resort. Con 2 habitaciones climatizadas, living climatizado, balcón acogedor y cocina completa, es el refugio ideal para familias y amigos. Disfruta de toda la estructura del condominio, con piscinas, tienda y acceso directo a la playa de Muro Alto.",
-        gallery_title: "Conoce el espacio",
-        svc5_desc: "Desayuno opcional en el restaurante del condominio. Empieza el día con tranquilidad.",
-        cta_title: "Reserva tus vacaciones",
-        cta_desc: "Contáctanos por WhatsApp y recibe una cotización personalizada para tus fechas.",
-        guide_cta_desc: "50+ restaurantes, playas, transfers y tips de pago. ¡Recíbelo en tu email!",
-        guide_cta_ok: "¡Listo! Revisa tu email.",
-        exit_desc: "¡Llévate nuestra guía gratis de Porto de Galinhas — 50+ restaurantes, playas y tips!"
-    },
     en: {
         // Nav
         nav_apartment: "The Apartment",
@@ -3305,29 +3290,24 @@ function setLang(lang) {
         i18nInitialized = true;
     }
 
-    // Dicionário efetivo: es_neutro (tuteo) herda do es (voseo) nos campos não sobrescritos.
-    var dict = (lang === 'es_neutro')
-        ? Object.assign({}, translations.es, translations.es_neutro)
-        : translations[lang];
-
     // Apply translations
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (lang === 'pt') {
             if (i18nOriginals[key]) el.textContent = i18nOriginals[key];
-        } else if (dict && dict[key]) {
-            el.textContent = dict[key];
+        } else if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
         }
     });
 
-    // Update active flag (es e es_neutro compartilham o botão do meio)
+    // Update active flag (só para as 3 bandeiras visíveis)
     document.querySelectorAll('.lang-flag').forEach(btn => btn.classList.remove('active'));
-    var flagId = { pt: 'flagPt', es: 'flagEs', es_neutro: 'flagEs', en: 'flagEn' };
+    var flagId = { pt: 'flagPt', es: 'flagEs', en: 'flagEn' };
     var activeBtn = document.getElementById(flagId[lang]);
     if (activeBtn) activeBtn.classList.add('active');
 
     // Update html lang attribute
-    const langMap = { pt: 'pt-BR', es: 'es', es_neutro: 'es', en: 'en', zh: 'zh-CN', hi: 'hi', fr: 'fr', ar: 'ar', bn: 'bn' };
+    const langMap = { pt: 'pt-BR', es: 'es', en: 'en', zh: 'zh-CN', hi: 'hi', fr: 'fr', ar: 'ar', bn: 'bn' };
     document.documentElement.lang = langMap[lang] || 'pt-BR';
 
     // Update meta description
@@ -3335,8 +3315,8 @@ function setLang(lang) {
     if (metaDescEl) {
         if (lang === 'pt') {
             metaDescEl.content = "Apartamento de temporada em Muro Alto, Porto de Galinhas. 2 quartos, 73m², no melhor trecho das piscinas naturais. Parque aquático, brinquedoteca, quadra esportiva.";
-        } else if (dict && dict.meta_desc) {
-            metaDescEl.content = dict.meta_desc;
+        } else if (translations[lang] && translations[lang].meta_desc) {
+            metaDescEl.content = translations[lang].meta_desc;
         }
     }
 
@@ -3370,15 +3350,12 @@ function setLang(lang) {
             var lang = 'en';
             if (ptCountries.indexOf(cc) !== -1) lang = 'pt';
             else if (esCountries.indexOf(cc) !== -1) {
-                // AR/UY → rioplatense (el 'es' ya está en voseo) + bandera Argentina.
-                // Resto de hispanohablantes → español neutro (tuteo) + bandera de España.
+                lang = 'es';
+                // Trocar bandeira ES pela do país do visitante
                 var flagImg = document.querySelector('#flagEs img');
-                if (cc === 'AR' || cc === 'UY') {
-                    lang = 'es';
-                    if (flagImg) { flagImg.src = 'https://flagcdn.com/w40/ar.png'; flagImg.alt = 'Argentina'; }
-                } else {
-                    lang = 'es_neutro';
-                    if (flagImg) { flagImg.src = 'https://flagcdn.com/w40/es.png'; flagImg.alt = 'España'; }
+                if (flagImg) {
+                    flagImg.src = 'https://flagcdn.com/w40/' + cc.toLowerCase() + '.png';
+                    flagImg.alt = cc;
                 }
             } else if (frCountries.indexOf(cc) !== -1) lang = 'fr';
             else if (arCountries.indexOf(cc) !== -1) lang = 'ar';
