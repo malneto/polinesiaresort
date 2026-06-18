@@ -3544,9 +3544,9 @@ closeQuoteModal = function() {
 function openWhatsApp() {
     var lang = localStorage.getItem('polinesia_lang') || 'pt';
     var msgs = {
-        pt: 'Olá, Polinésia Resort! Gostaria de uma cotação para hospedagem em Muro Alto.\n\nDatas: \nNúmero de hóspedes: \nAlguma preferência?',
-        es: '¡Hola, Polinésia Resort! Me gustaría una cotización para hospedaje en Muro Alto.\n\nFechas: \nNúmero de huéspedes: \n¿Alguna preferencia?',
-        en: 'Hello, Polinésia Resort! I would like a quote for accommodation in Muro Alto.\n\nDates: \nNumber of guests: \nAny preferences?'
+        pt: 'Olá, Polinésia Resort! Gostaria de uma cotação para hospedagem em Muro Alto.\n\nDatas: \nNúmero de hóspedes:',
+        es: '¡Hola, Polinésia Resort! Me gustaría una cotización para hospedaje en Muro Alto.\n\nFechas: \nNúmero de huéspedes:',
+        en: 'Hello, Polinésia Resort! I would like a quote for accommodation in Muro Alto.\n\nDates: \nNumber of guests:'
     };
     var msg = msgs[lang] || msgs.pt;
     window.open('https://wa.me/558138776403?text=' + encodeURIComponent('[src:site]\n\n' + msg), '_blank');
