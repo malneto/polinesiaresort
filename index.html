@@ -599,7 +599,9 @@
 
         .carousel-track {
             display: flex;
+            width: max-content;
             animation: scroll-reviews 60s linear infinite;
+            will-change: transform;
             gap: 24px;
             padding: 8px 0;
         }
@@ -630,12 +632,21 @@
         }
 
         @keyframes scroll-reviews {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(var(--scroll-distance, -50%)); }
         }
 
         @media (max-width: 768px) {
             .review-card { min-width: 280px; max-width: 280px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-track {
+                animation: none;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: auto;
+            }
         }
 
         /* QUOTE BUTTON */
@@ -3453,14 +3464,51 @@ document.addEventListener('keydown', function(e) {
             }).join('');
         }
 
-        // Duplicar cards para scroll infinito
-        carousel.innerHTML = buildCards(reviews) + buildCards(reviews);
+        // Loop infinito de verdade: renderiza UM conjunto, mede a largura real
+        // (cards + gaps) e desloca exatamente essa largura — sem "pulo" no fim.
+        // Repete o conjunto o suficiente pra preencher a tela e nunca deixar vão.
+        carousel.innerHTML = buildCards(reviews);
 
-        // Ajustar velocidade: ~3s por card
-        const cardWidth = 364; // 340 + 24 gap
-        const totalWidth = cardWidth * reviews.length;
-        const speed = reviews.length * 3; // 3s por review
-        carousel.style.animationDuration = speed + 's';
+        function setupCarousel() {
+            // largura exata de um conjunto, incluindo os gaps entre os cards
+            const cards = carousel.children;
+            if (!cards.length) return;
+            const gap = parseFloat(getComputedStyle(carousel).gap) || 24;
+            let setWidth = 0;
+            for (let i = 0; i < cards.length; i++) {
+                setWidth += cards[i].getBoundingClientRect().width + gap;
+            }
+            // setWidth já inclui um gap a mais no fim — que é exatamente o espaçamento
+            // que separa o último card do primeiro card do conjunto seguinte. Perfeito.
+
+            // garante conjuntos suficientes pra cobrir a viewport + 1 de folga,
+            // pra a faixa nunca terminar dentro da área visível
+            const viewport = carousel.parentElement.getBoundingClientRect().width || window.innerWidth;
+            const setsNeeded = Math.max(2, Math.ceil((viewport + setWidth) / setWidth) + 1);
+            let html = '';
+            for (let i = 0; i < setsNeeded; i++) html += buildCards(reviews);
+            carousel.innerHTML = html;
+
+            // anima exatamente a largura de UM conjunto -> ponto de loop idêntico ao início
+            carousel.style.setProperty('--scroll-distance', '-' + setWidth + 'px');
+
+            // velocidade constante (~60px/s) independente da quantidade de avaliações
+            const pxPerSecond = 60;
+            const duration = Math.max(20, setWidth / pxPerSecond);
+            carousel.style.animationDuration = duration + 's';
+        }
+
+        setupCarousel();
+
+        // recalcula em resize/troca de orientação (largura do card muda no mobile)
+        let resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                carousel.innerHTML = buildCards(reviews);
+                setupCarousel();
+            }, 200);
+        });
 
     } catch (e) {
         console.log('Reviews não carregadas:', e);
