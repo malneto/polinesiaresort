@@ -242,6 +242,7 @@
             position: relative; z-index: 2; text-align: center;
             color: var(--white); padding: 0 20px; max-width: 800px;
         }
+        #heroTitle, #heroSub { transition: opacity .45s ease; }
         .hero-badge {
             display: inline-block; padding: 6px 18px; border-radius: 50px;
             background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
@@ -888,8 +889,8 @@ fbq('track', 'PageView');
     <div class="hero-bg"></div>
     <div class="hero-content">
         <div class="hero-badge">Muro Alto &bull; Porto de Galinhas</div>
-        <h1 data-i18n="hero_title">Suas férias no paraíso</h1>
-        <p data-i18n="hero_subtitle">Apartamento completo de 2 quartos no melhor trecho das piscinas naturais. 73m² para você e sua família.</p>
+        <h1 id="heroTitle">Suas férias no paraíso</h1>
+        <p id="heroSub">Apartamento completo de 2 quartos no melhor trecho das piscinas naturais. 73m² para você e sua família.</p>
         <div class="hero-buttons">
             <button class="btn-quote" onclick="openQuoteModal()">
                 <span data-i18n="cta_quote">Obter cotação AGORA!</span>
@@ -3363,7 +3364,33 @@ function setLang(lang) {
     // Persist
     localStorage.setItem('polinesia_lang', lang);
     gtag('event', 'change_language', { event_category: 'engagement', event_label: lang });
+    if (typeof heroRender === 'function') heroRender(true);
 }
+
+// Hero rotativo: alterna apartamento <-> acesso Samôa a cada 5s, respeitando o idioma
+var HERO0_PT = ["Suas férias no paraíso", "Apartamento completo de 2 quartos no melhor trecho das piscinas naturais. 73m² para você e sua família."];
+var HERO_ALT = {
+    pt: ["Acesso completo ao hotel Samôa", "Hóspedes do Polinésia Resort têm acesso irrestrito a toda a infraestrutura do complexo Samôa Resort e Polinésia Resort."],
+    es: ["Acceso completo al hotel Samôa", "Los huéspedes del Polinésia Resort tienen acceso irrestricto a toda la infraestructura del complejo Samôa Resort y Polinésia Resort."],
+    en: ["Full access to Samôa resort", "Polinésia Resort guests enjoy unrestricted access to the entire Samôa Resort & Polinésia Resort complex."]
+};
+function heroPair(slot) {
+    var lang = localStorage.getItem('polinesia_lang') || 'pt';
+    if (slot === 1) return HERO_ALT[lang] || HERO_ALT.en;
+    if (lang === 'pt' || !(typeof translations !== 'undefined' && translations[lang])) return HERO0_PT;
+    return [translations[lang].hero_title || HERO0_PT[0], translations[lang].hero_subtitle || HERO0_PT[1]];
+}
+var heroSlot = 0;
+function heroRender(instant) {
+    var t = document.getElementById('heroTitle'), s = document.getElementById('heroSub');
+    if (!t || !s) return;
+    var pair = heroPair(heroSlot);
+    var apply = function () { t.textContent = pair[0]; s.textContent = pair[1]; t.style.opacity = 1; s.style.opacity = 1; };
+    if (instant) { apply(); return; }
+    t.style.opacity = 0; s.style.opacity = 0;
+    setTimeout(apply, 450);
+}
+setInterval(function () { heroSlot = heroSlot ? 0 : 1; heroRender(false); }, 5000);
 
 // Auto-detect language: saved > geo > pt
 (function() {
