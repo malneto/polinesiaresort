@@ -3380,7 +3380,7 @@ function heroPair(slot) {
     if (lang === 'pt' || !(typeof translations !== 'undefined' && translations[lang])) return HERO0_PT;
     return [translations[lang].hero_title || HERO0_PT[0], translations[lang].hero_subtitle || HERO0_PT[1]];
 }
-var heroSlot = 0;
+var heroSlot = Math.random() < 0.5 ? 0 : 1;
 function heroRender(instant) {
     var t = document.getElementById('heroTitle'), s = document.getElementById('heroSub');
     if (!t || !s) return;
@@ -3390,6 +3390,7 @@ function heroRender(instant) {
     t.style.opacity = 0; s.style.opacity = 0;
     setTimeout(apply, 450);
 }
+heroRender(true);
 setInterval(function () { heroSlot = heroSlot ? 0 : 1; heroRender(false); }, 5000);
 
 // Auto-detect language: saved > geo > pt
