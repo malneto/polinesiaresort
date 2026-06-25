@@ -3367,20 +3367,31 @@ function setLang(lang) {
     if (typeof heroRender === 'function') heroRender(true);
 }
 
-// Hero rotativo: alterna apartamento <-> acesso Samôa a cada 5s, respeitando o idioma
+// Hero rotativo: alterna apê <-> acesso Samôa <-> piscinas naturais a cada 3s, respeitando o idioma
 var HERO0_PT = ["Suas férias no paraíso", "Apartamento completo de 2 quartos no melhor trecho das piscinas naturais. 73m² para você e sua família."];
+// slots extras (1, 2...) por idioma — fallback en
 var HERO_ALT = {
-    pt: ["Acesso completo ao hotel Samôa", "Hóspedes do Polinésia têm acesso completo ao hotel Samôa"],
-    es: ["Acceso completo al hotel Samôa", "Los huéspedes del Polinésia tienen acceso completo al hotel Samôa"],
-    en: ["Full access to Samôa resort", "Polinésia guests get full access to the Samôa resort"]
+    pt: [
+        ["Acesso completo ao hotel Samôa", "Hóspedes do Polinésia têm acesso completo ao hotel Samôa"],
+        ["Piscinas naturais", "Águas quentes a quase 30º no melhor trecho das piscinas naturais"]
+    ],
+    es: [
+        ["Acceso completo al hotel Samôa", "Los huéspedes del Polinésia tienen acceso completo al hotel Samôa"],
+        ["Piscinas naturales", "Aguas cálidas a casi 30º en el mejor tramo de las piscinas naturales"]
+    ],
+    en: [
+        ["Full access to Samôa resort", "Polinésia guests get full access to the Samôa resort"],
+        ["Natural pools", "Warm waters near 30º on the best stretch of the natural pools"]
+    ]
 };
+var HERO_SLOTS = 3; // 0 = apê, 1 = Samôa, 2 = piscinas
 function heroPair(slot) {
     var lang = localStorage.getItem('polinesia_lang') || 'pt';
-    if (slot === 1) return HERO_ALT[lang] || HERO_ALT.en;
+    if (slot >= 1) { var alt = HERO_ALT[lang] || HERO_ALT.en; return alt[slot - 1] || alt[0]; }
     if (lang === 'pt' || !(typeof translations !== 'undefined' && translations[lang])) return HERO0_PT;
     return [translations[lang].hero_title || HERO0_PT[0], translations[lang].hero_subtitle || HERO0_PT[1]];
 }
-var heroSlot = Math.random() < 0.5 ? 0 : 1;
+var heroSlot = Math.floor(Math.random() * HERO_SLOTS);
 function heroRender(instant) {
     var t = document.getElementById('heroTitle'), s = document.getElementById('heroSub');
     if (!t || !s) return;
@@ -3391,7 +3402,7 @@ function heroRender(instant) {
     setTimeout(apply, 450);
 }
 heroRender(true);
-setInterval(function () { heroSlot = heroSlot ? 0 : 1; heroRender(false); }, 5000);
+setInterval(function () { heroSlot = (heroSlot + 1) % HERO_SLOTS; heroRender(false); }, 3000);
 
 // Auto-detect language: saved > geo > pt
 (function() {
