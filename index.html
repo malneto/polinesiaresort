@@ -3464,7 +3464,7 @@ document.querySelectorAll('.btn-outline').forEach(function(btn) {
 });
 
 // Quote Modal
-var quoteConfig = { enabled: true, url: 'https://servicos.polinesiaresort.com.br/search/', whatsapp: '' };
+var quoteConfig = { enabled: true, url: 'https://servicos.polinesiaresort.com.br/search/', whatsapp: '', modo: 'completa' };
 
 fetch('https://servicos.polinesiaresort.com.br/search/config.php')
     .then(function(r) { return r.json(); })
@@ -3472,6 +3472,7 @@ fetch('https://servicos.polinesiaresort.com.br/search/config.php')
         quoteConfig.enabled = data.cotacao_habilitada;
         quoteConfig.url = data.cotacao_url;
         quoteConfig.whatsapp = data.whatsapp_url;
+        quoteConfig.modo = data.cotacao_modo || 'completa';
         // Ocultar Booking se desabilitado
         if (!data.booking_habilitado) {
             var btn = document.getElementById('btnBooking');
@@ -3483,6 +3484,9 @@ fetch('https://servicos.polinesiaresort.com.br/search/config.php')
 
 function openQuoteModal() {
     gtag('event', 'click_cotacao', { event_category: 'engagement', event_label: 'quote_button' });
+    // Modo WhatsApp: o clique vai DIRETO pro WhatsApp (a JulIA cota no chat) — sem abrir o modal e
+    // sem escolher datas/hóspedes. Só o modo "completa" abre o modal com a cotação no site.
+    if (quoteConfig.modo === 'whatsapp') { openWhatsApp(); return; }
     var lang = localStorage.getItem('polinesia_lang') || 'pt';
     if (['pt','es','en'].indexOf(lang) === -1) lang = 'en';
     var url = quoteConfig.url + '?lang=' + lang;
