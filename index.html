@@ -3322,7 +3322,10 @@ const translations = {
     }
 };
 
-function setLang(lang) {
+function setLang(lang, persist) {
+    // persist=false: aplica o idioma sem gravar (usado pela auto-detecção por IP,
+    // para um idioma detectado não "grudar" no navegador em visitas futuras).
+    if (persist === undefined) persist = true;
     // Store originals on first run
     if (!i18nInitialized) {
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -3361,8 +3364,8 @@ function setLang(lang) {
         }
     }
 
-    // Persist
-    localStorage.setItem('polinesia_lang', lang);
+    // Persist (só quando o próprio visitante escolhe o idioma)
+    if (persist) localStorage.setItem('polinesia_lang', lang);
     gtag('event', 'change_language', { event_category: 'engagement', event_label: lang });
     if (typeof heroRender === 'function') heroRender(true);
 }
@@ -3382,13 +3385,21 @@ var HERO_ALT = {
     en: [
         ["Full access to Samôa resort", "Polinésia guests get full access to the Samôa resort."],
         ["Best stretch of the natural pools", "Warm waters near 30º all year round."]
+    ],
+    fr: [
+        ["Accès complet au resort Samôa", "Les clients du Polinésia ont un accès complet au resort Samôa."],
+        ["Meilleur tronçon des piscines naturelles", "Eaux chaudes à près de 30º toute l'année."]
     ]
 };
 var HERO_SLOTS = 3; // 0 = apê, 1 = Samôa, 2 = piscinas
 function heroPair(slot) {
-    var lang = localStorage.getItem('polinesia_lang') || 'pt';
-    if (slot >= 1) { var alt = HERO_ALT[lang] || HERO_ALT.en; return alt[slot - 1] || alt[0]; }
-    if (lang === 'pt' || !(typeof translations !== 'undefined' && translations[lang])) return HERO0_PT;
+    var stored = localStorage.getItem('polinesia_lang') || 'pt';
+    // O rotativo completo só existe em pt/es/en/fr. Idioma sem frases próprias cai
+    // INTEIRO pra inglês — inclusive o 1º hero — em vez de mostrar um hero traduzido
+    // sozinho (ex.: chinês) com as demais frases em inglês.
+    var lang = HERO_ALT[stored] ? stored : 'en';
+    if (slot >= 1) { var alt = HERO_ALT[lang]; return alt[slot - 1] || alt[0]; }
+    if (lang === 'pt' || typeof translations === 'undefined' || !translations[lang]) return HERO0_PT;
     return [translations[lang].hero_title || HERO0_PT[0], translations[lang].hero_subtitle || HERO0_PT[1]];
 }
 var heroSlot = Math.floor(Math.random() * HERO_SLOTS);
@@ -3441,7 +3452,7 @@ setInterval(function () { heroSlot = (heroSlot + 1) % HERO_SLOTS; heroRender(fal
             else if (zhCountries.indexOf(cc) !== -1) lang = 'zh';
             else if (hiCountries.indexOf(cc) !== -1) lang = 'hi';
             else if (bnCountries.indexOf(cc) !== -1) lang = 'bn';
-            if (lang !== 'pt') setLang(lang);
+            if (lang !== 'pt') setLang(lang, false);
         })
         .catch(function() { /* fallback: mantém pt */ });
 })();
