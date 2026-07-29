@@ -1,4 +1,4 @@
-var CACHE_NAME = 'polinesia-v3';
+var CACHE_NAME = 'polinesia-v4';
 var urlsToCache = ['/', '/index.html'];
 
 self.addEventListener('install', function(e) {
