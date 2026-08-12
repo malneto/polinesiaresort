@@ -3474,6 +3474,19 @@ document.querySelectorAll('.btn-outline').forEach(function(btn) {
 // Quote Modal
 var quoteConfig = { enabled: true, url: 'https://servicos.polinesiaresort.com.br/search/', whatsapp: '', modo: 'completa' };
 
+// [ads] Origem do anúncio: Google Ads adiciona gclid; UTM manual também. Persiste na sessão
+// (o visitante navega e o carimbo permanece). Vira a tag [src:...] do WhatsApp (fonte_canal) e
+// o rótulo do evento de conversão no GA4. Sem anúncio → '' (segue como 'site', comportamento de hoje).
+var AD_SRC = (function () {
+    try {
+        var q = new URLSearchParams(location.search);
+        var us = (q.get('utm_source') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        var tag = us ? ('ads_' + us) : (q.get('gclid') ? 'ads_google' : '');
+        if (tag) { sessionStorage.setItem('pol_adsrc', tag); return tag; }
+        return sessionStorage.getItem('pol_adsrc') || '';
+    } catch (e) { return ''; }
+})();
+
 fetch('https://servicos.polinesiaresort.com.br/search/config.php')
     .then(function(r) { return r.json(); })
     .then(function(data) {
@@ -3497,7 +3510,9 @@ function openQuoteModal() {
     if (quoteConfig.modo === 'whatsapp') { openWhatsApp(); return; }
     var lang = localStorage.getItem('polinesia_lang') || 'pt';
     if (['pt','es','en'].indexOf(lang) === -1) lang = 'en';
-    var url = quoteConfig.url + '?lang=' + lang;
+    // [ads] Leva gclid/UTM da URL pro cotador (servicos) — o precapture de lá captura a origem completa.
+    var passthrough = location.search ? ('&' + location.search.replace(/^\?/, '')) : '';
+    var url = quoteConfig.url + '?lang=' + lang + passthrough;
     document.getElementById('quoteIframe').src = url;
     document.getElementById('quoteModal').classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -3677,7 +3692,10 @@ function openWhatsApp() {
         en: 'Hello, Polinésia Resort! I would like a quote for accommodation in Muro Alto.\n\nDates: \nNumber of guests:'
     };
     var msg = msgs[lang] || msgs.pt;
-    window.open('https://wa.me/558138776403?text=' + encodeURIComponent('[src:site]\n\n' + msg), '_blank');
+    var src = AD_SRC || 'site';
+    // [ads] Evento de conversão no GA4 (marcar como conversão + importar no Google Ads = custo por consulta).
+    try { gtag('event', 'consulta_whatsapp', { event_category: 'conversion', event_label: src }); } catch (e) {}
+    window.open('https://wa.me/558138776403?text=' + encodeURIComponent('[src:' + src + ']\n\n' + msg), '_blank');
 }
 
 // ---- Guide CTA (footer + exit intent) ----
