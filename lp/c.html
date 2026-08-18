@@ -9,7 +9,8 @@
 <meta name="theme-color" content="#0e1621">
 <meta property="og:title" content="Cote agora: apto pé na areia em Muro Alto">
 <meta property="og:description" content="Reserva direta em Muro Alto, Porto de Galinhas. Sinal de 30%, PIX ou cartão em 6x, WhatsApp oficial (81) 3877-6403.">
-<meta property="og:image" content="https://polinesiaresort.com.br/img/varanda-01.webp">
+<meta property="og:image" content="https://polinesiaresort.com.br/img/hero-lg.webp">
+<link rel="preload" as="image" href="https://polinesiaresort.com.br/img/hero-lg.webp">
 <meta property="og:type" content="website">
 <style>
 *,*::before,*::after{box-sizing:border-box}
@@ -51,13 +52,14 @@ ul{margin:0;padding:0;list-style:none}
   color:#8fd3b0;letter-spacing:.02em;white-space:nowrap;
 }
 .bar .fone b{color:#fff;font-weight:600}
+.bar a.fone{text-decoration:none;padding:6px 0;display:inline-block}
 
 /* ---- hero ---- */
 .hero{padding:26px 0 0}
 .hero h1{font-size:31px;margin:0 0 12px}
 .hero .lead{font-size:17px;color:#31404f;margin-bottom:18px}
 .heroimg{margin:20px 0 0;border-top:3px solid #0b3f73}
-.heroimg img{width:100%;aspect-ratio:1001/668;object-fit:cover}
+.heroimg img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .figcap{
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   font-size:11px;color:#5b6b7d;padding:7px 18px;background:#f2f5f8;
@@ -233,7 +235,7 @@ footer a{color:#8fd3b0}
 <div class="bar">
   <div class="wrap">
     <span class="brand">Polinésia Resort</span>
-    <span class="fone">WhatsApp oficial <b>(81) 3877-6403</b></span>
+    <a class="fone js-wa" href="https://wa.me/558138776403?text=%5Bsrc%3Alp_c%5D%0A%0AOl%C3%A1!%20Vi%20a%20p%C3%A1gina%20do%20Polin%C3%A9sia%20Resort%20e%20quero%20cotar%20o%20apartamento%20em%20Muro%20Alto.%0A%0ADatas%3A%0AH%C3%B3spedes%3A" target="_blank" rel="noopener">WhatsApp oficial <b>(81) 3877-6403</b></a>
   </div>
 </div>
 
@@ -259,7 +261,7 @@ footer a{color:#8fd3b0}
   </div>
 
   <div class="heroimg">
-    <img src="https://polinesiaresort.com.br/img/varanda-01.webp" width="1001" height="668" alt="Vista da varanda do apartamento: piscinas do resort, playground e o mar de Muro Alto ao fundo">
+    <img src="https://polinesiaresort.com.br/img/hero-lg.webp" width="1400" height="935" fetchpriority="high" decoding="async" alt="Vista da varanda do apartamento: piscinas do condomínio, brinquedo aquático, o prédio gêmeo e o mar de Muro Alto ao fundo">
     <p class="figcap">Vista da varanda do apartamento — Muro Alto, Ipojuca/PE</p>
   </div>
 </header>
@@ -310,7 +312,7 @@ footer a{color:#8fd3b0}
         <span class="n">06</span>
         <div>
           <h3>Regras na mesa antes do pagamento</h3>
-          <p>Check-in 14h. Check-out 11h. Mínimo de 2 noites. Preço fechado por data e número de hóspedes. Tudo dito antes — nada muda depois que você paga.</p>
+          <p>Check-in 14h. Check-out 11h. Mínimo de 2 noites — em feriado, de 3 a 5. Preço fechado por data e número de hóspedes. Tudo dito antes — nada muda depois que você paga.</p>
         </div>
       </li>
     </ul>
@@ -460,6 +462,21 @@ footer a{color:#8fd3b0}
   </div>
 </section>
 
+<!-- ============ DISPONIBILIDADE ============ -->
+<section class="sec">
+  <div class="wrap">
+    <p class="lbl">Disponibilidade</p>
+    <h2 style="font-size:22px;margin-bottom:14px">Uma unidade. Um calendário. Sem lista de espera.</h2>
+    <table class="spec">
+      <tr><th>Quantas unidades</th><td>Uma. Não é rede, não é bloco de quartos: é o apartamento do proprietário.</td></tr>
+      <tr><th>Estadia mínima</th><td>2 noites. Em feriado, de 3 a 5 noites.</td></tr>
+      <tr><th>Data confirmada</th><td>Sai do calendário no momento do sinal. Não volta a ficar livre por causa de contador nenhum.</td></tr>
+      <tr><th>Como conferir</th><td>Pergunte a sua data no WhatsApp. A resposta é uma das duas: livre ou ocupada.</td></tr>
+    </table>
+    <p style="margin:16px 0 0;font-size:15px;color:#31404f">Você não vai encontrar cronômetro nesta página, nem “restam 2 vagas”, nem “13 pessoas vendo agora”. Se a sua data estiver livre, dizemos que está livre. Se estiver ocupada, dizemos isso também — e você não perde a viagem inteira esperando resposta.</p>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section class="sec">
   <div class="wrap">
@@ -493,7 +510,7 @@ footer a{color:#8fd3b0}
     </details>
     <details>
       <summary>Qual o mínimo de noites?</summary>
-      <div class="ans"><p>Duas noites.</p></div>
+      <div class="ans"><p>Duas noites. Em feriados o mínimo sobe: de 3 a 5 noites, conforme o feriado. Isso é dito na cotação, antes de qualquer pagamento.</p></div>
     </details>
     <details>
       <summary>Dá para usar a estrutura do resort?</summary>
