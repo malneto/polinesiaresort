@@ -9,7 +9,7 @@
     // Fim automatico do teste: passada esta data o ?v=b deixa de valer, todo mundo volta
     // pra tela A e o carimbo perde o sufixo. Assim um teste esquecido nao contamina o dado
     // pra sempre nem exige que alguem lembre de desligar.
-    var POL_VAR_FIM = '2026-09-14';
+    var POL_VAR_FIM = '2026-12-31';   // adiado 20/08: campanha nao sobe agora. Quando subir, virar 3 semanas.
     (function () {
       try {
         if (new Date().toISOString().slice(0, 10) > POL_VAR_FIM) { window.POL_VAR = ''; return; }
