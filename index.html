@@ -3428,7 +3428,7 @@ function condoReviewsRender(trocar, langAplicado) {
 function condoReviewsStart() {
   condoReviewsRender(false);
   if (condoTimer) clearInterval(condoTimer);
-  condoTimer = setInterval(function () { condoIdx++; condoReviewsRender(true); }, 7000);
+  condoTimer = setInterval(function () { condoIdx++; condoReviewsRender(true); }, 5000);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', condoReviewsStart);
 else condoReviewsStart();
