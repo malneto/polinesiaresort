@@ -463,7 +463,15 @@
 
         /* GALLERY */
         .gallery { background: var(--gray-50); }
-        .gallery-grid {
+        /* Legenda sobre a foto — traduzida junto com a página (data-cap). */
+.gallery-item, .condo-item { position: relative; }
+.gal-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 22px 14px 10px; color: #fff; font-size: 13.5px; font-weight: 600;
+  letter-spacing: .2px; text-shadow: 0 1px 3px rgba(0,0,0,.55);
+  background: linear-gradient(to top, rgba(0,0,0,.62) 0%, rgba(0,0,0,.28) 55%, transparent 100%);
+  pointer-events: none; }
+@media (max-width: 720px) { .gal-cap { font-size: 12px; padding: 18px 10px 8px; } }
+.gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 250px);
@@ -1302,13 +1310,14 @@
             <div class="section-divider"></div>
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item span-2"><picture><source srcset="img/web-condo-4.webp" type="image/webp"><img src="img/web-condo-4.jpg" alt="Sala de estar decorada com sofá e mesa de jantar no Polinésia Resort" loading="lazy"></picture></div>
-            <div class="gallery-item"><picture><source srcset="img/quarto-01.webp" type="image/webp"><img src="img/quarto-01.webp" alt="Suíte principal com cama queen no apartamento em Muro Alto" loading="lazy"></picture></div>
-            <div class="gallery-item"><picture><source srcset="img/quarto-03.webp" type="image/webp"><img src="img/quarto-03.webp" alt="Segundo quarto com duas camas de solteiro no Polinésia Resort" loading="lazy"></picture></div>
-            <div class="gallery-item"><picture><source srcset="img/cozinha-01.webp" type="image/webp"><img src="img/cozinha-01.webp" alt="Cozinha completa com eletrodomésticos e bancada de granito" loading="lazy"></picture></div>
-            <div class="gallery-item"><picture><source srcset="img/web-condo-5.webp" type="image/webp"><img src="img/web-condo-5.jpg" alt="Quarto aconchegante com cama de casal e ar-condicionado" loading="lazy"></picture></div>
-            <div class="gallery-item"><picture><source srcset="img/berco.webp" type="image/webp"><img src="img/berco.webp" alt="Berço Cosco disponível para bebês no apartamento" loading="lazy"></picture></div>
-            <div class="gallery-item span-2"><picture><source srcset="img/sala-04.webp" type="image/webp"><img src="img/sala-04.webp" alt="Sala ampla com varanda integrada no Polinésia Resort Muro Alto" loading="lazy"></picture></div>
+            <div class="gallery-item span-2"><picture><source srcset="img/varanda-01.webp" type="image/webp"><img src="img/varanda-01.png" alt="Vista da varanda do apartamento para as piscinas e o mar de Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_varanda_vista">A vista da varanda</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/quarto-01.webp" type="image/webp"><img src="img/quarto-01.webp" alt="Suíte principal com cama queen no apartamento em Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_suite">Suíte</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/quarto-03.webp" type="image/webp"><img src="img/quarto-03.webp" alt="Segundo quarto com duas camas de solteiro no Polinésia Resort" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto2">Segundo quarto</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/cozinha-01.webp" type="image/webp"><img src="img/cozinha-01.webp" alt="Cozinha completa com eletrodomésticos e bancada de granito" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_cozinha">Cozinha completa</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/web-condo-5.webp" type="image/webp"><img src="img/web-condo-5.jpg" alt="Quarto aconchegante com cama de casal e ar-condicionado" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto_casal">Quarto de casal</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/berco.webp" type="image/webp"><img src="img/berco.webp" alt="Berço Cosco disponível para bebês no apartamento" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_berco">Berço disponível</figcaption></div>
+            <div class="gallery-item span-2"><picture><source srcset="img/sala-04.webp" type="image/webp"><img src="img/sala-04.webp" alt="Sala ampla com varanda integrada no Polinésia Resort Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_sala">Sala</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/varanda-02.webp" type="image/webp"><img src="img/varanda-02.png" alt="Varanda do apartamento com mesa, cadeiras e tela de proteção" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_varanda">Varanda com tela de proteção</figcaption></div>
         </div>
     </div>
 </section>
@@ -1821,6 +1830,14 @@ const translations = {
         accom_c9_4: "Portero",
         // Gallery
         gallery_title: "Conocé el espacio",
+        cap_varanda_vista: "La vista desde el balcón",
+        cap_sala: "Living",
+        cap_varanda: "Balcón con malla de protección",
+        cap_suite: "Suite",
+        cap_quarto2: "Segundo dormitorio",
+        cap_cozinha: "Cocina completa",
+        cap_quarto_casal: "Dormitorio matrimonial",
+        cap_berco: "Cuna disponible",
         gallery_subtitle: "Apartamento y áreas comunes del condominio",
         condo_title: "El condominio",
         condo_subtitle: "Estructura completa de ocio frente al mar",
@@ -2091,6 +2108,14 @@ const translations = {
         accom_c9_4: "Doorman",
         // Gallery
         gallery_title: "Explore the space",
+        cap_varanda_vista: "The view from the balcony",
+        cap_sala: "Living room",
+        cap_varanda: "Balcony with safety netting",
+        cap_suite: "En-suite bedroom",
+        cap_quarto2: "Second bedroom",
+        cap_cozinha: "Full kitchen",
+        cap_quarto_casal: "Double bedroom",
+        cap_berco: "Crib available",
         gallery_subtitle: "Apartment and common areas of the resort",
         condo_title: "The resort",
         condo_subtitle: "Complete leisure facilities by the sea",
@@ -2811,6 +2836,14 @@ const translations = {
         accom_c9_3: "Rideau occultant",
         accom_c9_4: "Portier",
         gallery_title: "Découvrez les lieux",
+        cap_varanda_vista: "La vue depuis le balcon",
+        cap_sala: "Salon",
+        cap_varanda: "Balcon avec filet de sécurité",
+        cap_suite: "Chambre avec salle de bain",
+        cap_quarto2: "Deuxième chambre",
+        cap_cozinha: "Cuisine équipée",
+        cap_quarto_casal: "Chambre double",
+        cap_berco: "Lit bébé disponible",
         gallery_subtitle: "Appartement et espaces communs de la résidence",
         condo_title: "La résidence",
         condo_subtitle: "Infrastructures de loisirs complètes en bord de mer",
