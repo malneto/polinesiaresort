@@ -6,8 +6,13 @@
          pelo apartamento 5A304. Persiste na sessao para o visitante nao "pular de variante"
          ao navegar. Roda aqui no <head> para nao piscar a foto A antes de trocar. -->
     <script>
+    // Fim automatico do teste: passada esta data o ?v=b deixa de valer, todo mundo volta
+    // pra tela A e o carimbo perde o sufixo. Assim um teste esquecido nao contamina o dado
+    // pra sempre nem exige que alguem lembre de desligar.
+    var POL_VAR_FIM = '2026-09-14';
     (function () {
       try {
+        if (new Date().toISOString().slice(0, 10) > POL_VAR_FIM) { window.POL_VAR = ''; return; }
         var q = new URLSearchParams(location.search);
         var v = (q.get('v') || q.get('utm_content') || '').toLowerCase();
         if (v !== 'a' && v !== 'b') { v = sessionStorage.getItem('pol_var') || 'a'; }
@@ -3388,7 +3393,17 @@ const translations = {
     }
 };
 
+/* ⚠️ CONSERTADO 20/08/2026. O idioma detectado automaticamente entra por
+   setLang(lang, false) e NAO vai pro localStorage — de proposito, pra nao grudar.
+   Só que o rodizio do H1 e as legendas da galeria liam o localStorage, achavam
+   vazio e caiam pra portugues. Resultado: o argentino via o botao em espanhol e o
+   TITULO MAIOR DA PAGINA em portugues. Agora o idioma aplicado fica aqui. */
+var POL_LANG_APLICADO = '';
+function polLangAtual() {
+    return POL_LANG_APLICADO || localStorage.getItem('polinesia_lang') || 'pt';
+}
 function setLang(lang, persist) {
+    POL_LANG_APLICADO = lang;
     // persist=false: aplica o idioma sem gravar (usado pela auto-detecção por IP,
     // para um idioma detectado não "grudar" no navegador em visitas futuras).
     if (persist === undefined) persist = true;
@@ -3463,7 +3478,7 @@ var condoIdx = 0, condoTimer = null, condoLangAplicado = '';
    automaticamente veria as avaliações em português. Por isso o idioma aplicado é
    guardado aqui, e o localStorage é só o segundo recurso (escolha manual). */
 function condoLangAtual() {
-  var l = (condoLangAplicado || localStorage.getItem('polinesia_lang') || '').toLowerCase();
+  var l = (condoLangAplicado || POL_LANG_APLICADO || localStorage.getItem('polinesia_lang') || '').toLowerCase();
   if (!l) { l = String(document.documentElement.getAttribute('lang') || '').toLowerCase(); }
   return l.indexOf('es') === 0 ? 'es' : 'pt';
 }
@@ -3525,7 +3540,7 @@ function heroPinta() {
     img.alt = h.alt;
     if (cap) {
       cap.setAttribute('data-i18n', h.cap);
-      var lang = (typeof condoLangAtual === 'function') ? condoLangAtual() : 'pt';
+      var lang = (typeof polLangAtual === 'function') ? polLangAtual() : 'pt';
       var t = (typeof translations !== 'undefined' && translations[lang] && translations[lang][h.cap])
               ? translations[lang][h.cap] : (HERO_CAP_PT[h.cap] || '');
       if (t) cap.textContent = t;
@@ -3573,7 +3588,7 @@ var HERO_ALT = {
 };
 var HERO_SLOTS = 3; // 0 = apê, 1 = Samôa, 2 = piscinas
 function heroPair(slot) {
-    var stored = localStorage.getItem('polinesia_lang') || 'pt';
+    var stored = polLangAtual();
     // O rotativo completo só existe em pt/es/en/fr. Idioma sem frases próprias cai
     // INTEIRO pra inglês — inclusive o 1º hero — em vez de mostrar um hero traduzido
     // sozinho (ex.: chinês) com as demais frases em inglês.
@@ -3641,6 +3656,12 @@ setInterval(function () { heroSlot = (heroSlot + 1) % HERO_SLOTS; heroRender(fal
     if (/Argentina|Montevideo|Santiago|Bogota|Lima|Caracas|La_Paz|Asuncion|Guayaquil|Mexico_City|Madrid/i.test(tz)) { aplica('es', ''); return; }
     if (/Sao_Paulo|Bahia|Fortaleza|Recife|Manaus|Belem|Noronha|Lisbon|Luanda|Maputo/i.test(tz)) { return; }
 
+    // ── 2b. Aparelho em ingles e fuso fora do mundo lusofono/hispanico: e ingles mesmo.
+    // O brasileiro de celular em ingles ja foi barrado acima pelo fuso. Sem isto, o visitante
+    // em ingles dependia do ipapi.co e caia em PORTUGUES quando a API demorava — o mesmo
+    // buraco que pegou a hospede argentina em 19/08/2026.
+    if (base === 'en') { aplica('en', ''); return; }
+
     // ── 3. Geo por IP — último recurso. Prazo curto: se demorar, a página segue em pt.
     var abortou = false;
     var t = setTimeout(function () { abortou = true; }, 2500);
@@ -3698,7 +3719,10 @@ var AD_SRC = (function () {
 
 // [teste A/B] Sufixo da variante no carimbo: ads_google_vb / site_vb. Sem isso o lead chega
 // sem dizer qual tela inicial ele viu e o teste nao mede nada.
-function polVarSufixo() { return (window.POL_VAR === 'b') ? '_vb' : '_va'; }
+function polVarSufixo() {
+    if (!window.POL_VAR) return '';           // teste encerrado: carimbo volta ao normal
+    return (window.POL_VAR === 'b') ? '_vb' : '_va';
+}
 
 fetch('https://servicos.polinesiaresort.com.br/search/config.php')
     .then(function(r) { return r.json(); })
@@ -3726,7 +3750,7 @@ function openQuoteModal() {
     // [ads] Leva gclid/UTM da URL pro cotador (servicos) — o precapture de lá captura a origem completa.
     var passthrough = location.search ? ('&' + location.search.replace(/^\?/, '')) : '';
     // [teste A/B] Garante o v= no cotador mesmo se o visitante ja navegou e perdeu a query.
-    if (passthrough.indexOf('v=') === -1) passthrough += '&v=' + (window.POL_VAR || 'a');
+    if (window.POL_VAR && passthrough.indexOf('v=') === -1) passthrough += '&v=' + window.POL_VAR;
     var url = quoteConfig.url + '?lang=' + lang + passthrough;
     document.getElementById('quoteIframe').src = url;
     document.getElementById('quoteModal').classList.add('active');
