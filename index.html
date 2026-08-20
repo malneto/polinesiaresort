@@ -513,7 +513,20 @@
             transition: transform 0.5s;
         }
         .condo-item:hover img { transform: scale(1.08); }
-        .condo-item::after {
+        /* Prova social nos dois vãos da galeria do condomínio. Avaliações REAIS do Google,
+   texto original do autor. Alternam sozinhas; em espanhol para hispanohablante,
+   em português para o resto. Não são <img>, então o lightbox não as pega. */
+.condo-review { background: #fff; border: 1px solid #e6ecf2; cursor: default;
+  display: flex; flex-direction: column; justify-content: center; padding: 22px 20px; }
+.condo-review::after { display: none !important; }
+.condo-review .cr-in { opacity: 1; transition: opacity .45s ease; }
+.condo-review.cr-fade .cr-in { opacity: 0; }
+.condo-review .cr-stars { color: #fbbc04; font-size: 15px; letter-spacing: 2px; margin-bottom: 10px; }
+.condo-review .cr-txt { color: #2a3a48; font-size: 14.5px; line-height: 1.55; font-style: italic; margin: 0 0 14px; }
+.condo-review .cr-who { color: #12324f; font-weight: 700; font-size: 14px; }
+.condo-review .cr-src { color: #7b8794; font-size: 11.5px; margin-top: 3px; letter-spacing: .3px; }
+@media (max-width: 720px) { .condo-review { padding: 18px 16px; } .condo-review .cr-txt { font-size: 13.5px; } }
+.condo-item::after {
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%);
             opacity: 0; transition: opacity 0.3s; pointer-events: none;
@@ -1313,12 +1326,14 @@
             <div class="condo-item"><picture><source srcset="img/web-condo-2.webp" type="image/webp"><img src="img/web-condo-2.jpg" alt="Pergolado com rede e vista para o mar em Muro Alto" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/web-condo-3.webp" type="image/webp"><img src="img/web-condo-3.jpg" alt="Caiaques coloridos na praia de Muro Alto, Porto de Galinhas" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/estrutura-06.webp" type="image/webp"><img src="img/estrutura-06.webp" alt="Praia de Muro Alto com piscinas naturais e coqueiros" loading="lazy"></picture></div>
+            <div class="condo-item condo-review" id="condoReview1" aria-live="polite"></div>
             <div class="condo-item large"><picture><source srcset="img/web-condo-6.webp" type="image/webp"><img src="img/web-condo-6.jpg" alt="Piscina do Polinésia Resort iluminada ao anoitecer" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/estrutura-05.webp" type="image/webp"><img src="img/estrutura-05.webp" alt="Mesa de café da manhã com frutas tropicais e tapioca" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/web-condo-1.webp" type="image/webp"><img src="img/web-condo-1.jpg" alt="Jardim tropical e quadra esportiva do condomínio" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/estrutura-04.webp" type="image/webp"><img src="img/estrutura-04.webp" alt="Área da piscina com iluminação noturna no Polinésia Resort" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/web-new-condo-1.webp" type="image/webp"><img src="img/web-new-condo-1.jpg" alt="Entrada do La Fleur Polinésia em Muro Alto" loading="lazy"></picture></div>
             <div class="condo-item large"><picture><source srcset="img/web-new-condo-2.webp" type="image/webp"><img src="img/web-new-condo-2.jpg" alt="Vista da piscina e jardins a partir da varanda do apartamento" loading="lazy"></picture></div>
+            <div class="condo-item condo-review" id="condoReview2" aria-live="polite"></div>
             <div class="condo-item large"><picture><source srcset="img/web-new-condo-3.webp" type="image/webp"><img src="img/web-new-condo-3.jpg" alt="Vista aérea dos jardins, piscinas e área de lazer do resort" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/web-new-condo-4.webp" type="image/webp"><img src="img/web-new-condo-4.jpg" alt="Piscinas do Polinésia Resort ao pôr do sol em Porto de Galinhas" loading="lazy"></picture></div>
         </div>
@@ -3351,7 +3366,73 @@ function setLang(lang, persist) {
     if (persist) localStorage.setItem('polinesia_lang', lang);
     gtag('event', 'change_language', { event_category: 'engagement', event_label: lang });
     if (typeof heroRender === 'function') heroRender(true);
+    if (typeof condoReviewsRender === 'function') condoReviewsRender(false, lang);
 }
+
+/* ── Prova social rotativa nos vãos da galeria (20/08/2026) ────────────────────
+   Avaliações reais do Google, texto do próprio autor, sem edição de sentido.
+   Regra pedida pelo dono: hispanohablante vê as em espanhol; todo o resto vê as
+   em português. Os dois vãos mostram avaliações DIFERENTES ao mesmo tempo.      */
+var CONDO_REVIEWS = {
+  pt: [
+    { a: 'Daniela',        t: 'Amei passar as férias com a minha família no Polinésia. Estrutura, piscina e sem falar da praia. Ótimo para crianças, elas aproveitam bastante.' },
+    { a: 'Matiasenina',    t: 'A estrutura é perfeita. Fechei minha hospedagem com o Mario — caso alguém esteja pesquisando, pode confiar.' },
+    { a: 'Veridiana Barra',t: 'Ficamos encantados com a estrutura. Tranquilidade para as crianças. O lugar é realmente fantástico. Voltaremos com certeza.' },
+    { a: 'André Bueno',    t: 'Acesso total aos benefícios do hotel e àquela maravilhosa praia de Muro Alto. Os apartamentos de térreo têm piscininha particular.' }
+  ],
+  es: [
+    { a: 'Florencia Di Marco', t: 'Inmejorable ubicación, la playa de Muro Alto es hermosa, ideal para familias. Ambiente tranquilo, muchas actividades para hacer.' },
+    { a: 'Williams Tapia',     t: 'Muy bonito, cómodo y acogedor, con salida a la playa con aguas tranquilas. Lo recomiendo al 100 % con niños o familias numerosas.' },
+    { a: 'Alejandro',          t: 'Súper confortable: piscina al aire libre, gimnasio, sala de juegos y bajada exclusiva a la playa.' },
+    { a: 'Fabian Bru Bon',     t: 'Excelente lugar para disfrutar en familia o en pareja. Todo muy pensado para brindar hospitalidad.' }
+  ]
+};
+var CONDO_SRC = { pt: 'Avaliação no Google · 4,8', es: 'Reseña en Google · 4,8' };
+var condoIdx = 0, condoTimer = null, condoLangAplicado = '';
+
+/* ⚠️ A autodetecção chama setLang(lang, false) — persist=false, então NADA vai pro
+   localStorage. Se olhássemos só o localStorage, o visitante espanhol detectado
+   automaticamente veria as avaliações em português. Por isso o idioma aplicado é
+   guardado aqui, e o localStorage é só o segundo recurso (escolha manual). */
+function condoLangAtual() {
+  var l = (condoLangAplicado || localStorage.getItem('polinesia_lang') || '').toLowerCase();
+  if (!l) { l = String(document.documentElement.getAttribute('lang') || '').toLowerCase(); }
+  return l.indexOf('es') === 0 ? 'es' : 'pt';
+}
+function condoCard(r, lang) {
+  var esc = function (x) { return String(x).replace(/[&<>"]/g, function (c) {
+    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); };
+  return '<div class="cr-in"><div class="cr-stars">★★★★★</div>'
+       + '<p class="cr-txt">&ldquo;' + esc(r.t) + '&rdquo;</p>'
+       + '<div class="cr-who">' + esc(r.a) + '</div>'
+       + '<div class="cr-src">' + esc(CONDO_SRC[lang]) + '</div></div>';
+}
+function condoReviewsRender(trocar, langAplicado) {
+  if (langAplicado) condoLangAplicado = String(langAplicado).toLowerCase();
+  var lang = condoLangAtual();
+  var lista = CONDO_REVIEWS[lang] || CONDO_REVIEWS.pt;
+  var slots = [document.getElementById('condoReview1'), document.getElementById('condoReview2')];
+  if (!slots[0] && !slots[1]) return;
+  var pinta = function () {
+    slots.forEach(function (el, i) {
+      if (!el) return;
+      var r = lista[(condoIdx + i * 2) % lista.length];   // vãos sempre com avaliações diferentes
+      el.innerHTML = condoCard(r, lang);
+    });
+  };
+  if (trocar) {
+    slots.forEach(function (el) { if (el) el.classList.add('cr-fade'); });
+    setTimeout(function () { pinta(); slots.forEach(function (el) { if (el) el.classList.remove('cr-fade'); }); }, 450);
+  } else { pinta(); }
+}
+function condoReviewsStart() {
+  condoReviewsRender(false);
+  if (condoTimer) clearInterval(condoTimer);
+  condoTimer = setInterval(function () { condoIdx++; condoReviewsRender(true); }, 7000);
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', condoReviewsStart);
+else condoReviewsStart();
+
 
 // Hero rotativo: alterna apê <-> acesso Samôa <-> piscinas naturais a cada 3s, respeitando o idioma
 var HERO0_PT = ["Alto padrão pé na areia em Muro Alto", "Apê inteiro de 2 quartos (73m²) pra família toda, com acesso à estrutura do Samôa Beach Resort."];
