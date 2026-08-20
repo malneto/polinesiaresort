@@ -3398,46 +3398,72 @@ function heroRender(instant) {
 heroRender(true);
 setInterval(function () { heroSlot = (heroSlot + 1) % HERO_SLOTS; heroRender(false); }, 4000);
 
-// Auto-detect language: saved > geo > pt
+// Auto-detect language: saved > idioma do aparelho > fuso horário > geo por IP > pt
+// ⚠️ CONSERTADO 20/08/2026. Antes isto dependia SÓ de fetch('https://ipapi.co/json/').
+// Quando essa API gratuita cai, demora ou estoura o limite diário, o fallback era PORTUGUÊS —
+// e o hispanohablante que chegou por anúncio pago caía numa página que ele não lê. Aconteceu
+// com uma hóspede argentina em 19/08/2026: a mensagem pré-preenchida do WhatsApp saiu em
+// português. Agora o idioma do próprio aparelho decide primeiro, sem rede e sem espera; o geo
+// por IP virou último recurso, com prazo curto, só para quem tem aparelho em inglês.
 (function() {
     var saved = localStorage.getItem('polinesia_lang');
-    if (saved && saved !== 'pt') {
-        setLang(saved);
-        return;
-    }
+    if (saved && saved !== 'pt') { setLang(saved); return; }
     if (saved) return; // já escolheu pt explicitamente
 
-    // Detectar país por IP (API gratuita, sem key)
-    fetch('https://ipapi.co/json/')
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-            var cc = (data.country_code || '').toUpperCase();
-            var esCountries = ['AR','UY','CL','CO','PE','EC','VE','BO','PY','MX','CR','CU','DO','SV','GT','HN','NI','PA','ES','GQ'];
-            var ptCountries = ['BR','PT','AO','MZ','CV','GW','ST','TL'];
-            var frCountries = ['FR','BE','CH','CA','SN','CI','CM','CD','MG','ML','BF','NE','TD','GN','RW','BI','BJ','TG','CF','CG','GA','DJ','KM','SC','LU','MC','HT'];
-            var arCountries = ['SA','AE','EG','IQ','MA','DZ','TN','LY','JO','LB','KW','QA','BH','OM','YE','SY','SD','PS','MR','SO'];
-            var zhCountries = ['CN','TW','HK','MO','SG'];
-            var hiCountries = ['IN'];
-            var bnCountries = ['BD'];
+    var esCountries = ['AR','UY','CL','CO','PE','EC','VE','BO','PY','MX','CR','CU','DO','SV','GT','HN','NI','PA','ES','GQ'];
+    var ptCountries = ['BR','PT','AO','MZ','CV','GW','ST','TL'];
+    var frCountries = ['FR','BE','CH','CA','SN','CI','CM','CD','MG','ML','BF','NE','TD','GN','RW','BI','BJ','TG','CF','CG','GA','DJ','KM','SC','LU','MC','HT'];
+    var arCountries = ['SA','AE','EG','IQ','MA','DZ','TN','LY','JO','LB','KW','QA','BH','OM','YE','SY','SD','PS','MR','SO'];
+    var zhCountries = ['CN','TW','HK','MO','SG'];
+    var hiCountries = ['IN'];
+    var bnCountries = ['BD'];
 
+    function trocaBandeira(cc) {
+        if (!cc) return;
+        var flagImg = document.querySelector('#flagEs img');
+        if (flagImg) { flagImg.src = 'https://flagcdn.com/w40/' + cc.toLowerCase() + '.png'; flagImg.alt = cc; }
+    }
+    function aplica(lang, cc) {
+        if (!lang || lang === 'pt') return true;      // pt já é o padrão da página
+        if (lang === 'es') trocaBandeira(cc);
+        setLang(lang, false);
+        return true;
+    }
+
+    // ── 1. Idioma do aparelho — instantâneo, sem rede. Pega es-AR, es-419, pt-BR, fr-FR...
+    var navLang = String(navigator.language || (navigator.languages || [])[0] || '').toLowerCase();
+    var base = navLang.split('-')[0];
+    var regiao = (navLang.split('-')[1] || '').toUpperCase();
+    if (regiao && regiao.length !== 2) regiao = '';   // es-419 não é país
+    var suportados = { es: 1, pt: 1, fr: 1, ar: 1, zh: 1, hi: 1, bn: 1 };
+    if (suportados[base]) { aplica(base, regiao); return; }
+
+    // ── 2. Fuso horário — pega quem tem o aparelho em inglês mas mora na América hispânica.
+    var tz = '';
+    try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || ''); } catch (e) {}
+    if (/Argentina|Montevideo|Santiago|Bogota|Lima|Caracas|La_Paz|Asuncion|Guayaquil|Mexico_City|Madrid/i.test(tz)) { aplica('es', ''); return; }
+    if (/Sao_Paulo|Bahia|Fortaleza|Recife|Manaus|Belem|Noronha|Lisbon|Luanda|Maputo/i.test(tz)) { return; }
+
+    // ── 3. Geo por IP — último recurso. Prazo curto: se demorar, a página segue em pt.
+    var abortou = false;
+    var t = setTimeout(function () { abortou = true; }, 2500);
+    fetch('https://ipapi.co/json/')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+            clearTimeout(t);
+            if (abortou) return;
+            var cc = String(data.country_code || '').toUpperCase();
             var lang = 'en';
             if (ptCountries.indexOf(cc) !== -1) lang = 'pt';
-            else if (esCountries.indexOf(cc) !== -1) {
-                lang = 'es';
-                // Trocar bandeira ES pela do país do visitante
-                var flagImg = document.querySelector('#flagEs img');
-                if (flagImg) {
-                    flagImg.src = 'https://flagcdn.com/w40/' + cc.toLowerCase() + '.png';
-                    flagImg.alt = cc;
-                }
-            } else if (frCountries.indexOf(cc) !== -1) lang = 'fr';
+            else if (esCountries.indexOf(cc) !== -1) lang = 'es';
+            else if (frCountries.indexOf(cc) !== -1) lang = 'fr';
             else if (arCountries.indexOf(cc) !== -1) lang = 'ar';
             else if (zhCountries.indexOf(cc) !== -1) lang = 'zh';
             else if (hiCountries.indexOf(cc) !== -1) lang = 'hi';
             else if (bnCountries.indexOf(cc) !== -1) lang = 'bn';
-            if (lang !== 'pt') setLang(lang, false);
+            aplica(lang, cc);
         })
-        .catch(function() { /* fallback: mantém pt */ });
+        .catch(function () { clearTimeout(t); /* mantém pt */ });
 })();
 
 // GA4 Event Tracking
