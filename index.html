@@ -465,6 +465,8 @@
         .gallery { background: var(--gray-50); }
         /* Legenda sobre a foto — traduzida junto com a página (data-cap). */
 .gallery-item, .condo-item { position: relative; }
+#heroSlot picture, #heroSlot img { transition: opacity .6s ease; }
+#heroSlot.hero-fade img { opacity: 0; }
 .gal-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
   padding: 22px 14px 10px; color: #fff; font-size: 13.5px; font-weight: 600;
   letter-spacing: .2px; text-shadow: 0 1px 3px rgba(0,0,0,.55);
@@ -1310,7 +1312,7 @@
             <div class="section-divider"></div>
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item span-2"><picture><source srcset="img/hero-piscinas.webp" type="image/webp"><img src="img/hero-piscinas.jpg" alt="Piscinas e jardins do Polinésia Resort ao fim da tarde, vistos da varanda" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_varanda_vista">A vista da varanda ao fim da tarde</figcaption></div>
+            <div class="gallery-item span-2" id="heroSlot"><picture><source id="heroSrc" srcset="img/hero-piscinas.webp" type="image/webp"><img id="heroImg" src="img/hero-piscinas.jpg" alt="Piscinas e jardins do Polinésia Resort ao fim da tarde, vistos da varanda" loading="eager"></picture><figcaption class="gal-cap" id="heroCap" data-i18n="cap_varanda_vista">A vista da varanda ao fim da tarde</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/quarto-01.webp" type="image/webp"><img src="img/quarto-01.webp" alt="Suíte principal com cama queen no apartamento em Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_suite">Suíte</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/quarto-03.webp" type="image/webp"><img src="img/quarto-03.webp" alt="Segundo quarto com duas camas de solteiro no Polinésia Resort" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto2">Segundo quarto</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/cozinha-01.webp" type="image/webp"><img src="img/cozinha-01.webp" alt="Cozinha completa com eletrodomésticos e bancada de granito" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_cozinha">Cozinha completa</figcaption></div>
@@ -1832,6 +1834,9 @@ const translations = {
         accom_c9_4: "Portero",
         // Gallery
         gallery_title: "Conocé el espacio",
+        cap_hero_praia: "La playa de Muro Alto y las piscinas naturales",
+        cap_hero_conchas: "Quiosco frente al mar",
+        cap_hero_cafe: "El desayuno del resort",
         cap_elevador: "Ascensores nuevos en todos los bloques",
         cap_cozinha2: "Heladera, microondas y anafe",
         cap_varanda_vista: "La vista del atardecer desde el balcón",
@@ -2112,6 +2117,9 @@ const translations = {
         accom_c9_4: "Doorman",
         // Gallery
         gallery_title: "Explore the space",
+        cap_hero_praia: "Muro Alto beach and the natural pools",
+        cap_hero_conchas: "Beachfront kiosk",
+        cap_hero_cafe: "Resort breakfast",
         cap_elevador: "New lifts in every block",
         cap_cozinha2: "Fridge, microwave and cooktop",
         cap_varanda_vista: "The sunset view from the balcony",
@@ -2842,6 +2850,9 @@ const translations = {
         accom_c9_3: "Rideau occultant",
         accom_c9_4: "Portier",
         gallery_title: "Découvrez les lieux",
+        cap_hero_praia: "La plage de Muro Alto et les piscines naturelles",
+        cap_hero_conchas: "Kiosque en bord de mer",
+        cap_hero_cafe: "Petit-déjeuner du resort",
         cap_elevador: "Ascenseurs neufs dans tous les blocs",
         cap_cozinha2: "Réfrigérateur, micro-ondes et plaque",
         cap_varanda_vista: "La vue au coucher du soleil depuis le balcon",
@@ -3469,10 +3480,58 @@ function condoReviewsRender(trocar, langAplicado) {
 function condoReviewsStart() {
   condoReviewsRender(false);
   if (condoTimer) clearInterval(condoTimer);
-  condoTimer = setInterval(function () { condoIdx++; condoReviewsRender(true); }, 5000);
+  condoTimer = setInterval(function () { condoIdx++; condoReviewsRender(true); }, 8000);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', condoReviewsStart);
 else condoReviewsStart();
+
+/* ── Rodízio da foto de abertura da galeria (20/08/2026) ───────────────────────
+   4 fotos escolhidas a dedo, todas de autoria do próprio Polinésia no perfil do
+   Google (as demais de lá são de hóspedes e não são nossas para usar). Troca a
+   cada 10s — devagar de propósito: foto de abertura piscando rápido vira banner
+   e derruba a percepção de qualidade. As avaliações rodam em 8s, ritmo diferente. */
+var HERO_FOTOS = [
+  { f: 'hero-piscinas',    cap: 'cap_varanda_vista', alt: 'Piscinas e jardins do Polinésia Resort ao fim da tarde' },
+  { f: 'hero-praia-aerea', cap: 'cap_hero_praia',    alt: 'Vista aérea da praia de Muro Alto e das piscinas naturais' },
+  { f: 'hero-conchas',     cap: 'cap_hero_conchas',  alt: 'Quiosque com cortina de conchas e vista para o mar' },
+  { f: 'hero-cafe',        cap: 'cap_hero_cafe',     alt: 'Café da manhã com frutas tropicais e frios' }
+];
+var heroI = 0, heroTimer = null;
+function heroPinta() {
+  var slot = document.getElementById('heroSlot'), img = document.getElementById('heroImg'),
+      src = document.getElementById('heroSrc'), cap = document.getElementById('heroCap');
+  if (!slot || !img || !src) return;
+  var h = HERO_FOTOS[heroI % HERO_FOTOS.length];
+  slot.classList.add('hero-fade');
+  setTimeout(function () {
+    src.srcset = 'img/' + h.f + '.webp';
+    img.src = 'img/' + h.f + '.jpg';
+    img.alt = h.alt;
+    if (cap) {
+      cap.setAttribute('data-i18n', h.cap);
+      var lang = (typeof condoLangAtual === 'function') ? condoLangAtual() : 'pt';
+      var t = (typeof translations !== 'undefined' && translations[lang] && translations[lang][h.cap])
+              ? translations[lang][h.cap] : (HERO_CAP_PT[h.cap] || '');
+      if (t) cap.textContent = t;
+    }
+    slot.classList.remove('hero-fade');
+  }, 600);
+}
+var HERO_CAP_PT = {
+  cap_varanda_vista: 'A vista da varanda ao fim da tarde',
+  cap_hero_praia:    'A praia de Muro Alto e as piscinas naturais',
+  cap_hero_conchas:  'Quiosque na beira do mar',
+  cap_hero_cafe:     'Café da manhã do resort'
+};
+function heroStart() {
+  // pré-carrega as próximas, para a troca não piscar em branco
+  HERO_FOTOS.forEach(function (h) { var i = new Image(); i.src = 'img/' + h.f + '.webp'; });
+  if (heroTimer) clearInterval(heroTimer);
+  heroTimer = setInterval(function () { heroI++; heroPinta(); }, 10000);
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', heroStart);
+else heroStart();
+
 
 
 // Hero rotativo: alterna apê <-> acesso Samôa <-> piscinas naturais a cada 3s, respeitando o idioma
