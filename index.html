@@ -2,6 +2,21 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <!-- [teste A/B] Variante da tela inicial. ?v=b (ou utm_content=b) troca a foto de abertura
+         pelo apartamento 5A304. Persiste na sessao para o visitante nao "pular de variante"
+         ao navegar. Roda aqui no <head> para nao piscar a foto A antes de trocar. -->
+    <script>
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search);
+        var v = (q.get('v') || q.get('utm_content') || '').toLowerCase();
+        if (v !== 'a' && v !== 'b') { v = sessionStorage.getItem('pol_var') || 'a'; }
+        else { sessionStorage.setItem('pol_var', v); }
+        window.POL_VAR = v;
+        if (v === 'b') document.documentElement.className += ' var-b';
+      } catch (e) { window.POL_VAR = 'a'; }
+    })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polinésia Resort — Muro Alto, Porto de Galinhas</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -235,6 +250,7 @@
             position: absolute; inset: 0;
             background: url('img/estrutura-03.webp') center/cover no-repeat;
         }
+        html.var-b .hero-bg { background-image: url('img/hero-b-sala.webp'); }
         .hero-bg::after {
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
@@ -3680,6 +3696,10 @@ var AD_SRC = (function () {
     } catch (e) { return ''; }
 })();
 
+// [teste A/B] Sufixo da variante no carimbo: ads_google_vb / site_vb. Sem isso o lead chega
+// sem dizer qual tela inicial ele viu e o teste nao mede nada.
+function polVarSufixo() { return (window.POL_VAR === 'b') ? '_vb' : '_va'; }
+
 fetch('https://servicos.polinesiaresort.com.br/search/config.php')
     .then(function(r) { return r.json(); })
     .then(function(data) {
@@ -3705,6 +3725,8 @@ function openQuoteModal() {
     if (['pt','es','en'].indexOf(lang) === -1) lang = 'en';
     // [ads] Leva gclid/UTM da URL pro cotador (servicos) — o precapture de lá captura a origem completa.
     var passthrough = location.search ? ('&' + location.search.replace(/^\?/, '')) : '';
+    // [teste A/B] Garante o v= no cotador mesmo se o visitante ja navegou e perdeu a query.
+    if (passthrough.indexOf('v=') === -1) passthrough += '&v=' + (window.POL_VAR || 'a');
     var url = quoteConfig.url + '?lang=' + lang + passthrough;
     document.getElementById('quoteIframe').src = url;
     document.getElementById('quoteModal').classList.add('active');
@@ -3885,7 +3907,7 @@ function openWhatsApp() {
         en: 'Hello, Polinésia Resort! I would like a quote for accommodation in Muro Alto.\n\nDates: \nNumber of guests:'
     };
     var msg = msgs[lang] || msgs.pt;
-    var src = AD_SRC || 'site';
+    var src = (AD_SRC || 'site') + polVarSufixo();
     // [ads] Evento de conversão no GA4 (marcar como conversão + importar no Google Ads = custo por consulta).
     try { gtag('event', 'consulta_whatsapp', { event_category: 'conversion', event_label: src }); } catch (e) {}
     window.open('https://wa.me/558138776403?text=' + encodeURIComponent('[src:' + src + ']\n\n' + msg), '_blank');
