@@ -3556,9 +3556,22 @@ var HERO_CAP_PT = {
 };
 function heroStart() {
   // pré-carrega as próximas, para a troca não piscar em branco
-  HERO_FOTOS.forEach(function (h) { var i = new Image(); i.src = 'img/' + h.f + '.webp'; });
+  // ⚠️ CORRIGIDO 21/08/2026 — aqui baixava as QUATRO fotos do rodízio de uma vez, no
+  // carregamento. Eram 466 KB extras no celular, quase dobrando o peso da home, para um
+  // rodízio que a maioria dos visitantes nunca vê passar da primeira foto. E peso de
+  // página entra na nota de qualidade do Google Ads, que entra no custo por clique.
+  // Agora cada foto é buscada só um instante antes de aparecer.
+  function heroPreCarrega(i) {
+    var h = HERO_FOTOS[i % HERO_FOTOS.length];
+    if (h && !h._pronta) { h._pronta = true; var im = new Image(); im.src = 'img/' + h.f + '.webp'; }
+  }
   if (heroTimer) clearInterval(heroTimer);
+  // busca a PRÓXIMA 2s antes da troca: chega pronta, sem pesar a abertura da página
   heroTimer = setInterval(function () { heroI++; heroPinta(); }, 10000);
+  setTimeout(function () {
+    heroPreCarrega(heroI + 1);
+    setInterval(function () { heroPreCarrega(heroI + 1); }, 10000);
+  }, 8000);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', heroStart);
 else heroStart();
