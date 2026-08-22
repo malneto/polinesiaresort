@@ -3730,6 +3730,15 @@ var AD_SRC = (function () {
     } catch (e) { return ''; }
 })();
 
+/* [medicao 22/08/2026] O carimbo [sid:] vem do precapture.js (servicos/api/precapture.js),
+   que ja roda nesta pagina e agora tambem guarda o gclid do clique do anuncio.
+   Ele injeta o [sid:] sozinho em LINKS <a href="wa.me...">, mas o botao principal daqui
+   abre por window.open — por isso a leitura explicita abaixo. Sem sid a mensagem sai
+   exatamente como saia antes. */
+function polSid() {
+    try { return window.POLI_SID || sessionStorage.getItem('poli_sid') || ''; } catch (e) { return ''; }
+}
+
 // [teste A/B] Sufixo da variante no carimbo: ads_google_vb / site_vb. Sem isso o lead chega
 // sem dizer qual tela inicial ele viu e o teste nao mede nada.
 function polVarSufixo() {
@@ -3945,9 +3954,16 @@ function openWhatsApp() {
     };
     var msg = msgs[lang] || msgs.pt;
     var src = (AD_SRC || 'site') + polVarSufixo();
-    // [ads] Evento de conversão no GA4 (marcar como conversão + importar no Google Ads = custo por consulta).
-    try { gtag('event', 'consulta_whatsapp', { event_category: 'conversion', event_label: src }); } catch (e) {}
-    window.open('https://wa.me/558138776403?text=' + encodeURIComponent('[src:' + src + ']\n\n' + msg), '_blank');
+    // [22/08/2026] Isto NAO e mais conversao — e engajamento. O evento dispara ANTES do
+    // window.open abaixo, entao conta popup bloqueado, aba fechada e curioso. A conversao
+    // de verdade e registrada pelo servidor quando a JulIA RECEBE a mensagem.
+    // ⚠️ No GA4 este evento tem que estar DESMARCADO como evento-chave.
+    try { gtag('event', 'consulta_whatsapp', { event_category: 'engagement', event_label: src }); } catch (e) {}
+    // [sid] So entra quando existe (trafego pago com pre-capture concluido). Sem ele a
+    // mensagem sai exatamente como saia antes — retrocompativel.
+    var sid = polSid();
+    var carimbo = '[src:' + src + ']' + (sid ? ' [sid:' + sid + ']' : '');
+    window.open('https://wa.me/558138776403?text=' + encodeURIComponent(carimbo + '\n\n' + msg), '_blank');
 }
 
 // ---- Guide CTA (footer + exit intent) ----
