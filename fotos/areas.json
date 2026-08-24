@@ -1,7 +1,51 @@
 [
  {
+  "n": "piscina-pro-01",
+  "legenda": "A piscina principal"
+ },
+ {
   "n": "piscinas-entardecer",
   "legenda": "As piscinas ao entardecer"
+ },
+ {
+  "n": "piscina-toboga",
+  "legenda": "O tobogã infantil na piscina"
+ },
+ {
+  "n": "praia-aerea-pro",
+  "legenda": "As piscinas naturais de Muro Alto"
+ },
+ {
+  "n": "salao-jogos-01",
+  "legenda": "O salão de jogos"
+ },
+ {
+  "n": "academia",
+  "legenda": "A sala de musculação"
+ },
+ {
+  "n": "parquinho",
+  "legenda": "O parquinho de areia"
+ },
+ {
+  "n": "quadras-pro",
+  "legenda": "As quadras de tênis e poliesportiva"
+ },
+ {
+  "n": "piscina-pro-02",
+  "legenda": "O quiosque à beira da piscina"
+ },
+ {
+  "n": "praia-guardasol",
+  "legenda": "A praia em frente ao resort"
+ },
+ {
+  "n": "cafe-manha",
+  "legenda": "O café da manhã"
+ },
+ {
+  "n": "piscina-pro-03",
+  "legenda": "Espreguiçadeiras e quiosques"
  },
  {
   "n": "praia-aerea",
@@ -10,10 +54,6 @@
  {
   "n": "cabana-conchas",
   "legenda": "A cabana de conchas, de frente para o mar"
- },
- {
-  "n": "cafe-manha",
-  "legenda": "O café da manhã"
  },
  {
   "n": "cafe-buffet",
@@ -134,5 +174,37 @@
  {
   "n": "varanda-7406",
   "legenda": "A vista da varanda do apartamento"
+ },
+ {
+  "n": "lazer-guardasois",
+  "legenda": "A área de lazer com guarda-sóis"
+ },
+ {
+  "n": "piscina-pro-04",
+  "legenda": "A piscina que corre entre os blocos"
+ },
+ {
+  "n": "piscina-pro-05",
+  "legenda": "Piscina e coqueiros"
+ },
+ {
+  "n": "portaria",
+  "legenda": "A portaria do condomínio"
+ },
+ {
+  "n": "praia-barracas-pro",
+  "legenda": "A prainha e as barracas"
+ },
+ {
+  "n": "salao-jogos-02",
+  "legenda": "Mesa de ping-pong e pebolim no salão de jogos"
+ },
+ {
+  "n": "vista-varanda-pro",
+  "legenda": "A vista da varanda para o mar"
+ },
+ {
+  "n": "vista-varanda-pro2",
+  "legenda": "O mar visto do apartamento"
  }
 ]
