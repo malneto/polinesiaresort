@@ -711,7 +711,22 @@
             cursor: pointer;
         }
         .lightbox.active { display: flex; }
-        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; object-fit: contain; }
+        .lightbox img { max-width: 90vw; max-height: 82vh; border-radius: 8px; object-fit: contain; }
+        /* [passador 24/08/2026] A galeria abria uma foto e obrigava a fechar pra ver a
+           proxima. Agora passa por seta, teclado e arraste, sem sair do grupo em que a
+           pessoa clicou (apartamento nao se mistura com condominio). */
+        .lb-seta { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+                   background: rgba(255,255,255,.16); color: #fff; border: 0; width: 54px; height: 54px;
+                   border-radius: 50%; font-size: 30px; line-height: 1; cursor: pointer; transition: background .15s; }
+        .lb-seta:hover { background: rgba(255,255,255,.32); }
+        .lb-ant { left: 18px; } .lb-prox { right: 18px; }
+        .lb-rodape { position: absolute; left: 0; right: 0; bottom: 22px; z-index: 3; display: flex;
+                     align-items: center; justify-content: center; gap: 14px; color: #fff;
+                     font-size: 14px; padding: 0 70px; text-align: center; }
+        .lb-rodape #lbConta { opacity: .7; font-size: 12.5px; white-space: nowrap; }
+        @media (max-width: 640px) { .lb-seta { width: 44px; height: 44px; font-size: 25px; }
+                                    .lb-ant { left: 6px; } .lb-prox { right: 6px; }
+                                    .lb-rodape { font-size: 12.5px; padding: 0 56px; bottom: 14px; } }
         .lightbox-close {
             position: absolute; top: 20px; right: 24px;
             color: white; font-size: 32px; cursor: pointer; background: none; border: none;
@@ -754,7 +769,7 @@
         }
         @media (max-width: 480px) {
             .features-grid { grid-template-columns: repeat(4, 1fr); }
-            .gallery-grid { grid-template-rows: repeat(4, 160px); }
+            .gallery-grid { grid-template-rows: repeat(5, 160px); }
         }
         /* Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -1227,16 +1242,21 @@
             <div class="section-divider"></div>
         </div>
         <div class="gallery-grid">
+            <!-- [24/08/2026] Ordem escolhida a dedo: com 4 colunas e dois itens span-2, a
+                 ordem antiga fazia o "sala-04" nao caber na coluna 4 e pular de linha,
+                 deixando um vao na linha 2 e jogando a ultima foto pra uma 4a linha
+                 improvisada. Sao os dois buracos brancos que apareciam. Nesta ordem os 10
+                 itens fecham exatamente as 12 celulas (4x3). Ao mexer aqui, refaca a conta. -->
             <div class="gallery-item span-2" id="heroSlot"><picture><source id="heroSrc" srcset="img/hero-piscinas.webp" type="image/webp"><img id="heroImg" src="img/hero-piscinas.jpg" alt="Piscinas e jardins do Polinésia Resort ao fim da tarde, vistos da varanda" loading="eager"></picture><figcaption class="gal-cap" id="heroCap" data-i18n="cap_varanda_vista">A vista da varanda ao fim da tarde</figcaption></div>
-            <div class="gallery-item"><picture><source srcset="img/quarto-01.webp" type="image/webp"><img src="img/quarto-01.webp" alt="Suíte principal com cama queen no apartamento em Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_suite">Suíte</figcaption></div>
-            <div class="gallery-item"><picture><source srcset="img/quarto-03.webp" type="image/webp"><img src="img/quarto-03.webp" alt="Segundo quarto com duas camas de solteiro no Polinésia Resort" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto2">Segundo quarto</figcaption></div>
-            <div class="gallery-item"><picture><source srcset="img/cozinha-01.webp" type="image/webp"><img src="img/cozinha-01.webp" alt="Cozinha completa com eletrodomésticos e bancada de granito" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_cozinha">Cozinha completa</figcaption></div>
-            <div class="gallery-item"><picture><source srcset="img/quarto-casal.webp" type="image/webp"><img src="img/quarto-casal.jpg" alt="Quarto de casal com cama arrumada e guarda-roupa no apartamento" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto_casal">Quarto de casal</figcaption></div>
-            <div class="gallery-item"><picture><source srcset="img/berco.webp" type="image/webp"><img src="img/berco.webp" alt="Berço Cosco disponível para bebês no apartamento" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_berco">Berço disponível</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/quarto-01.webp" type="image/webp"><img src="img/quarto-01.webp" alt="Suíte principal com cama de casal no apartamento em Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_suite">Suíte</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/quarto-03.webp" type="image/webp"><img src="img/quarto-03.webp" alt="Segundo quarto do apartamento, com saída para a varanda" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto2">Segundo quarto</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/cozinha-01.webp" type="image/webp"><img src="img/cozinha-01.webp" alt="Cozinha completa com geladeira, cooktop, micro-ondas e bancada de granito" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_cozinha">Cozinha completa</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/quarto-casal.webp" type="image/webp"><img src="img/quarto-casal.jpg" alt="Quarto de casal com guarda-roupa de freijó" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto_casal">Quarto de casal</figcaption></div>
             <div class="gallery-item span-2"><picture><source srcset="img/sala-04.webp" type="image/webp"><img src="img/sala-04.webp" alt="Sala ampla com varanda integrada no Polinésia Resort Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_sala">Sala</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/varanda-piscina.webp" type="image/webp"><img src="img/varanda-piscina.jpg" alt="Varanda do apartamento com mesa, tela de proteção e vista para as piscinas" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_varanda">Varanda com tela de proteção</figcaption></div>
-            <div class="gallery-item"><picture><source srcset="img/elevador.webp" type="image/webp"><img src="img/elevador.jpg" alt="Elevador novo — todos os blocos do condomínio têm elevador" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_elevador">Elevadores novos em todos os blocos</figcaption></div>
-            <div class="gallery-item"><picture><source srcset="img/cozinha-02.webp" type="image/webp"><img src="img/cozinha-02.jpg" alt="Cozinha com geladeira, micro-ondas e fogão no apartamento" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_cozinha2">Geladeira, micro-ondas e fogão</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/tv-giratoria.webp" type="image/webp"><img src="img/tv-giratoria.webp" alt="TV giratória entre a sala e o quarto, no painel de freijó" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_tv">TV giratória sala e quarto</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/elevador.webp" type="image/webp"><img src="img/elevador.jpg" alt="Elevador do bloco — todos os blocos do condomínio têm elevador" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_elevador">Elevadores novos em todos os blocos</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/berco.webp" type="image/webp"><img src="img/berco.webp" alt="Berço disponível para bebês no apartamento" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_berco">Berço disponível</figcaption></div>
         </div>
     </div>
 </section>
@@ -1498,9 +1518,12 @@
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
-    <button class="lightbox-close" aria-label="Fechar">&times;</button>
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Fechar" onclick="lbFecha()">&times;</button>
+    <button class="lb-seta lb-ant" aria-label="Foto anterior" onclick="lbPassa(event,-1)">&#8249;</button>
+    <button class="lb-seta lb-prox" aria-label="Próxima foto" onclick="lbPassa(event,1)">&#8250;</button>
     <img id="lightboxImg" src="" alt="Foto ampliada">
+    <div class="lb-rodape"><span id="lbLegenda"></span><span id="lbConta"></span></div>
 </div>
 
 <script>
@@ -1515,19 +1538,59 @@ document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
 });
 
-// Lightbox
-// [24/08/2026] Era img.src, que dentro de um <picture> devolve o arquivo de RESERVA
-// (o .jpg antigo) e nao o .webp que o navegador de fato exibiu. Resultado: a miniatura
-// mostrava a foto nova e o lightbox abria a antiga. currentSrc devolve a escolhida.
-document.querySelectorAll('.gallery-item img, .condo-item img').forEach(img => {
-    img.addEventListener('click', () => {
-        document.getElementById('lightboxImg').src = img.currentSrc || img.src;
+// Lightbox com passador
+// currentSrc e nao src: dentro de um <picture>, src devolve o arquivo de RESERVA (o .jpg)
+// e nao o .webp que o navegador exibiu — foi assim que a miniatura mostrava a foto nova
+// e o lightbox abria a antiga.
+var lbGrupo = [], lbPos = 0;
+
+function lbMostra(i) {
+    if (!lbGrupo.length) return;
+    lbPos = (i + lbGrupo.length) % lbGrupo.length;          // circular
+    var img = lbGrupo[lbPos];
+    document.getElementById('lightboxImg').src = img.currentSrc || img.src;
+    document.getElementById('lightboxImg').alt = img.alt || '';
+    var fig = img.closest('.gallery-item, .condo-item');
+    var cap = fig ? fig.querySelector('.gal-cap') : null;
+    document.getElementById('lbLegenda').textContent = cap ? cap.textContent.trim() : (img.alt || '');
+    document.getElementById('lbConta').textContent = (lbPos + 1) + ' / ' + lbGrupo.length;
+    var uma = lbGrupo.length < 2;
+    document.querySelectorAll('.lb-seta').forEach(function (b) { b.style.display = uma ? 'none' : ''; });
+}
+function lbPassa(e, passo) { if (e) e.stopPropagation(); lbMostra(lbPos + passo); }
+function lbFecha() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.querySelectorAll('.gallery-item img, .condo-item img').forEach(function (img) {
+    img.addEventListener('click', function () {
+        // navega dentro do proprio grupo: apartamento nao vira condominio no meio
+        var sel = img.closest('.condo-item') ? '.condo-item img' : '.gallery-item img';
+        lbGrupo = [].slice.call(document.querySelectorAll(sel));
+        lbMostra(lbGrupo.indexOf(img));
         document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
 });
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+document.getElementById('lightbox').addEventListener('click', function (e) {
+    if (e.target === this) lbFecha();                        // so o fundo fecha, nao a seta
 });
+document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') lbFecha();
+    if (e.key === 'ArrowLeft') lbMostra(lbPos - 1);
+    if (e.key === 'ArrowRight') lbMostra(lbPos + 1);
+});
+(function () {
+    var lb = document.getElementById('lightbox'), x0 = null;
+    lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var d = e.changedTouches[0].clientX - x0;
+        if (Math.abs(d) > 45) lbMostra(lbPos + (d < 0 ? 1 : -1));
+        x0 = null;
+    }, { passive: true });
+})();
 
 // ── i18n Translation System ──
 const i18nOriginals = {};
