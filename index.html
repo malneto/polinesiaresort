@@ -1516,9 +1516,12 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 });
 
 // Lightbox
+// [24/08/2026] Era img.src, que dentro de um <picture> devolve o arquivo de RESERVA
+// (o .jpg antigo) e nao o .webp que o navegador de fato exibiu. Resultado: a miniatura
+// mostrava a foto nova e o lightbox abria a antiga. currentSrc devolve a escolhida.
 document.querySelectorAll('.gallery-item img, .condo-item img').forEach(img => {
     img.addEventListener('click', () => {
-        document.getElementById('lightboxImg').src = img.src;
+        document.getElementById('lightboxImg').src = img.currentSrc || img.src;
         document.getElementById('lightbox').classList.add('active');
     });
 });
