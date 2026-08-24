@@ -1,91 +1,271 @@
 [
  {
-  "n": "cadeira-praia",
-  "legenda": "Nossa cadeira na praia, em frente ao resort"
+  "n": "piscinas-aerea",
+  "legenda": "As piscinas vistas do alto"
  },
  {
-  "n": "piscina-pro-01",
+  "n": "piscinas-noite-aerea",
+  "legenda": "As piscinas iluminadas à noite"
+ },
+ {
+  "n": "piscina-noite-azul",
+  "legenda": "A área de lazer depois que escurece"
+ },
+ {
+  "n": "piscina-quiosque",
+  "legenda": "Piscina e quiosque"
+ },
+ {
+  "n": "piscina-espreguicadeiras",
+  "legenda": "Espreguiçadeiras à beira da piscina"
+ },
+ {
+  "n": "piscina-deck",
+  "legenda": "O deck da piscina"
+ },
+ {
+  "n": "piscina-coqueiros",
+  "legenda": "Piscina entre os coqueiros"
+ },
+ {
+  "n": "piscina-predios",
+  "legenda": "A piscina que corre entre os blocos"
+ },
+ {
+  "n": "piscina-longa",
   "legenda": "A piscina principal"
  },
  {
-  "n": "piscinas-entardecer",
-  "legenda": "As piscinas ao entardecer"
+  "n": "piscina-jardim",
+  "legenda": "Piscina e jardim"
  },
  {
-  "n": "piscina-toboga",
-  "legenda": "O tobogã infantil na piscina"
+  "n": "piscinas-conjunto",
+  "legenda": "O conjunto das piscinas"
  },
  {
-  "n": "praia-aerea-pro",
-  "legenda": "As piscinas naturais de Muro Alto"
+  "n": "piscina-toboga-alto",
+  "legenda": "O tobogã visto de cima"
  },
  {
-  "n": "salao-jogos-01",
-  "legenda": "O salão de jogos"
+  "n": "toboga",
+  "legenda": "O tobogã infantil"
  },
  {
-  "n": "academia",
-  "legenda": "A sala de musculação"
+  "n": "piscina-gramado",
+  "legenda": "Piscina, gramado e quiosque"
  },
  {
-  "n": "parquinho",
-  "legenda": "O parquinho de areia"
- },
- {
-  "n": "quadras-pro",
-  "legenda": "As quadras de tênis e poliesportiva"
- },
- {
-  "n": "piscina-pro-02",
-  "legenda": "O quiosque à beira da piscina"
+  "n": "piscina-do-restaurante",
+  "legenda": "A piscina vista do restaurante"
  },
  {
   "n": "praia-guardasol",
   "legenda": "A praia em frente ao resort"
  },
  {
-  "n": "cafe-manha",
-  "legenda": "O café da manhã"
+  "n": "praia-barracas",
+  "legenda": "A prainha e as barracas"
  },
  {
-  "n": "piscina-pro-03",
-  "legenda": "Espreguiçadeiras e quiosques"
+  "n": "praia-areia",
+  "legenda": "A areia de Muro Alto"
  },
  {
-  "n": "praia-aerea",
-  "legenda": "A praia de Muro Alto vista do alto"
+  "n": "praia-deserta",
+  "legenda": "A praia pela manhã"
  },
  {
   "n": "cabana-conchas",
   "legenda": "A cabana de conchas, de frente para o mar"
  },
  {
+  "n": "coqueiro-praia",
+  "legenda": "Coqueiros na beira da água"
+ },
+ {
+  "n": "deck-praia",
+  "legenda": "O deck de madeira que leva à praia"
+ },
+ {
+  "n": "passarela-praia",
+  "legenda": "A passarela até o mar"
+ },
+ {
+  "n": "praia-mangue",
+  "legenda": "O encontro do mangue com o mar"
+ },
+ {
+  "n": "mar-vegetacao",
+  "legenda": "As piscinas naturais"
+ },
+ {
+  "n": "mar-verde",
+  "legenda": "O mar de Muro Alto"
+ },
+ {
+  "n": "caiaques",
+  "legenda": "Caiaques na areia"
+ },
+ {
+  "n": "pedalinho",
+  "legenda": "Pedalinho na piscina natural"
+ },
+ {
+  "n": "totem-praia",
+  "legenda": "O totem na entrada da praia"
+ },
+ {
+  "n": "academia-esteiras",
+  "legenda": "A sala de musculação"
+ },
+ {
+  "n": "academia-pesos",
+  "legenda": "A academia"
+ },
+ {
+  "n": "salao-bilhar",
+  "legenda": "O salão de jogos"
+ },
+ {
+  "n": "salao-pingpong",
+  "legenda": "Mesa de ping-pong no salão de jogos"
+ },
+ {
+  "n": "quadra-tenis",
+  "legenda": "A quadra de tênis"
+ },
+ {
+  "n": "quadra-bola",
+  "legenda": "Quadra poliesportiva"
+ },
+ {
+  "n": "quadra-noite",
+  "legenda": "A quadra iluminada à noite"
+ },
+ {
+  "n": "flor-quadra",
+  "legenda": "Os jardins junto às quadras"
+ },
+ {
+  "n": "playground-areia",
+  "legenda": "O playground de areia"
+ },
+ {
+  "n": "playground-madeira",
+  "legenda": "O playground"
+ },
+ {
+  "n": "gazebo",
+  "legenda": "Gazebo com espreguiçadeiras"
+ },
+ {
+  "n": "espreguicadeiras-noite",
+  "legenda": "O gramado ao anoitecer"
+ },
+ {
   "n": "cafe-buffet",
   "legenda": "O buffet do café da manhã"
  },
  {
-  "n": "quadra",
-  "legenda": "A quadra poliesportiva"
+  "n": "restaurante-vista",
+  "legenda": "O restaurante, com vista para a piscina"
  },
  {
-  "n": "piscina-espreguicadeiras",
-  "legenda": "Piscina e espreguiçadeiras"
+  "n": "restaurante-noite",
+  "legenda": "O restaurante à noite"
  },
  {
-  "n": "piscina-noite",
-  "legenda": "A piscina iluminada à noite"
+  "n": "restaurante-mesas",
+  "legenda": "O salão do restaurante"
  },
  {
-  "n": "praia-barracas",
-  "legenda": "A praia com as barracas do resort"
+  "n": "restaurante-fachada",
+  "legenda": "A fachada do restaurante"
+ },
+ {
+  "n": "area-convivencia",
+  "legenda": "A área de convivência"
+ },
+ {
+  "n": "espelho-dagua",
+  "legenda": "O espelho d’água na entrada do restaurante"
+ },
+ {
+  "n": "quiosque-madeira",
+  "legenda": "Os quiosques de madeira"
+ },
+ {
+  "n": "condominio-aereo",
+  "legenda": "O condomínio visto do alto"
+ },
+ {
+  "n": "predios-mar",
+  "legenda": "Os blocos e o mar ao fundo"
+ },
+ {
+  "n": "gramado-predios",
+  "legenda": "O gramado entre os blocos"
+ },
+ {
+  "n": "predios-baixo",
+  "legenda": "Os blocos por dentro do condomínio"
+ },
+ {
+  "n": "chafariz",
+  "legenda": "O chafariz"
+ },
+ {
+  "n": "chafariz-noite",
+  "legenda": "O chafariz iluminado"
+ },
+ {
+  "n": "elevador-vista",
+  "legenda": "Os elevadores, com vista para o mar"
+ },
+ {
+  "n": "estacionamento",
+  "legenda": "O estacionamento coberto"
+ },
+ {
+  "n": "tapete-marca",
+  "legenda": "A entrada do Polinésia"
+ },
+ {
+  "n": "placa-la-fleur",
+  "legenda": "La Fleur Polinésia Residence & Resort"
+ },
+ {
+  "n": "placa-samoa",
+  "legenda": "O acesso ao Samôa"
+ },
+ {
+  "n": "cadeira-praia",
+  "legenda": "Nossa cadeira na praia, em frente ao resort"
+ },
+ {
+  "n": "piscinas-entardecer",
+  "legenda": "As piscinas ao entardecer"
+ },
+ {
+  "n": "praia-aerea-pro",
+  "legenda": "As piscinas naturais de Muro Alto"
+ },
+ {
+  "n": "quadras-pro",
+  "legenda": "As quadras de tênis e poliesportiva"
+ },
+ {
+  "n": "cafe-manha",
+  "legenda": "O café da manhã"
+ },
+ {
+  "n": "praia-aerea",
+  "legenda": "A praia de Muro Alto vista do alto"
  },
  {
   "n": "praia-caiaques",
   "legenda": "Caiaques na praia"
- },
- {
-  "n": "placa-samoa",
-  "legenda": "\"O Samôa também é seu\": acesso a toda a estrutura"
  },
  {
   "n": "varanda-piscina",
@@ -102,10 +282,6 @@
  {
   "n": "gramado-aereo",
   "legenda": "O gramado e os coqueiros à beira-mar"
- },
- {
-  "n": "piscina-jardim",
-  "legenda": "Piscina cercada de jardim"
  },
  {
   "n": "praia-lua",
@@ -180,32 +356,8 @@
   "legenda": "A vista da varanda do apartamento"
  },
  {
-  "n": "lazer-guardasois",
-  "legenda": "A área de lazer com guarda-sóis"
- },
- {
   "n": "piscina-pro-04",
   "legenda": "A piscina que corre entre os blocos"
- },
- {
-  "n": "piscina-pro-05",
-  "legenda": "Piscina e coqueiros"
- },
- {
-  "n": "portaria",
-  "legenda": "A portaria do condomínio"
- },
- {
-  "n": "praia-barracas-pro",
-  "legenda": "A prainha e as barracas"
- },
- {
-  "n": "salao-jogos-02",
-  "legenda": "Mesa de ping-pong e pebolim no salão de jogos"
- },
- {
-  "n": "vista-varanda-pro",
-  "legenda": "A vista da varanda para o mar"
  },
  {
   "n": "vista-varanda-pro2",
