@@ -181,7 +181,7 @@ footer{text-align:center;padding:26px 18px 40px;color:var(--muted);font-size:12.
   function show(n){
     i=(n+figs.length)%figs.length;
     var f=figs[i], img=f.querySelector('img');
-    im.src=img.dataset.full; im.alt=img.alt; lg.textContent=img.alt;
+    im.src=img.dataset.full||img.src; im.alt=img.alt; lg.textContent=img.alt;
     lb.classList.add('on'); document.body.style.overflow='hidden';
   }
   function hide(){lb.classList.remove('on'); im.src=''; document.body.style.overflow='';}
