@@ -257,6 +257,41 @@
             border-radius: 50%; flex-shrink: 0;
         }
 
+        /* SELOS DE CONFIANÇA — quebram objeção antes da primeira pergunta.
+           Ideia trazida do site da irmã do dono, onde o selo Superhost do Airbnb fecha o
+           bloco "Sobre". Aqui o mesmo lugar: fim do texto, antes de rolar pra descrição.
+           A nota é a REAL do JSON-LD desta página (4,8 de 5 sobre 90 avaliações) — a mesma
+           que substituiu as 384 avaliações falsas. Não inventar número aqui nunca. */
+        .selos {
+            display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+            margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(12,74,110,.12);
+        }
+        .selo-nota {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--ocean); color: #fff;
+            padding: 10px 16px 10px 12px; border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(12,74,110,.18);
+        }
+        .selo-nota-num {
+            font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700;
+            line-height: 1; background: rgba(255,255,255,.14);
+            padding: 8px 11px; border-radius: 9px; letter-spacing: -.5px;
+        }
+        .selo-nota-txt { font-size: 13px; line-height: 1.35; }
+        .selo-nota-txt strong { display: block; font-size: 14px; letter-spacing: .2px; }
+        .selo-nota-txt span { opacity: .82; }
+        /* O selo oficial da Booking entra como IMAGEM. Enquanto o arquivo não existir, o
+           onerror remove o elemento — a faixa fica correta sem imagem quebrada, e o selo
+           aparece sozinho no instante em que o arquivo for publicado. */
+        .selo-oficial {
+            width: 208px; height: auto; display: block; border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(12,74,110,.18);
+        }
+        @media (max-width: 640px) {
+            .selos { gap: 14px; margin-top: 24px; padding-top: 20px; }
+            .selo-oficial { width: 168px; }
+        }
+
         /* DESCRIPTION */
         .description { background: var(--white); }
         .description-content { max-width: 800px; margin: 0 auto; }
@@ -894,6 +929,17 @@
                     <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h4">TV em todos os cômodos</span></div>
                     <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h5">Roupa de cama</span></div>
                     <div class="highlight-item"><span class="highlight-dot"></span> <span data-i18n="about_h6">Estacionamento</span></div>
+                </div>
+                <div class="selos" aria-label="Reconhecimentos e avaliações">
+                    <div class="selo-nota">
+                        <span class="selo-nota-num">4,8</span>
+                        <span class="selo-nota-txt">
+                            <strong data-i18n="selo_nota">Excelente</strong>
+                            <span data-i18n="selo_avaliacoes">4,8 de 5 · 90 avaliações</span>
+                        </span>
+                    </div>
+                    <img class="selo-oficial" src="img/selo-booking.png" loading="lazy"
+                         alt="Booking.com Traveller Review Award" onerror="this.remove()">
                 </div>
             </div>
         </div>
@@ -1637,6 +1683,8 @@ const translations = {
         about_h4: "TV en todos los ambientes",
         about_h5: "Ropa de cama",
         about_h6: "Estacionamiento",
+        selo_nota: "Excelente",
+        selo_avaliacoes: "4,8 de 5 · 90 evaluaciones",
         // Description
         desc_title: "La Mejor Vista al Mar",
         desc_subtitle: "Balcón al Naciente, Privacidad",
@@ -1920,6 +1968,8 @@ const translations = {
         about_h4: "TV in every room",
         about_h5: "Bed linen",
         about_h6: "Parking",
+        selo_nota: "Excellent",
+        selo_avaliacoes: "4.8 out of 5 · 90 reviews",
         // Description
         desc_title: "The Best Ocean View",
         desc_subtitle: "East-Facing Balcony, Privacy",
