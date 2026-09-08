@@ -1,0 +1,79 @@
+{
+  "descricao": "Banco de ângulos pra segunda-feira (Porto de Galinhas + Muro Alto + Polinésia Resort juntos). Não repetir até esgotar. Fatos vêm de BASE_CONHECIMENTO_INSTAGRAM.md (seções 1-8) — sempre conferir lá antes de escrever, e nunca inventar o que não estiver registrado.",
+  "topicos": [
+    {
+      "id": 1,
+      "titulo": "Piscinas naturais premiadas + reconhecimento",
+      "usado": true,
+      "imagemSugerida": "mar-vegetacao.jpg"
+    },
+    {
+      "id": 2,
+      "titulo": "Passeios, vila, restaurantes e mercado de Muro Alto/Porto de Galinhas",
+      "usado": true,
+      "imagemSugerida": "praia-barracas.jpg"
+    },
+    {
+      "id": 3,
+      "titulo": "Elevador novo + telas de proteção anti-queda (segurança de família com criança pequena)",
+      "usado": true,
+      "imagemSugerida": "elevador-vista.jpg",
+      "fatos": [
+        "Todos os blocos têm elevador novo",
+        "Todas as janelas e a varanda têm tela de proteção anti-queda",
+        "Caso real 19/08/2026: hóspede argentina recusou apê por achar que teria que subir escada com filhos pequenos"
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Estrutura completa do Samôa incluída (piscina, bar, restaurante, playground, recreação)",
+      "usado": true,
+      "imagemSugerida": "piscinas-aerea.jpg",
+      "fatos": [
+        "Acesso completo à infraestrutura do Samôa Resort",
+        "Piscina aquecida e ofurô, tobogã infantil, playground, salão de jogos, quadra de tênis e poliesportiva",
+        "Recreação infantil existe mas a equipe não assume a guarda das crianças — ressalva obrigatória se mencionar recreação"
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Serviço de praia próprio e cabana de frente pro mar",
+      "usado": true,
+      "imagemSugerida": "cabana-conchas.jpg",
+      "fatos": [
+        "Cadeira e guarda-sol reservados pra hóspede na areia em frente ao condomínio",
+        "Cabana própria na praia — diferencial pouco explorado pelos concorrentes"
+      ]
+    },
+    {
+      "id": 6,
+      "titulo": "Limpeza já inclusa no valor (sem cobrança extra)",
+      "usado": true,
+      "imagemSugerida": "condominio-aereo.jpg",
+      "fatos": [
+        "Limpeza embutida no valor, não cobrada por diária nem à parte",
+        "Argumento anti-surpresa, forte contra concorrente que cobra à parte"
+      ]
+    },
+    {
+      "id": 7,
+      "titulo": "O apartamento térreo com piscina privativa (produto premium)",
+      "usado": true,
+      "imagemSugerida": "piscina-praia-mar.jpg",
+      "fatos": [
+        "Térreo tem piscina privativa na frente do apartamento, acesso direto pela varanda",
+        "É o produto premium; preço maior é por custo de manutenção, nunca dizer que é por 'demanda'"
+      ]
+    },
+    {
+      "id": 8,
+      "titulo": "O piso superior: melhor vista, ventilação e privacidade (nunca 'o mais barato')",
+      "usado": true,
+      "imagemSugerida": "varanda-mar-2.jpg",
+      "fatos": [
+        "Não é opção econômica — é outra proposta: melhor vista, melhor ventilação, mais privacidade, mais silêncio",
+        "Proibido apresentar como 'mais barato' — já travou venda por esse motivo em 19/08/2026"
+      ]
+    }
+  ]
+}
