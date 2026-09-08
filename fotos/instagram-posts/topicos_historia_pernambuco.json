@@ -1,0 +1,504 @@
+{
+  "descricao": "Banco de tópicos de história de Pernambuco/cidades para o post de quarta-feira. Não repetir um tópico até esgotar a lista (campo 'usado').",
+  "topicos": [
+    {
+      "id": 1,
+      "titulo": "Recife: fundação como porto de Olinda (1537)",
+      "fatos": [
+        "Fundada oficialmente em 12 de março de 1537",
+        "Arraial entre o mar e os rios Capibaribe e Beberibe"
+      ],
+      "usado": true
+    },
+    {
+      "id": 2,
+      "titulo": "Recife: Marco Zero",
+      "fatos": [
+        "Praça Rio Branco, local simbólico da fundação",
+        "Mosaico da bússola de Cícero Dias, escultura de bronze de Félix Charpentier"
+      ],
+      "usado": true
+    },
+    {
+      "id": 3,
+      "titulo": "Recife: Sinagoga Kahal Zur Israel, a primeira das Américas",
+      "fatos": [
+        "Fundada por volta de 1636, na Rua dos Judeus",
+        "Rabino Isaac Aboab da Fonseca a partir de 1642",
+        "Comunidade de ~1.450 pessoas; ruínas reabertas em dezembro de 2001"
+      ],
+      "usado": true
+    },
+    {
+      "id": 4,
+      "titulo": "Recife: Mauritsstad, a capital holandesa",
+      "fatos": [
+        "Nassau chegou em janeiro de 1637",
+        "Desenho urbano de Pieter Post",
+        "Palácio Vrijburg (1640-42) teve o primeiro zoológico e jardim botânico das Américas"
+      ],
+      "usado": true
+    },
+    {
+      "id": 5,
+      "titulo": "Recife: Ponte Maurício de Nassau",
+      "fatos": [
+        "Primeira ponte sobre o rio Capibaribe",
+        "Construída em 7 semanas, inaugurada em 1644"
+      ],
+      "usado": true
+    },
+    {
+      "id": 6,
+      "titulo": "Recife: Ponte da Boa Vista",
+      "fatos": [
+        "Mandada construir por Nassau por volta de 1640",
+        "Reconstruída em ferro na década de 1860",
+        "Ponte atual de concreto inaugurada em 1917"
+      ],
+      "usado": false
+    },
+    {
+      "id": 7,
+      "titulo": "Recife: Rua do Bom Jesus",
+      "fatos": [
+        "Originalmente 'Rua do Bode', depois 'Rua dos Judeus' no domínio holandês",
+        "Nome atual desde 1870"
+      ],
+      "usado": false
+    },
+    {
+      "id": 8,
+      "titulo": "Recife: Revolução Pernambucana de 1817",
+      "fatos": [
+        "Levante separatista iniciado em 6 de março de 1817",
+        "Sufocado em 20 de maio de 1817"
+      ],
+      "usado": false
+    },
+    {
+      "id": 9,
+      "titulo": "Recife: Insurreição Praieira (1848-1850)",
+      "fatos": [
+        "Começou em 7 de novembro de 1848",
+        "Liderada por Pedro Ivo Velloso da Silveira",
+        "Última revolta interna pós-independência no Brasil"
+      ],
+      "usado": false
+    },
+    {
+      "id": 10,
+      "titulo": "Recife: Frevo reconhecido pela UNESCO (2012)",
+      "fatos": [
+        "Reconhecido em 5 de dezembro de 2012, em Paris",
+        "Já era patrimônio nacional desde 2007"
+      ],
+      "usado": false
+    },
+    {
+      "id": 11,
+      "titulo": "Recife: Porto Digital e a verticalização",
+      "fatos": [
+        "O porto do Recife começou a operar em 12 de setembro de 1918",
+        "Hoje mais de 1.100 prédios altos, a maioria construída entre 2001 e 2010"
+      ],
+      "usado": false
+    },
+    {
+      "id": 12,
+      "titulo": "Olinda: fundação por Duarte Coelho (1535)",
+      "fatos": [
+        "Desembarque em 9 de março de 1535",
+        "Lenda do nome: 'Ó, linda situação'",
+        "Status de vila em 12 de março de 1537"
+      ],
+      "usado": false
+    },
+    {
+      "id": 13,
+      "titulo": "Olinda: Patrimônio Mundial da UNESCO (1982)",
+      "fatos": [
+        "Segunda cidade brasileira na lista, depois de Ouro Preto",
+        "Protegida pelo IPHAN desde 1968"
+      ],
+      "usado": true
+    },
+    {
+      "id": 14,
+      "titulo": "Olinda: destruição pelos holandeses (1630-1631)",
+      "fatos": [
+        "Invadida em 16 de fevereiro de 1630",
+        "Incendiada em 24 de novembro de 1631",
+        "Reconstrução após 27 de janeiro de 1654"
+      ],
+      "usado": false
+    },
+    {
+      "id": 15,
+      "titulo": "Olinda: os bonecos gigantes do Carnaval",
+      "fatos": [
+        "Tradição do 'Homem da Meia-Noite' desde 1932",
+        "Criada por Luciano Anacleto de Queiroz e Bernardino da Silva"
+      ],
+      "usado": false
+    },
+    {
+      "id": 17,
+      "titulo": "Olinda: Mosteiro de São Bento",
+      "fatos": [
+        "Fundado em 1586, segunda casa beneditina do Brasil",
+        "Incendiado em 1631, reconstruído entre 1688-92",
+        "Basílica Menor desde 1998"
+      ],
+      "usado": false
+    },
+    {
+      "id": 18,
+      "titulo": "Olinda: Convento de São Francisco",
+      "fatos": [
+        "Fundado em 1585, primeiro convento franciscano do Brasil",
+        "Incendiado pelos holandeses em 1631"
+      ],
+      "usado": false
+    },
+    {
+      "id": 20,
+      "titulo": "Igarassu: a primeira vila fundada no Brasil (1535)",
+      "fatos": [
+        "Fundada em 27 de setembro de 1535, pelo capitão Afonso Gonçalves",
+        "É anterior a Olinda (1537)"
+      ],
+      "usado": false
+    },
+    {
+      "id": 21,
+      "titulo": "Igarassu: a igreja mais antiga do Brasil em pé",
+      "fatos": [
+        "Igreja Matriz dos Santos Cosme e Damião",
+        "Reconhecida pelo IPHAN"
+      ],
+      "usado": false
+    },
+    {
+      "id": 22,
+      "titulo": "Igarassu: a festa de Cosme e Damião",
+      "fatos": [
+        "Uma das festas populares mais antigas do Brasil, em 27 de setembro",
+        "Ligada a uma lenda de milagre de 1685"
+      ],
+      "usado": false
+    },
+    {
+      "id": 23,
+      "titulo": "Igarassu: Convento de Santo Antônio",
+      "fatos": [
+        "Fundado em 1588, terceiro convento franciscano do Brasil",
+        "Saqueado pelos holandeses, reconstruído até 1693"
+      ],
+      "usado": false
+    },
+    {
+      "id": 24,
+      "titulo": "Igarassu: Engenho Monjope",
+      "fatos": [
+        "Engenho de açúcar jesuíta doado em 1600",
+        "Visitado por Dom Pedro II em dezembro de 1859"
+      ],
+      "usado": false
+    },
+    {
+      "id": 28,
+      "titulo": "Ipojuca: as origens sem data exata",
+      "fatos": [
+        "Não há data de fundação documentada com certeza",
+        "Ano de 1596 citado por relato de um vigário da paróquia"
+      ],
+      "usado": false
+    },
+    {
+      "id": 29,
+      "titulo": "Ipojuca: elevação a cidade",
+      "fatos": [
+        "Voltou a se chamar Nossa Senhora do Ó em 1890",
+        "Status de cidade em 6 de junho de 1896"
+      ],
+      "usado": false
+    },
+    {
+      "id": 31,
+      "titulo": "Porto de Galinhas: a origem do nome",
+      "fatos": [
+        "Antes se chamava 'Porto Rico'",
+        "Nome ligado ao tráfico clandestino de pessoas escravizadas após 1845 — tema histórico sensível, tratar com seriedade"
+      ],
+      "usado": false
+    },
+    {
+      "id": 33,
+      "titulo": "Muro Alto: as piscinas naturais como geossítio",
+      "fatos": [
+        "Recife de arenito de cerca de 3 km",
+        "Reconhecido como geossítio nacional pelo Serviço Geológico do Brasil"
+      ],
+      "usado": false
+    },
+    {
+      "id": 34,
+      "titulo": "Porto de Galinhas: de vila de pescadores a destino turístico",
+      "fatos": [
+        "O Solar Porto de Galinhas, aberto em fevereiro de 1986, foi o primeiro hotel da região"
+      ],
+      "usado": false
+    },
+    {
+      "id": 35,
+      "titulo": "Porto de Suape: o complexo industrial",
+      "fatos": [
+        "Pedra fundamental em 1974",
+        "Início das operações em 8 de novembro de 1983",
+        "Maior porto público do Nordeste"
+      ],
+      "usado": false
+    },
+    {
+      "id": 40,
+      "titulo": "Quilombo dos Palmares e Zumbi",
+      "fatos": [
+        "Fundado no final do século XVI",
+        "Zumbi viveu de cerca de 1655 até 20 de novembro de 1695"
+      ],
+      "usado": false
+    },
+    {
+      "id": 43,
+      "titulo": "Pernambuco: o ciclo do açúcar",
+      "fatos": [
+        "Solo massapê fértil da Zona da Mata sustentou séculos de produção",
+        "Base da economia colonial pernambucana"
+      ],
+      "usado": false
+    },
+    {
+      "id": 49,
+      "titulo": "A missão científica de Maurício de Nassau",
+      "fatos": [
+        "Trouxe os artistas Frans Post e Albert Eckhout, e os cientistas Willem Piso e Georg Marcgraf",
+        "Resultou na obra 'Historiae Naturalis Brasiliae' (1648)"
+      ],
+      "usado": false
+    },
+    {
+      "id": 54,
+      "titulo": "As Batalhas dos Guararapes",
+      "fatos": [
+        "Primeira batalha em 18-19 de abril de 1648",
+        "Segunda batalha em 19 de fevereiro de 1649",
+        "Consideradas o marco simbólico da origem do Exército brasileiro"
+      ],
+      "usado": false
+    },
+    {
+      "id": 56,
+      "titulo": "Forte das Cinco Pontas, Recife",
+      "fatos": [
+        "Construído em 1630, reconstruído em 1684",
+        "Museu desde 1982"
+      ],
+      "usado": false
+    },
+    {
+      "id": 58,
+      "titulo": "Capela Dourada, Recife",
+      "fatos": [
+        "Iniciada em 1696, concluída em 1724",
+        "Um dos interiores barrocos mais ricos do Brasil"
+      ],
+      "usado": false
+    },
+    {
+      "id": 63,
+      "titulo": "Confederação do Equador (1824-25)",
+      "fatos": [
+        "Movimento separatista de 1824",
+        "Frei Caneca executado em janeiro de 1825"
+      ],
+      "usado": false
+    },
+    {
+      "id": 67,
+      "titulo": "Joaquim Nabuco, pernambucano abolicionista",
+      "fatos": [
+        "Viveu de 1849 a 1910",
+        "Uma das vozes mais importantes contra a escravidão no Brasil"
+      ],
+      "usado": false
+    },
+    {
+      "id": 68,
+      "titulo": "Gilberto Freyre e 'Casa-Grande & Senzala'",
+      "fatos": [
+        "Viveu de 1900 a 1987, nascido no Recife",
+        "Obra fundamental sobre a formação da sociedade brasileira"
+      ],
+      "usado": false
+    },
+    {
+      "id": 72,
+      "titulo": "Recife, a 'Veneza Brasileira'",
+      "fatos": [
+        "Mais de 50 pontes cortam a cidade",
+        "Apelido vem da paisagem de rios e canais"
+      ],
+      "usado": false
+    },
+    {
+      "id": 76,
+      "titulo": "Maracatu Nação como patrimônio",
+      "fatos": [
+        "Reconhecido pelo IPHAN em dezembro de 2014",
+        "Manifestação afro-brasileira com raízes na coroação de reis do Congo"
+      ],
+      "usado": false
+    },
+    {
+      "id": 79,
+      "titulo": "Caruaru: a Feira, Patrimônio Imaterial",
+      "fatos": [
+        "Registrada como patrimônio em 2006",
+        "Considerada a maior feira livre a céu aberto do Brasil"
+      ],
+      "usado": false
+    },
+    {
+      "id": 80,
+      "titulo": "Caruaru: a 'Capital do Forró'",
+      "fatos": [
+        "Título consolidado desde 1984",
+        "Música 'Feira de Caruaru' (1957) ajudou a popularizar o nome"
+      ],
+      "usado": false
+    },
+    {
+      "id": 81,
+      "titulo": "Caruaru: Mestre Vitalino e o Alto do Moura",
+      "fatos": [
+        "Vitalino viveu de 1909 a 1963",
+        "Alto do Moura é reconhecido como o maior polo de cerâmica figurativa popular das Américas"
+      ],
+      "usado": false
+    },
+    {
+      "id": 83,
+      "titulo": "Garanhuns, a 'Suíça Pernambucana'",
+      "fatos": [
+        "Apelido vem das sete colinas e do clima ameno da cidade"
+      ],
+      "usado": false
+    },
+    {
+      "id": 87,
+      "titulo": "Goiana: patrimônio de igrejas coloniais",
+      "fatos": [
+        "8 igrejas tombadas pelo IPHAN desde 1938"
+      ],
+      "usado": false
+    },
+    {
+      "id": 94,
+      "titulo": "Triunfo, o 'oásis do Sertão'",
+      "fatos": [
+        "Fundação missionária entre 1803 e 1824, por Frei Ângelo Maurício Niza",
+        "Cidade elevada em 1884"
+      ],
+      "usado": false
+    },
+    {
+      "id": 95,
+      "titulo": "Fernando de Noronha: a descoberta (1503)",
+      "fatos": [
+        "Atribuída a Américo Vespúcio em 1503"
+      ],
+      "usado": false
+    },
+    {
+      "id": 97,
+      "titulo": "Fernando de Noronha: história de colônia penal",
+      "fatos": [
+        "Usada como presídio, inclusive para presos políticos entre 1938 e 1945"
+      ],
+      "usado": false
+    },
+    {
+      "id": 98,
+      "titulo": "Fernando de Noronha: Patrimônio Natural da UNESCO",
+      "fatos": [
+        "Reconhecido em 13 de dezembro de 2001"
+      ],
+      "usado": true
+    },
+    {
+      "id": 99,
+      "titulo": "Petrolina: de passagem a polo de irrigação",
+      "fatos": [
+        "Origem como 'Passagem de Juazeiro'; status de cidade em 1895",
+        "Desde os anos 1960, polo de fruticultura irrigada — grande exportadora de manga e uva"
+      ],
+      "usado": false
+    },
+    {
+      "id": 115,
+      "titulo": "Serra Talhada: terra natal de Lampião",
+      "fatos": [
+        "Lampião nasceu em 7 de julho de 1897",
+        "Cidade é conhecida como 'Capital do Xaxado', com museu do Cangaço desde 2007"
+      ],
+      "usado": false
+    },
+    {
+      "id": 122,
+      "titulo": "Águas Belas e o povo Fulni-ô",
+      "fatos": [
+        "Único povo indígena do Nordeste com língua nativa preservada (Yaathe)",
+        "Reconhecimento oficial nas décadas de 1920"
+      ],
+      "usado": false
+    },
+    {
+      "id": 126,
+      "titulo": "Cabo de Santo Agostinho e o Porto de Suape",
+      "fatos": [
+        "Nome vem do avistamento em 28 de agosto de 1501, dia de Santo Agostinho",
+        "Suape concebido nos anos 1960, primeiro berço em 1986"
+      ],
+      "usado": false
+    },
+    {
+      "id": 129,
+      "titulo": "Jaboatão dos Guararapes, 'Berço da Pátria'",
+      "fatos": [
+        "Palco das duas Batalhas dos Guararapes (1648 e 1649)",
+        "Considerado o marco simbólico da origem do Exército brasileiro"
+      ],
+      "usado": false
+    },
+    {
+      "id": 136,
+      "titulo": "Camaragibe: a primeira vila operária da América Latina",
+      "fatos": [
+        "Ligada à fábrica têxtil CIPE, instalada entre 1891-95",
+        "Chegou a empregar 1.400 trabalhadores"
+      ],
+      "usado": false
+    },
+    {
+      "id": 140,
+      "titulo": "Paulista e a Companhia de Tecidos Paulista",
+      "fatos": [
+        "Fundada por Herman Lundgren",
+        "Chegou a ter mais de 20 mil funcionários no auge"
+      ],
+      "usado": false
+    }
+  ],
+  "nota_confiabilidade": "Tópicos com data contestada entre fontes (ex: 2ª Batalha do Monte das Tabocas, ano exato de Camaragibe) foram deixados de fora desta lista reduzida por segurança. Lista completa de 140 tópicos brutos, incluindo os com ressalva, está registrada na pesquisa original de 03/09/2026 caso queira expandir depois."
+}
