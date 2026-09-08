@@ -3784,7 +3784,17 @@ var AD_SRC = (function () {
     try {
         var q = new URLSearchParams(location.search);
         var us = (q.get('utm_source') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-        var tag = us ? ('ads_' + us) : (q.get('gclid') ? 'ads_google' : '');
+        /* [08/09/2026] ads_ SÓ quando for anúncio PAGO; senão org_.
+           Antes o prefixo 'ads_' era colado em QUALQUER utm_source, e o painel mostrava seis
+           "anúncios" onde havia dois: o Instagram orgânico virava ads_ig, e três visitas vindas
+           do ChatGPT viravam ads_chatgptcom — sem ninguém ter pago um centavo por elas.
+           Regra: gclid é Google Ads por definição; fora isso, só é pago se o utm_medium disser
+           (paid, cpc, ppc, paidsocial). Na dúvida, orgânico — inflar o pago é o erro caro. */
+        var um = (q.get('utm_medium') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        var ehPago = (um === 'paid' || um === 'cpc' || um === 'ppc' || um === 'paidsocial' ||
+                      um === 'ads' || um === 'display');
+        var tag = us ? ((ehPago ? 'ads_' : 'org_') + us)
+                     : (q.get('gclid') ? 'ads_google' : '');
         if (tag) { sessionStorage.setItem('pol_adsrc', tag); return tag; }
         return sessionStorage.getItem('pol_adsrc') || '';
     } catch (e) { return ''; }
