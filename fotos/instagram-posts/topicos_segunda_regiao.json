@@ -4,7 +4,7 @@
     {
       "id": 1,
       "titulo": "Piscinas naturais premiadas + reconhecimento",
-      "usado": false,
+      "usado": true,
       "imagemSugerida": "mar-vegetacao.jpg"
     },
     {
