@@ -1,0 +1,43 @@
+{
+  "descricao": "Banco de tópicos pra sexta-feira (gastronomia da região/estado ou curiosidade da cultura de Pernambuco). Não repetir até esgotar. Regra fixa (ver BASE_CONHECIMENTO_INSTAGRAM.md seção 12): a ponte com o Polinésia é geográfica, nunca dizer que a casa serve o prato. Cada tópico precisa de foto com licença livre verificada (Wikimedia Commons de preferência) e crédito na legenda.",
+  "topicos": [
+    {
+      "id": 1,
+      "titulo": "Bolo de rolo — doce típico de Pernambuco",
+      "usado": true,
+      "imagemUsada": "externo-bolo-de-rolo.jpg",
+      "credito": "Guilherme Jófili / Wikimedia Commons (CC BY 2.0)"
+    },
+    {
+      "id": 2,
+      "titulo": "Frevo — dança e manifestação cultural de Pernambuco",
+      "usado": true,
+      "imagemUsada": "externo-frevo.jpg",
+      "credito": "Prefeitura de Olinda / Wikimedia Commons (CC BY 2.0)"
+    },
+    {
+      "id": 3,
+      "titulo": "Carne de sol pernambucana",
+      "usado": true,
+      "nota": "Pesquisa inicial achou fontes mais genéricas — verificar origem/tradição específica antes de escrever, com fonte sólida (não só 'é típico do sertão').",
+      "imagemUsada": "thumb-externo-carne-de-sol-pe.jpg",
+      "credito": "Roosewelt Pinheiro / Agência Brasil / Wikimedia Commons (CC BY 3.0 BR)"
+    },
+    {
+      "id": 4,
+      "titulo": "Maracatu Nação (curiosidade cultural, distinto do frevo)",
+      "usado": false,
+      "nota": "Reconhecido pelo IPHAN em dez/2014 como patrimônio imaterial — já verificado na pesquisa de história, dá pra reaproveitar os fatos, mas escrever com foco gastronômico/cultural de sexta, não histórico de quarta.",
+      "imagemUsada": "thumb-externo-maracatu-nacao.jpg",
+      "credito": "Prefeitura de Olinda / Wikimedia Commons (CC BY 2.0)"
+    },
+    {
+      "id": 5,
+      "titulo": "Feira de Caruaru — maior feira livre do Brasil",
+      "usado": false,
+      "nota": "Registrada como Patrimônio Imaterial em 2006 — já verificado, precisa só de foto e ângulo de sexta (curiosidade cultural/tradição viva, não história de fundação).",
+      "imagemUsada": "thumb-externo-feira-caruaru.jpg",
+      "credito": "Edudgarcia / Wikimedia Commons (CC BY-SA 4.0)"
+    }
+  ]
+}
