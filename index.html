@@ -480,6 +480,7 @@
         /* [12/09/2026] Faixa de video: ocupa a linha inteira da galeria, nunca divide
            linha com foto. Altura = 2 linhas de foto + o gap, pra nao parecer menor. */
         .condo-item.video-row { grid-column: 1 / -1; height: 572px; }
+        .condo-item.foto-faixa { grid-column: 1 / -1; }
         .condo-item.video-row video {
             width: 100%; height: 100%; object-fit: cover; display: block; background: #0f172a;
         }
@@ -835,6 +836,7 @@
                 grid-template-rows: repeat(4, 180px);
             }
             .gallery-item.span-2 { grid-column: span 1; }
+            .gallery-grid > .gallery-item:last-child { grid-column: span 2; }
             .amenities-grid { display: none; }
             .amenities-list-mobile { display: block; }
             .location-grid { grid-template-columns: 1fr; }
@@ -1343,8 +1345,9 @@
             <div class="gallery-item"><picture><source srcset="img/quarto-03.webp" type="image/webp"><img src="img/quarto-03.webp" alt="Segundo quarto do apartamento, com saída para a varanda" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto2">Segundo quarto</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/cozinha-01.webp" type="image/webp"><img src="img/cozinha-01.webp" alt="Cozinha completa com geladeira, cooktop, micro-ondas e bancada de granito" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_cozinha">Cozinha completa</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/quarto-casal.webp" type="image/webp"><img src="img/quarto-casal.jpg" alt="Quarto de casal com guarda-roupa de freijó" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_quarto_casal">Quarto de casal</figcaption></div>
-            <div class="gallery-item span-2"><picture><source srcset="img/sala-04.webp" type="image/webp"><img src="img/sala-04.webp" alt="Sala ampla com varanda integrada no Polinésia Resort Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_sala">Sala</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/sala-04.webp" type="image/webp"><img src="img/sala-04.webp" alt="Sala ampla com varanda integrada no Polinésia Resort Muro Alto" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_sala">Sala</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/varanda-piscina.webp" type="image/webp"><img src="img/varanda-piscina.jpg" alt="Varanda do apartamento com mesa, tela de proteção e vista para as piscinas" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_varanda">Varanda com tela de proteção</figcaption></div>
+            <div class="gallery-item"><picture><source srcset="img/varanda-noite.webp" type="image/webp"><img src="img/varanda-noite.jpg" alt="Varanda gourmet à noite, com bancada de granito, cuba e a piscina iluminada ao fundo" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_varanda_noite">A varanda à noite</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/tv-giratoria.webp" type="image/webp"><img src="img/tv-giratoria.webp" alt="TV giratória entre a sala e o quarto, no painel de freijó" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_tv">TV giratória sala e quarto</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/elevador.webp" type="image/webp"><img src="img/elevador.jpg" alt="Elevador do bloco — todos os blocos do condomínio têm elevador" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_elevador">Elevadores novos em todos os blocos</figcaption></div>
             <div class="gallery-item"><picture><source srcset="img/berco.webp" type="image/webp"><img src="img/berco.webp" alt="Berço disponível para bebês no apartamento" loading="lazy"></picture><figcaption class="gal-cap" data-i18n="cap_berco">Berço disponível</figcaption></div>
@@ -1362,7 +1365,7 @@
         </div>
         <div class="condo-grid">
             <div class="condo-item large"><picture><source srcset="img/estrutura-03.webp" type="image/webp"><img src="img/estrutura-03.webp" alt="Piscina com quiosque e espreguiçadeiras no condomínio Polinésia Resort" loading="lazy"></picture></div>
-            <div class="condo-item"><picture><source srcset="img/web-condo-2.webp" type="image/webp"><img src="img/web-condo-2.jpg" alt="Pergolado com rede e vista para o mar em Muro Alto" loading="lazy"></picture></div>
+            <div class="condo-item"><picture><source srcset="img/web-condo-2.webp" type="image/webp"><img src="img/web-condo-2.jpg" alt="Deck com sofás e cortina de búzios de frente para o mar, na área de lazer do condomínio" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/web-condo-3.webp" type="image/webp"><img src="img/web-condo-3.jpg" alt="Caiaques coloridos na praia de Muro Alto, Porto de Galinhas" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/estrutura-06.webp" type="image/webp"><img src="img/estrutura-06.webp" alt="Praia de Muro Alto com piscinas naturais e coqueiros" loading="lazy"></picture></div>
             <div class="condo-item condo-review" id="condoReview1" aria-live="polite"></div>
@@ -1376,6 +1379,7 @@
             <div class="condo-item large"><picture><source srcset="img/web-new-condo-3.webp" type="image/webp"><img src="img/web-new-condo-3.jpg" alt="Vista aérea dos jardins, piscinas e área de lazer do resort" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/web-new-condo-4.webp" type="image/webp"><img src="img/web-new-condo-4.jpg" alt="Piscinas do Polinésia Resort ao pôr do sol em Porto de Galinhas" loading="lazy"></picture></div>
             <div class="condo-item video-row"><span class="vid-selo">VÍDEO</span><video data-lazy poster="videos/poster/praia-guarda-sois-lento40.webp" preload="none" muted loop playsinline aria-label="Beira-mar de Muro Alto com guarda-sóis, em frente ao condomínio"><source src="videos/av1/praia-guarda-sois-lento40.mp4" type="video/mp4; codecs=av01.0.05M.08"><source src="videos/mp4/praia-guarda-sois-lento40.mp4" type="video/mp4"></video></div>
+            <div class="condo-item foto-faixa"><picture><source srcset="img/estacionamento.webp" type="image/webp"><img src="img/estacionamento.jpg" alt="Estacionamento interno do condomínio à noite, iluminado, com vagas em frente aos blocos" loading="lazy"></picture></div>
         </div>
     </div>
 </section>
@@ -1836,7 +1840,6 @@ else condoReviewsStart();
 var HERO_FOTOS = [
   { f: 'hero-piscinas',    cap: 'cap_varanda_vista', alt: 'Piscinas e jardins do Polinésia Resort ao fim da tarde' },
   { f: 'hero-praia-aerea', cap: 'cap_hero_praia',    alt: 'Vista aérea da praia de Muro Alto e das piscinas naturais' },
-  { f: 'hero-conchas',     cap: 'cap_hero_conchas',  alt: 'Quiosque com cortina de conchas e vista para o mar' },
   { f: 'hero-cafe',        cap: 'cap_hero_cafe',     alt: 'Café da manhã com frutas tropicais e frios' }
 ];
 var heroI = 0, heroTimer = null;
