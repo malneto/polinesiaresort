@@ -10,7 +10,7 @@
     {
       "id": 2,
       "titulo": "Passeios, vila, restaurantes e mercado de Muro Alto/Porto de Galinhas",
-      "usado": false,
+      "usado": true,
       "imagemSugerida": "praia-barracas.jpg"
     },
     {
