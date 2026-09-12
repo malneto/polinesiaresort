@@ -477,6 +477,17 @@
             position: relative; height: 280px;
         }
         .condo-item.large { grid-column: span 2; }
+        /* [12/09/2026] Faixa de video: ocupa a linha inteira da galeria, nunca divide
+           linha com foto. Altura = 2 linhas de foto + o gap, pra nao parecer menor. */
+        .condo-item.video-row { grid-column: 1 / -1; height: 572px; }
+        .condo-item.video-row video {
+            width: 100%; height: 100%; object-fit: cover; display: block; background: #0f172a;
+        }
+        .condo-item .vid-selo {
+            position: absolute; top: 12px; left: 12px; z-index: 3;
+            background: rgba(12,74,110,.85); color: #fff; font-size: 10px; font-weight: 600;
+            letter-spacing: .8px; padding: 5px 9px; border-radius: 4px;
+        }
         .condo-item img {
             width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.5s;
@@ -506,6 +517,7 @@
             .condo-grid { grid-template-columns: repeat(2, 1fr); }
             .condo-item.large { grid-column: span 1; }
             .condo-item { height: 200px; }
+            .condo-item.video-row { height: 412px; }
         }
 
         /* AMENITIES */
@@ -1363,6 +1375,7 @@
             <div class="condo-item condo-review" id="condoReview2" aria-live="polite"></div>
             <div class="condo-item large"><picture><source srcset="img/web-new-condo-3.webp" type="image/webp"><img src="img/web-new-condo-3.jpg" alt="Vista aérea dos jardins, piscinas e área de lazer do resort" loading="lazy"></picture></div>
             <div class="condo-item"><picture><source srcset="img/web-new-condo-4.webp" type="image/webp"><img src="img/web-new-condo-4.jpg" alt="Piscinas do Polinésia Resort ao pôr do sol em Porto de Galinhas" loading="lazy"></picture></div>
+            <div class="condo-item video-row"><span class="vid-selo">VÍDEO</span><video data-lazy poster="videos/poster/praia-guarda-sois-lento40.webp" preload="none" muted loop playsinline aria-label="Beira-mar de Muro Alto com guarda-sóis, em frente ao condomínio"><source src="videos/av1/praia-guarda-sois-lento40.mp4" type="video/mp4; codecs=av01.0.05M.08"><source src="videos/mp4/praia-guarda-sois-lento40.mp4" type="video/mp4"></video></div>
         </div>
     </div>
 </section>
@@ -2390,5 +2403,21 @@ var exitIdleTimer = setTimeout(function() {
 <!-- Pre-capture: gera [sid:] e injeta nos links do WhatsApp p/ o bot recuperar a cidade-por-IP do visitante (token expira em 1 dia) -->
 <script src="https://servicos.polinesiaresort.com.br/api/precapture.js?v=20260822" async></script>
 
+<script>
+/* [12/09/2026] Video da galeria so baixa e toca quando entra na tela. Com preload="none"
+   a home abre carregando so o poster de 44 KB. */
+(function () {
+  var vs = document.querySelectorAll('video[data-lazy]');
+  if (!vs.length || !('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) { v.preload = 'auto'; v.play().catch(function () {}); }
+      else { v.pause(); }
+    });
+  }, { rootMargin: '250px' });
+  vs.forEach(function (v) { obs.observe(v); });
+})();
+</script>
 </body>
 </html>
