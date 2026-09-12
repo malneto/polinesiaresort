@@ -955,8 +955,8 @@
                 </div>
                 <div class="about-img-float">
                     <picture>
-                        <source srcset="img/varanda-01.webp" type="image/webp">
-                        <img src="img/varanda-01.webp" alt="Varanda com vista para o mar em Porto de Galinhas" loading="lazy">
+                        <source srcset="img/varanda-01-sm.webp" type="image/webp">
+                        <img src="img/varanda-01-sm.jpg" alt="Varanda com vista para o mar em Porto de Galinhas" loading="lazy">
                     </picture>
                 </div>
             </div>
@@ -980,8 +980,11 @@
                             <span data-i18n="selo_avaliacoes">Google · 90 avaliações</span>
                         </span>
                     </div>
-                    <img class="selo-oficial" src="img/selo-booking.png" loading="lazy"
-                         alt="Booking.com Traveller Review Award" onerror="this.remove()">
+                    <picture>
+                        <source srcset="img/selo-booking.webp" type="image/webp">
+                        <img class="selo-oficial" src="img/selo-booking.png" loading="lazy"
+                             alt="Booking.com Traveller Review Award" onerror="this.remove()">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -1875,13 +1878,36 @@ function heroStart() {
     var h = HERO_FOTOS[i % HERO_FOTOS.length];
     if (h && !h._pronta) { h._pronta = true; var im = new Image(); im.src = 'img/' + h.f + '.webp'; }
   }
-  if (heroTimer) clearInterval(heroTimer);
-  // busca a PRÓXIMA 2s antes da troca: chega pronta, sem pesar a abertura da página
-  heroTimer = setInterval(function () { heroI++; heroPinta(); }, 10000);
-  setTimeout(function () {
-    heroPreCarrega(heroI + 1);
-    setInterval(function () { heroPreCarrega(heroI + 1); }, 10000);
-  }, 8000);
+  // [12/09/2026] O rodízio só roda com a galeria na tela E a aba em primeiro plano.
+  // Antes ele girava sempre: quem abria a home e ia ler o resto da página seguia
+  // baixando uma foto de ~100 KB a cada 10s, de um carrossel que nem estava vendo.
+  var heroPre = null, heroIni = null, heroNaTela = false;
+  function heroLiga() {
+    if (heroTimer) return;
+    // busca a PRÓXIMA 2s antes da troca: chega pronta, sem pesar a abertura da página
+    heroTimer = setInterval(function () { heroI++; heroPinta(); }, 10000);
+    heroIni = setTimeout(function () {
+      heroPreCarrega(heroI + 1);
+      heroPre = setInterval(function () { heroPreCarrega(heroI + 1); }, 10000);
+    }, 8000);
+  }
+  function heroDesliga() {
+    clearInterval(heroTimer); heroTimer = null;
+    clearTimeout(heroIni); clearInterval(heroPre); heroPre = null;
+  }
+  function heroAvalia() {
+    (heroNaTela && document.visibilityState !== 'hidden') ? heroLiga() : heroDesliga();
+  }
+  heroDesliga();
+  var heroAlvo = document.getElementById('heroSlot');
+  if (heroAlvo && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      heroNaTela = es[0].isIntersecting; heroAvalia();
+    }, { rootMargin: '150px' }).observe(heroAlvo);
+    document.addEventListener('visibilitychange', heroAvalia);
+  } else {
+    heroNaTela = true; heroLiga();
+  }
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', heroStart);
 else heroStart();
