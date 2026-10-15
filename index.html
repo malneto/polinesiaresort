@@ -1960,6 +1960,20 @@ setInterval(function () { heroSlot = (heroSlot + 1) % HERO_SLOTS; heroRender(fal
 // português. Agora o idioma do próprio aparelho decide primeiro, sem rede e sem espera; o geo
 // por IP virou último recurso, com prazo curto, só para quem tem aparelho em inglês.
 (function() {
+    /* [14/10/2026] 🔴 RASTREADOR NÃO TROCA DE IDIOMA.
+       O Googlebot renderiza a página com navigator.language = "en-US" e fuso UTC, então ele caía
+       no passo 2b ("aparelho em inglês e fuso fora do mundo lusófono") e a página inteira era
+       reescrita em inglês — inclusive o metaDesc, que o setLang substitui por
+       translations[lang].meta_desc. Resultado medido em 14/10/2026: o resultado orgânico do
+       polinesiaresort.com.br aparecia no Google com a descrição em INGLÊS ("Located on the
+       paradisiacal Muro Alto Beach..."), enquanto o .com aparecia em português. Nada estava
+       trocado nos arquivos: era o rastreador vendo uma página traduzida.
+       A versão indexada tem de ser a canônica, que é pt-BR — é o que dizem o <html lang>, o
+       rel=canonical, o og:locale e o JSON-LD. Visitante de carne e osso continua com tudo:
+       idioma do aparelho, fuso e geo por IP, sem nenhuma mudança. */
+    var UA = String((navigator && navigator.userAgent) || '');
+    if (/bot|crawl|spider|slurp|bingpreview|facebookexternalhit|embedly|quora link preview|showyoubot|outbrain|pinterest|vkshare|w3c_validator|lighthouse|headlesschrome|google-inspectiontool|googleother|duckduckbot|yandex|baiduspider|applebot|petalbot|ia_archiver|semrush|ahrefs/i.test(UA)) return;
+
     var saved = localStorage.getItem('polinesia_lang');
     if (saved && saved !== 'pt') { setLang(saved); return; }
     if (saved) return; // já escolheu pt explicitamente
