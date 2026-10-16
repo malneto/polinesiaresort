@@ -881,6 +881,13 @@
             <li><a href="#condominio" data-i18n="nav_condo">Condomínio</a></li>
             <li><a href="#servicos" data-i18n="nav_services">Serviços</a></li>
             <li><a href="#localizacao" data-i18n="nav_location">Localização</a></li>
+            <!-- [16/10/2026] A ISCA SAI DO ESCURO. A captura do Guia de Porto de Galinhas só
+                 existia no rodapé e no popup de saída — quem rolava a página inteira e não ia
+                 embora nunca via. Aqui ele vira porta de entrada, no menu, em todas as línguas.
+                 O link vai para a LANDING (/guia/), que pede o e-mail, e nunca para /guia/page/,
+                 que é o guia já entregue: apontar direto para o conteúdo mataria a captura, que
+                 é a única coisa que esta isca existe para fazer. -->
+            <li><a href="https://servicos.polinesiaresort.com.br/guia/?from=menu_site" id="navGuia" data-i18n="nav_guide">Guia grátis</a></li>
             <li><a href="#" onclick="openWhatsApp();return false;" class="nav-cta">WhatsApp</a></li>
         </ul>
         <div class="lang-flags">
@@ -1737,6 +1744,14 @@ function setLang(lang, persist) {
     var flagId = { pt: 'flagPt', es: 'flagEs', en: 'flagEn' };
     var activeBtn = document.getElementById(flagId[lang]);
     if (activeBtn) activeBtn.classList.add('active');
+
+    // [16/10/2026] O link do Guia leva o idioma junto: a landing responde em pt, es e en, e
+    // mandar um argentino para a versão em português é perder o lead na primeira tela.
+    var navGuia = document.getElementById('navGuia');
+    if (navGuia) {
+        var lg = (lang === 'es' || lang === 'en') ? lang : 'pt';
+        navGuia.href = 'https://servicos.polinesiaresort.com.br/guia/?from=menu_site&lang=' + lg;
+    }
 
     // Update html lang attribute
     const langMap = { pt: 'pt-BR', es: 'es', en: 'en', zh: 'zh-CN', hi: 'hi', fr: 'fr', ar: 'ar', bn: 'bn' };

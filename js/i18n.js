@@ -5,6 +5,7 @@
 const translations = {
     es: {
         // Nav
+        nav_guide: "Guía gratis",
         nav_apartment: "El Apartamento",
         nav_compare: "¿Por qué aquí?",
         nav_photos: "Fotos",
@@ -292,6 +293,7 @@ const translations = {
     },
     en: {
         // Nav
+        nav_guide: "Free guide",
         nav_apartment: "The Apartment",
         nav_compare: "Why here?",
         nav_photos: "Photos",
@@ -578,6 +580,7 @@ const translations = {
         meta_desc: "Vacation apartment in Muro Alto, Porto de Galinhas. 2 bedrooms, 73m², on the best stretch of natural pools. Water park, playroom, sports court."
     },
     zh: {
+        nav_guide: "免费指南",
         nav_apartment: "公寓",
         nav_photos: "照片",
         nav_condo: "度假村",
@@ -813,6 +816,7 @@ const translations = {
         footer_copy: "\u00a9 2026 Polinésia Residence & Resort. 保留所有权利。"
     },
     hi: {
+        nav_guide: "मुफ़्त गाइड",
         nav_apartment: "अपार्टमेंट",
         nav_photos: "फ़ोटो",
         nav_condo: "रिसॉर्ट",
@@ -1048,6 +1052,7 @@ const translations = {
         footer_copy: "\u00a9 2026 Polinésia Residence & Resort. सर्वाधिकार सुरक्षित।"
     },
     fr: {
+        nav_guide: "Guide gratuit",
         nav_apartment: "L'Appartement",
         nav_photos: "Photos",
         nav_condo: "Résidence",
@@ -1296,6 +1301,7 @@ const translations = {
         footer_copy: "\u00a9 2026 Polinésia Residence & Resort. Tous droits réservés."
     },
     ar: {
+        nav_guide: "دليل مجاني",
         nav_apartment: "الشقة",
         nav_photos: "صور",
         nav_condo: "المنتجع",
@@ -1531,6 +1537,7 @@ const translations = {
         footer_copy: "\u00a9 2026 Polinésia Residence & Resort. جميع الحقوق محفوظة."
     },
     bn: {
+        nav_guide: "ফ্রি গাইড",
         nav_apartment: "অ্যাপার্টমেন্ট",
         nav_photos: "ছবি",
         nav_condo: "রিসোর্ট",
